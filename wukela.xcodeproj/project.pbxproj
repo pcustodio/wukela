@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		910E2DD624264E3400313B2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DD524264E3400313B2A /* AppDelegate.swift */; };
+		910E2DD824264E3400313B2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DD724264E3400313B2A /* SceneDelegate.swift */; };
+		910E2DDA24264E3400313B2A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DD924264E3400313B2A /* WebViewController.swift */; };
+		910E2DDD24264E3400313B2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910E2DDB24264E3400313B2A /* Main.storyboard */; };
+		910E2DE024264E3400313B2A /* wukela.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DDE24264E3400313B2A /* wukela.xcdatamodeld */; };
+		910E2DE224264E3600313B2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 910E2DE124264E3600313B2A /* Assets.xcassets */; };
+		910E2DE524264E3600313B2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910E2DE324264E3600313B2A /* LaunchScreen.storyboard */; };
+		910E2DED2426544000313B2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DEC2426544000313B2A /* HomeViewController.swift */; };
+		916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916F014E24268CE300F88905 /* BookmarkViewController.swift */; };
+		917A4330242B8AF90032F4D2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917A432F242B8AF90032F4D2 /* WebKit.framework */; };
+		91CE263D2428F48C001A7B39 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE263C2428F48C001A7B39 /* OptionsViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		910E2DD224264E3400313B2A /* wukela.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wukela.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		910E2DD524264E3400313B2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		910E2DD724264E3400313B2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		910E2DD924264E3400313B2A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		910E2DDC24264E3400313B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		910E2DDF24264E3400313B2A /* wukela.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = wukela.xcdatamodel; sourceTree = "<group>"; };
+		910E2DE124264E3600313B2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		910E2DE424264E3600313B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		910E2DE624264E3600313B2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		910E2DEC2426544000313B2A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		916F014E24268CE300F88905 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		917A432F242B8AF90032F4D2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		91CE263C2428F48C001A7B39 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		910E2DCF24264E3400313B2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				917A4330242B8AF90032F4D2 /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		910E2DC924264E3400313B2A = {
+			isa = PBXGroup;
+			children = (
+				910E2DD424264E3400313B2A /* wukela */,
+				910E2DD324264E3400313B2A /* Products */,
+				917A432E242B8AF90032F4D2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		910E2DD324264E3400313B2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				910E2DD224264E3400313B2A /* wukela.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		910E2DD424264E3400313B2A /* wukela */ = {
+			isa = PBXGroup;
+			children = (
+				910E2DD524264E3400313B2A /* AppDelegate.swift */,
+				910E2DD724264E3400313B2A /* SceneDelegate.swift */,
+				917A432B242B869B0032F4D2 /* Model */,
+				917A432C242B86A60032F4D2 /* View */,
+				917A432D242B86AE0032F4D2 /* Controller */,
+				910E2DE124264E3600313B2A /* Assets.xcassets */,
+				910E2DE324264E3600313B2A /* LaunchScreen.storyboard */,
+				910E2DE624264E3600313B2A /* Info.plist */,
+				910E2DDE24264E3400313B2A /* wukela.xcdatamodeld */,
+			);
+			path = wukela;
+			sourceTree = "<group>";
+		};
+		917A432B242B869B0032F4D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		917A432C242B86A60032F4D2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				910E2DDB24264E3400313B2A /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		917A432D242B86AE0032F4D2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				910E2DD924264E3400313B2A /* WebViewController.swift */,
+				916F014E24268CE300F88905 /* BookmarkViewController.swift */,
+				910E2DEC2426544000313B2A /* HomeViewController.swift */,
+				91CE263C2428F48C001A7B39 /* OptionsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		917A432E242B8AF90032F4D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				917A432F242B8AF90032F4D2 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		910E2DD124264E3400313B2A /* wukela */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 910E2DE924264E3600313B2A /* Build configuration list for PBXNativeTarget "wukela" */;
+			buildPhases = (
+				910E2DCE24264E3400313B2A /* Sources */,
+				910E2DCF24264E3400313B2A /* Frameworks */,
+				910E2DD024264E3400313B2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = wukela;
+			productName = webtest;
+			productReference = 910E2DD224264E3400313B2A /* wukela.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		910E2DCA24264E3400313B2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Paulo Custódio";
+				TargetAttributes = {
+					910E2DD124264E3400313B2A = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 910E2DCD24264E3400313B2A /* Build configuration list for PBXProject "wukela" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 910E2DC924264E3400313B2A;
+			productRefGroup = 910E2DD324264E3400313B2A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				910E2DD124264E3400313B2A /* wukela */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		910E2DD024264E3400313B2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				910E2DE524264E3600313B2A /* LaunchScreen.storyboard in Resources */,
+				910E2DE224264E3600313B2A /* Assets.xcassets in Resources */,
+				910E2DDD24264E3400313B2A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		910E2DCE24264E3400313B2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				910E2DED2426544000313B2A /* HomeViewController.swift in Sources */,
+				910E2DDA24264E3400313B2A /* WebViewController.swift in Sources */,
+				910E2DD624264E3400313B2A /* AppDelegate.swift in Sources */,
+				91CE263D2428F48C001A7B39 /* OptionsViewController.swift in Sources */,
+				910E2DE024264E3400313B2A /* wukela.xcdatamodeld in Sources */,
+				916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */,
+				910E2DD824264E3400313B2A /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		910E2DDB24264E3400313B2A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				910E2DDC24264E3400313B2A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		910E2DE324264E3600313B2A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				910E2DE424264E3600313B2A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		910E2DE724264E3600313B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		910E2DE824264E3600313B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		910E2DEA24264E3600313B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95K55BPZP5;
+				INFOPLIST_FILE = "$(SRCROOT)/wukela/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.paulocustodio;
+				PRODUCT_NAME = wukela;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		910E2DEB24264E3600313B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95K55BPZP5;
+				INFOPLIST_FILE = "$(SRCROOT)/wukela/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.paulocustodio;
+				PRODUCT_NAME = wukela;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		910E2DCD24264E3400313B2A /* Build configuration list for PBXProject "wukela" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				910E2DE724264E3600313B2A /* Debug */,
+				910E2DE824264E3600313B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		910E2DE924264E3600313B2A /* Build configuration list for PBXNativeTarget "wukela" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				910E2DEA24264E3600313B2A /* Debug */,
+				910E2DEB24264E3600313B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		910E2DDE24264E3400313B2A /* wukela.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				910E2DDF24264E3400313B2A /* wukela.xcdatamodel */,
+			);
+			currentVersion = 910E2DDF24264E3400313B2A /* wukela.xcdatamodel */;
+			path = wukela.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 910E2DCA24264E3400313B2A /* Project object */;
+}
