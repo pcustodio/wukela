@@ -15,6 +15,8 @@
 		910E2DE224264E3600313B2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 910E2DE124264E3600313B2A /* Assets.xcassets */; };
 		910E2DE524264E3600313B2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910E2DE324264E3600313B2A /* LaunchScreen.storyboard */; };
 		910E2DED2426544000313B2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DEC2426544000313B2A /* HomeViewController.swift */; };
+		9162116D242CE9CA009C3CE6 /* NewsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162116C242CE9CA009C3CE6 /* NewsLoader.swift */; };
+		9162116F242CEA38009C3CE6 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162116E242CEA38009C3CE6 /* NewsData.swift */; };
 		916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916F014E24268CE300F88905 /* BookmarkViewController.swift */; };
 		917A4330242B8AF90032F4D2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917A432F242B8AF90032F4D2 /* WebKit.framework */; };
 		91CE263D2428F48C001A7B39 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE263C2428F48C001A7B39 /* OptionsViewController.swift */; };
@@ -31,6 +33,8 @@
 		910E2DE424264E3600313B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		910E2DE624264E3600313B2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		910E2DEC2426544000313B2A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9162116C242CE9CA009C3CE6 /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
+		9162116E242CEA38009C3CE6 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		916F014E24268CE300F88905 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		917A432F242B8AF90032F4D2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		91CE263C2428F48C001A7B39 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		917A432B242B869B0032F4D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9162116C242CE9CA009C3CE6 /* NewsLoader.swift */,
+				9162116E242CEA38009C3CE6 /* NewsData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +199,8 @@
 				910E2DE024264E3400313B2A /* wukela.xcdatamodeld in Sources */,
 				916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */,
 				910E2DD824264E3400313B2A /* SceneDelegate.swift in Sources */,
+				9162116D242CE9CA009C3CE6 /* NewsLoader.swift in Sources */,
+				9162116F242CEA38009C3CE6 /* NewsData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

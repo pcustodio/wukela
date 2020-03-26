@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var newsPic: UIImageView!
     
+    
+    let data = NewsLoader().news
     var newsURL : String = ""
     var picURL : String = ""
     
@@ -64,12 +66,16 @@ class HomeViewController: UIViewController {
     
     func getNews() {
 
-        self.headlineLabel.text = "Réus do caso LAM “apanham” 12 e 14 anos de prisão"
+        print(data[0].headline)
+        print(data[0].url_src)
+        print(data[0].img_src)
+        
+        self.headlineLabel.text = data[0].headline
         self.sourceLabel.text = "Jornal Notícias"
-        self.newsURL = "https://jornalnoticias.co.mz/index.php/sociedade/96417-reus-do-caso-lam-apanham-12-e-14-anos-de-prisao"
+        self.newsURL = data[0].url_src
         
         //get news photo
-        self.picURL = "https://jornalnoticias.co.mz/images/ANO-2020/MARCO/CASO-LAM-in.gif"
+        self.picURL = data[0].img_src
         if let url = URL(string: self.picURL) {
             self.downloadImage(from: url)
         } else {
