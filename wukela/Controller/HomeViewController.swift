@@ -7,16 +7,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeViewController: UIViewController {
     
 
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var headlineLabel: UILabel!
-    @IBOutlet weak var sourceLabel: UILabel!
-    @IBOutlet weak var newsPic: UIImageView!
-    
     
     let data = NewsLoader().news
 //    var newsURL : String = ""
@@ -27,7 +23,6 @@ class HomeViewController: UIViewController {
         
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
-        getNews()
         
 //        //remove extraneous empty cells
 //        tableView.tableFooterView = UIView()
@@ -38,52 +33,7 @@ class HomeViewController: UIViewController {
         //trigger UITableViewDelegate
         tableView.delegate = self
     }
-
-    
-//MARK: - Get image from url
-    
-    //Create a method with a completion handler to get the image data from your url
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-    
-    //Create a method to download the image (start the task)
-    func downloadImage(from url: URL) {
-        //print("Download Started")
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            //print(response?.suggestedFilename ?? url.lastPathComponent)
-            //print("Download Finished")
-            DispatchQueue.main.async() {
-                self.newsPic.image = UIImage(data: data)
-            }
-        }
-    }
-
-//MARK: - Get news function
-    
-    func getNews() {
-
-        print(data[0].headline)
-        print(data[0].url_src)
-        print(data[0].img_src)
-        print(data[0].news_src)
-        print(data[0].cat)
-        
-        self.headlineLabel.text = data[0].headline
-        self.sourceLabel.text = data[0].news_src
-        //self.newsURL = data[0].url_src
-        
-        //get news photo
-        self.picURL = data[0].img_src
-        if let url = URL(string: self.picURL) {
-            self.downloadImage(from: url)
-        } else {
-            print("No pic was found")
-        }
-    }
 }
-
 
 //MARK: - TableView
 
@@ -105,6 +55,13 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.textLabel?.text = newsRow.headline
         cell.detailTextLabel?.text = newsRow.news_src
+        
+        let url = URL(string: newsRow.img_src)!
+        cell.imageView?.kf.indicatorType = .activity
+        let processor = RoundCornerImageProcessor(cornerRadius: 15)
+        cell.imageView?.kf.setImage(with: url, options: [.processor(processor), .transition(.fade(0.2))], completionHandler: { (image, error, cacheType, URL) in
+            cell.setNeedsLayout()
+        })
         
         return cell
         

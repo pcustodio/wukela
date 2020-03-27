@@ -34,7 +34,7 @@ public class NewsLoader {
                 //get data from json file using decoder
                 let dataFromJson = try jsonDecoder.decode([NewsData].self, from: data)
                 //set it to out dictionary array (line 16)
-                self.news = dataFromJson
+                self.news = dataFromJson.reversed()
                 print(data)
             } catch {
                 print(error)
@@ -47,6 +47,7 @@ public class NewsLoader {
 //        //sort by pt String field in ascending sequence (alphabetically) and ignore accents
 //        self.news = self.news.sorted { $0.headline.localizedCaseInsensitiveCompare($1.headline) == ComparisonResult.orderedAscending }
 //    }
+
 
     
 }
