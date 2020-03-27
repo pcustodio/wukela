@@ -9,38 +9,36 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
 
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var headlineLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var newsPic: UIImageView!
     
     
     let data = NewsLoader().news
-    var newsURL : String = ""
+//    var newsURL : String = ""
     var picURL : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
         getNews()
+        
+//        //remove extraneous empty cells
+//        tableView.tableFooterView = UIView()
+        
+        //trigger UITableViewDataSource
+        tableView.dataSource = self
+        
+        //trigger UITableViewDelegate
+        tableView.delegate = self
     }
-    
-//    @IBAction func openUrl(_ sender: UIButton) {
-//        //send to WebViewController
-//        //self.performSegue(withIdentifier: "goToURL", sender: self)
-//    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        if segue.identifier == "goToURL" {
-            // Pass the selected object to the new view controller.
-            let destinationVC = segue.destination as! WebViewController
-            destinationVC.url = URL(string: newsURL)
-        }
-    }
+
     
 //MARK: - Get image from url
     
@@ -69,10 +67,12 @@ class HomeViewController: UIViewController {
         print(data[0].headline)
         print(data[0].url_src)
         print(data[0].img_src)
+        print(data[0].news_src)
+        print(data[0].cat)
         
         self.headlineLabel.text = data[0].headline
-        self.sourceLabel.text = "Jornal Notícias"
-        self.newsURL = data[0].url_src
+        self.sourceLabel.text = data[0].news_src
+        //self.newsURL = data[0].url_src
         
         //get news photo
         self.picURL = data[0].img_src
@@ -81,8 +81,52 @@ class HomeViewController: UIViewController {
         } else {
             print("No pic was found")
         }
-    
+    }
+}
+
+
+//MARK: - TableView
+
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+
+    //how many rows on TableView
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return nr of messages dynamically
+        return data.count
     }
     
+    //create our cell
+    //indexpath indicates which cell to display on each TableView row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath)
+        
+        let newsRow: NewsData
+        newsRow = data[indexPath.row]
+        
+        cell.textLabel?.text = newsRow.headline
+        cell.detailTextLabel?.text = newsRow.news_src
+        
+        return cell
+        
+    }
+    
+    //cell was tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        //will print cell that was tapped on
+        //print(indexPath.row)
+
+        //deselect row
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "getNews" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destination = segue.destination as? WebViewController
+                destination?.url = data[indexPath.row].url_src
+            }
+        }
+    }
 }

@@ -13,7 +13,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     
-    var url : URL?
+    var url = ""
     
     //activity idicator
     var activityIndicator: UIActivityIndicatorView!
@@ -24,8 +24,9 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
         
-        //activity indicator
         webView.navigationDelegate = self
+        
+        //activity indicator
         activityIndicator = UIActivityIndicatorView()
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
@@ -34,7 +35,10 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         view.addSubview(activityIndicator)
         
         //webkit load
-        webView.load(URLRequest(url: url!))
+        let loadURL = URL (string: url)
+        let request = URLRequest(url: loadURL!)
+        webView.load(request)
+        
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

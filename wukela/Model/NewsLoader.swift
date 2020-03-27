@@ -12,12 +12,12 @@ import Foundation
 public class NewsLoader {
     
     //store all the data that is retrieved from json file
-    //@Published is an optional tag
-    @Published var news = [NewsData]()
+    var news = [NewsData]()
     
     //run our load & sort functions when our class DictionaryLoader is created
     init() {
         load()
+        //sort()
     }
     
     //load our data
@@ -41,6 +41,12 @@ public class NewsLoader {
             }
         }
     }
+    
+    //sort our data
+//    func sort() {
+//        //sort by pt String field in ascending sequence (alphabetically) and ignore accents
+//        self.news = self.news.sorted { $0.headline.localizedCaseInsensitiveCompare($1.headline) == ComparisonResult.orderedAscending }
+//    }
 
     
 }

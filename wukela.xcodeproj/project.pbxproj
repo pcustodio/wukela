@@ -88,8 +88,8 @@
 		917A432B242B869B0032F4D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9162116C242CE9CA009C3CE6 /* NewsLoader.swift */,
 				9162116E242CEA38009C3CE6 /* NewsData.swift */,
+				9162116C242CE9CA009C3CE6 /* NewsLoader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -105,9 +105,9 @@
 		917A432D242B86AE0032F4D2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				910E2DEC2426544000313B2A /* HomeViewController.swift */,
 				910E2DD924264E3400313B2A /* WebViewController.swift */,
 				916F014E24268CE300F88905 /* BookmarkViewController.swift */,
-				910E2DEC2426544000313B2A /* HomeViewController.swift */,
 				91CE263C2428F48C001A7B39 /* OptionsViewController.swift */,
 			);
 			path = Controller;
