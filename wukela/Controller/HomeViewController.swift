@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
 
         //set cell height
-        self.tableView.rowHeight = 70;
+        self.tableView.rowHeight = 80;
 
     }
     
@@ -67,7 +67,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let image = UIImage(named: "placeholder.pdf")
         cell.imageView?.kf.indicatorType = .activity
     
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 100, height: 100)) |> CroppingImageProcessor(size: CGSize(width: 50, height: 50), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 120, height: 120)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
         
         cell.imageView?.kf.setImage(with: url, placeholder: image, options: [.processor(processor), .transition(.fade(0.5))], completionHandler: { (image, error, cacheType, URL) in
             cell.setNeedsLayout()
