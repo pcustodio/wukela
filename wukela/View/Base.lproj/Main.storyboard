@@ -46,7 +46,7 @@
                                                     <rect key="frame" x="20" y="28" width="29" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
-                                                    <color key="textColor" name="textColor"/>
+                                                    <color key="textColor" name="subtitleColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -117,6 +117,12 @@
                                                 <action selector="dismissView:" destination="BYZ-38-t0r" id="neb-OT-QfY"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="bookmark" catalog="system" id="n2U-Vq-HoP">
+                                            <color key="tintColor" name="primaryColor"/>
+                                            <connections>
+                                                <action selector="bookmarkBtn:" destination="BYZ-38-t0r" id="QpJ-Iy-QTp"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -145,6 +151,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="bookmarkIcon" destination="n2U-Vq-HoP" id="e9d-Le-AMR"/>
                         <outlet property="webView" destination="MOf-q6-URV" id="5i5-Tk-eOF"/>
                     </connections>
                 </viewController>
@@ -243,6 +250,9 @@
         </namedColor>
         <namedColor name="primaryColor">
             <color red="0.2627450980392157" green="0.2627450980392157" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="subtitleColor">
+            <color red="0.45882352941176469" green="0.45882352941176469" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -53,10 +53,13 @@ class HomeViewController: UIViewController {
     
     @objc func refreshContent() {
         self.perform(#selector(finishRefreshing), with: nil, afterDelay: 1.0)
+        tableView.reloadData()
+        print("refreshing")
     }
     
     @objc func finishRefreshing() {
         refreshControl.endRefreshing()
+        print("refreshed")
     }
     
 }
@@ -113,6 +116,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destination = segue.destination as? WebViewController
                 destination?.url = data[indexPath.row].url_src
+                destination?.headline = data[indexPath.row].headline
             }
         }
     }
