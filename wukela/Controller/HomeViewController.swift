@@ -11,11 +11,11 @@ import Kingfisher
 
 class HomeViewController: UIViewController {
     
-
     @IBOutlet weak var tableView: UITableView!
     
+    var refreshControl = UIRefreshControl()
+    
     let data = NewsLoader().news
-    var picURL : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,26 @@ class HomeViewController: UIViewController {
 
         //set cell height
         self.tableView.rowHeight = 80;
-
+        
+        addRefreshControl()
+        
+    }
+    
+    func addRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+    }
+    
+    @objc func refreshContent() {
+        self.perform(#selector(finishRefreshing), with: nil, afterDelay: 1.0)
+    }
+    
+    @objc func finishRefreshing() {
+        refreshControl.endRefreshing()
     }
     
 }
