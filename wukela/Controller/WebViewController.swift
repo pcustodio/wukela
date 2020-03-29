@@ -42,15 +42,11 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         let request = URLRequest(url: loadURL!)
         webView.load(request)
         
-        retrieveData()
-        print("Current headline is >>> \(headline)")
+        //check if headline exists in coredata
+        verifyData()
         
     }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        retrieveData()
-    //    }
+
     
     //MARK: - Buttons
     
@@ -58,11 +54,11 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         
         if self.bookmarkIcon.image == UIImage(systemName: "bookmark.fill") {
             deleteData()
-            retrieveData()
+            verifyData()
             
         } else {
             createData()
-            retrieveData()
+            verifyData()
         }
     }
     
@@ -105,41 +101,34 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         
     }
     
-    //MARK: - Retrieve CoreData
+    //MARK: - Verify CoreData
     
-    func retrieveData() {
+    //check if headline string exists in coredata as attribute
+    
+    func verifyData() {
         
         print("retrieving data")
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Bookmarks")
         
-        do {
-            let result = try managedContext.fetch(fetchRequest)
-            
-            for data in result as! [NSManagedObject] {
-                
-                //print(data.value(forKeyPath: "headlineMarked") as! String)
-                
-                //retrieved data is stored translation term
-                let retrievedData = data.value(forKey: "headlineMarked") as! String
-                print("I retrieved >> \(retrievedData)")
-                
-                //if coredata word  matches translated term on screen
-                if retrievedData == headline {
-                    
-                    //It is a Fav change bookmark icon to filled
-                    self.bookmarkIcon.image = UIImage(systemName: "bookmark.fill")
-                    
-                } else {
-                    //Not a Fav
-                    self.bookmarkIcon.image = UIImage(systemName: "bookmark")
-                }
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Bookmarks")
+        let predicate = NSPredicate(format: "headlineMarked == %@", headline)
+        request.predicate = predicate
+        request.fetchLimit = 1
+
+        do{
+            let count = try managedContext.count(for: request)
+            if(count == 0){
+                self.bookmarkIcon.image = UIImage(systemName: "star")
             }
-        } catch {
-            print("Failed")
-        }
+            else{
+                self.bookmarkIcon.image = UIImage(systemName: "star.fill")
+            }
+          }
+        catch let error as NSError {
+             print("Could not fetch \(error), \(error.userInfo)")
+          }
     }
     
     //MARK: - Delete CoreData

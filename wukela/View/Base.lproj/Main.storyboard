@@ -13,7 +13,7 @@
             <objects>
                 <viewController definesPresentationContext="YES" id="VAv-ZY-IgS" customClass="HomeViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CCY-mD-ah0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_home" translatesAutoresizingMaskIntoConstraints="NO" id="EDk-Rq-kTX">
@@ -87,7 +87,7 @@
             <objects>
                 <viewController id="EKZ-5h-im7" customClass="BookmarkViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xOv-Z3-gp8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6NE-gv-azs"/>
@@ -117,7 +117,7 @@
                                                 <action selector="dismissView:" destination="BYZ-38-t0r" id="neb-OT-QfY"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Item" image="bookmark" catalog="system" id="n2U-Vq-HoP">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="star" catalog="system" id="n2U-Vq-HoP">
                                             <color key="tintColor" name="primaryColor"/>
                                             <connections>
                                                 <action selector="bookmarkBtn:" destination="BYZ-38-t0r" id="QpJ-Iy-QTp"/>
@@ -164,7 +164,7 @@
             <objects>
                 <viewController id="SS7-HP-P8R" customClass="OptionsViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f1t-rQ-byt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="z06-Vi-qU1"/>
@@ -204,7 +204,7 @@
         <scene sceneID="lj1-gM-7Ie">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UsU-KG-3xD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="bookmark" catalog="system" id="O93-3i-Y6U"/>
+                    <tabBarItem key="tabBarItem" title="" image="star" catalog="system" id="O93-3i-Y6U"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BRI-mf-tNl">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -241,8 +241,8 @@
     </scenes>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="logo_home" width="128" height="29"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="text.alignleft" catalog="system" width="128" height="100"/>
         <image name="tray" catalog="system" width="128" height="88"/>
         <namedColor name="bkColor">
