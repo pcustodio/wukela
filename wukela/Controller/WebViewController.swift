@@ -52,7 +52,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     
     @IBAction func bookmarkBtn(_ sender: UIBarButtonItem) {
         
-        if self.bookmarkIcon.image == UIImage(systemName: "bookmark.fill") {
+        if self.bookmarkIcon.image == UIImage(systemName: "star.fill") {
             deleteData()
             verifyData()
             
@@ -156,7 +156,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 managedContext.delete(objectToDelete)
             }
             
-            self.bookmarkIcon.image = UIImage(systemName: "bookmark")
+            self.bookmarkIcon.image = UIImage(systemName: "star")
             
             do{
                 try managedContext.save()

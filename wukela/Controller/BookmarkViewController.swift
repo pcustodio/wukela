@@ -13,6 +13,8 @@ class BookmarkViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var bookmarks: [NSManagedObject] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,7 +34,28 @@ class BookmarkViewController: UIViewController {
         //set cell height
         self.tableView.rowHeight = 80;
 
+        //reload table
+        tableView.reloadData()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+      
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+              return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Bookmarks")
+        do {
+            bookmarks = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        tableView.reloadData()
+        
     }
 }
     
@@ -43,7 +66,14 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return nr of messages dynamically
-        return 1
+        if bookmarks.count == 0 {
+
+            //display empty bookmarks msg
+
+        } else {
+            print(bookmarks.count)
+        }
+        return bookmarks.count
     }
     
     //create our cell
@@ -51,7 +81,10 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        
+        let bookmark = bookmarks[indexPath.row]
+        cell.textLabel?.text = bookmark.value(forKeyPath: "headlineMarked") as? String
+        cell.detailTextLabel?.text = "teste"
+
         return cell
         
     }
