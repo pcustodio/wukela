@@ -12,6 +12,7 @@ import Kingfisher
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottomView: UIView!
     
     var refreshControl = UIRefreshControl()
     
@@ -39,6 +40,8 @@ class HomeViewController: UIViewController {
         self.tableView.rowHeight = 80;
         
         addRefreshControl()
+        
+        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "bkColor")!)
         
     }
     
@@ -140,5 +143,18 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 destination?.source = data[indexPath.row].news_src
             }
         }
+    }
+}
+
+extension UIView {
+    func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
+        gradientLayer.locations = [0.0 , 0.8]
+        gradientLayer.startPoint = CGPoint(x: 0.0 , y: 0.0)
+        gradientLayer.endPoint = CGPoint (x: 0.0 , y: 1.0)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
     }
 }

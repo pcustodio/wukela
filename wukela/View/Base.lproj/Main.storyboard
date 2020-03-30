@@ -59,6 +59,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cu7-JQ-PL6">
+                                <rect key="frame" x="0.0" y="733" width="414" height="80"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="IDw-te-JT4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="bkColor"/>
                         <color key="tintColor" red="0.2627450980392157" green="0.2627450980392157" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -66,8 +73,9 @@
                             <constraint firstItem="1qD-yd-wqP" firstAttribute="top" secondItem="EDk-Rq-kTX" secondAttribute="bottom" constant="20" id="C2f-dm-Hey"/>
                             <constraint firstItem="1qD-yd-wqP" firstAttribute="leading" secondItem="CCY-mD-ah0" secondAttribute="leading" id="E3d-Ba-dpj"/>
                             <constraint firstItem="wR9-BV-9Z3" firstAttribute="trailing" secondItem="1qD-yd-wqP" secondAttribute="trailing" id="Gq8-fd-Ikm"/>
+                            <constraint firstAttribute="bottom" secondItem="1qD-yd-wqP" secondAttribute="bottom" id="fVr-oO-e2P"/>
                             <constraint firstItem="EDk-Rq-kTX" firstAttribute="centerX" secondItem="CCY-mD-ah0" secondAttribute="centerX" id="fy3-YA-Rkf"/>
-                            <constraint firstItem="wR9-BV-9Z3" firstAttribute="bottom" secondItem="1qD-yd-wqP" secondAttribute="bottom" id="gQO-p8-lSr"/>
+                            <constraint firstItem="wR9-BV-9Z3" firstAttribute="bottom" secondItem="cu7-JQ-PL6" secondAttribute="bottom" id="gfz-Wc-IVj"/>
                             <constraint firstItem="EDk-Rq-kTX" firstAttribute="top" secondItem="wR9-BV-9Z3" secondAttribute="top" constant="20" id="zrk-oA-ukp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wR9-BV-9Z3"/>
@@ -75,6 +83,7 @@
                     <tabBarItem key="tabBarItem" title="" image="tray" catalog="system" id="ckf-jd-cBz"/>
                     <navigationItem key="navigationItem" id="QgW-T6-Frh"/>
                     <connections>
+                        <outlet property="bottomView" destination="cu7-JQ-PL6" id="JCG-b9-sdc"/>
                         <outlet property="tableView" destination="1qD-yd-wqP" id="MfF-dv-NlP"/>
                     </connections>
                 </viewController>
