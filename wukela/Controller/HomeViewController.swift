@@ -151,7 +151,7 @@ extension UIView {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
-        gradientLayer.locations = [0.0 , 0.8]
+        gradientLayer.locations = [0.0 , 0.9]
         gradientLayer.startPoint = CGPoint(x: 0.0 , y: 0.0)
         gradientLayer.endPoint = CGPoint (x: 0.0 , y: 1.0)
         
