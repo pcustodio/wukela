@@ -117,6 +117,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 let destination = segue.destination as? WebViewController
                 destination?.url = data[indexPath.row].url_src
                 destination?.headline = data[indexPath.row].headline
+                destination?.source = data[indexPath.row].news_src
             }
         }
     }

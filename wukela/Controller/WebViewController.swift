@@ -17,6 +17,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     
     var url = ""
     var headline = ""
+    var source = ""
     
     
     //activity idicator
@@ -91,6 +92,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         user.setValue(headline, forKeyPath: "headlineMarked")
+        user.setValue(source, forKeyPath: "sourceMarked")
         
         do {
             try managedContext.save()

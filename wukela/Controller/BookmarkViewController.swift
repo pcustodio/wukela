@@ -29,10 +29,13 @@ class BookmarkViewController: UIViewController {
         tableView.delegate = self
         
         //hide separator line
-        self.tableView.separatorColor = .clear;
+        //self.tableView.separatorColor = .clear;
         
         //set cell height
-        self.tableView.rowHeight = 80;
+        //self.tableView.rowHeight = 80;
+        
+        //remove extraneous empty cells
+        tableView.tableFooterView = UIView()
 
         //reload table
         tableView.reloadData()
@@ -83,7 +86,7 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
         
         let bookmark = bookmarks[indexPath.row]
         cell.textLabel?.text = bookmark.value(forKeyPath: "headlineMarked") as? String
-        cell.detailTextLabel?.text = "teste"
+        cell.detailTextLabel?.text = bookmark.value(forKeyPath: "sourceMarked") as? String
 
         return cell
         
@@ -98,5 +101,25 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
         //deselect row
         tableView.deselectRow(at: indexPath, animated: true)
         
+    }
+    
+    //swipe to delete rows in Coredata
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let bookmark = bookmarks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            guard let moc = bookmark.managedObjectContext else { return }
+            moc.delete(bookmark)
+            moc.processPendingChanges()
+            do{
+                try managedContext.save()
+            }
+            catch
+            {
+                print(error)
+            }
+        }
     }
 }
