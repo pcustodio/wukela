@@ -32,9 +32,6 @@ class OptionsViewController: UIViewController {
         self.tableView.rowHeight = 80;
 
     }
-    
-    
-
 }
 
 
