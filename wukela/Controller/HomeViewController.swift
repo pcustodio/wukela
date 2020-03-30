@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
         
         addRefreshControl()
         
-        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "bkColor")!)
+        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
         
     }
     
@@ -147,11 +147,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension UIView {
-    func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
+    func setGradientBackground(colorOne: UIColor, colorTwo: UIColor, colorThree: UIColor, colorFour: UIColor) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
-        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
-        gradientLayer.locations = [0.0 , 0.9]
+        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor, colorThree.cgColor, colorFour.cgColor]
+        gradientLayer.locations = [0.0, 0.6 , 0.7 , 0.8]
         gradientLayer.startPoint = CGPoint(x: 0.0 , y: 0.0)
         gradientLayer.endPoint = CGPoint (x: 0.0 , y: 1.0)
         

@@ -24,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1qD-yd-wqP">
-                                <rect key="frame" x="0.0" y="103" width="414" height="700"/>
+                                <rect key="frame" x="0.0" y="103" width="414" height="705"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -60,10 +60,10 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cu7-JQ-PL6">
-                                <rect key="frame" x="0.0" y="703" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="728" width="414" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="IDw-te-JT4"/>
+                                    <constraint firstAttribute="height" constant="80" id="IDw-te-JT4"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -73,9 +73,9 @@
                             <constraint firstItem="1qD-yd-wqP" firstAttribute="top" secondItem="EDk-Rq-kTX" secondAttribute="bottom" constant="20" id="C2f-dm-Hey"/>
                             <constraint firstItem="1qD-yd-wqP" firstAttribute="leading" secondItem="CCY-mD-ah0" secondAttribute="leading" id="E3d-Ba-dpj"/>
                             <constraint firstItem="wR9-BV-9Z3" firstAttribute="trailing" secondItem="1qD-yd-wqP" secondAttribute="trailing" id="Gq8-fd-Ikm"/>
-                            <constraint firstAttribute="bottom" secondItem="1qD-yd-wqP" secondAttribute="bottom" constant="10" id="fVr-oO-e2P"/>
+                            <constraint firstAttribute="bottom" secondItem="1qD-yd-wqP" secondAttribute="bottom" constant="5" id="fVr-oO-e2P"/>
                             <constraint firstItem="EDk-Rq-kTX" firstAttribute="centerX" secondItem="CCY-mD-ah0" secondAttribute="centerX" id="fy3-YA-Rkf"/>
-                            <constraint firstItem="wR9-BV-9Z3" firstAttribute="bottom" secondItem="cu7-JQ-PL6" secondAttribute="bottom" constant="10" id="gfz-Wc-IVj"/>
+                            <constraint firstItem="wR9-BV-9Z3" firstAttribute="bottom" secondItem="cu7-JQ-PL6" secondAttribute="bottom" constant="5" id="gfz-Wc-IVj"/>
                             <constraint firstItem="EDk-Rq-kTX" firstAttribute="top" secondItem="wR9-BV-9Z3" secondAttribute="top" constant="20" id="zrk-oA-ukp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wR9-BV-9Z3"/>
@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X4S-cp-umn">
-                                <rect key="frame" x="0.0" y="88" width="414" height="715"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="primaryColor"/>
                                 <prototypes>
@@ -138,7 +138,7 @@
                         <constraints>
                             <constraint firstItem="X4S-cp-umn" firstAttribute="top" secondItem="6NE-gv-azs" secondAttribute="top" id="GMt-Id-oyY"/>
                             <constraint firstItem="X4S-cp-umn" firstAttribute="leading" secondItem="6NE-gv-azs" secondAttribute="leading" id="TV2-jr-8dQ"/>
-                            <constraint firstItem="6NE-gv-azs" firstAttribute="bottom" secondItem="X4S-cp-umn" secondAttribute="bottom" constant="10" id="eAI-Q8-8k9"/>
+                            <constraint firstItem="6NE-gv-azs" firstAttribute="bottom" secondItem="X4S-cp-umn" secondAttribute="bottom" id="eAI-Q8-8k9"/>
                             <constraint firstItem="6NE-gv-azs" firstAttribute="trailing" secondItem="X4S-cp-umn" secondAttribute="trailing" id="ek3-d9-Ukn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6NE-gv-azs"/>
