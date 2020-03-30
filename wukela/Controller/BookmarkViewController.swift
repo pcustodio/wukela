@@ -30,10 +30,10 @@ class BookmarkViewController: UIViewController {
         tableView.delegate = self
         
         //hide separator line
-        //self.tableView.separatorColor = .clear;
+        self.tableView.separatorColor = .clear;
         
         //set cell height
-        self.tableView.rowHeight = 80;
+        self.tableView.rowHeight = 70;
         
         //remove extraneous empty cells
         tableView.tableFooterView = UIView()

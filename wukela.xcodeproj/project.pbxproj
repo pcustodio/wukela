@@ -20,7 +20,7 @@
 		916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916F014E24268CE300F88905 /* BookmarkViewController.swift */; };
 		917A4330242B8AF90032F4D2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917A432F242B8AF90032F4D2 /* WebKit.framework */; };
 		91972703242E33A800E49154 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 91972702242E33A800E49154 /* Kingfisher */; };
-		91CE263D2428F48C001A7B39 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE263C2428F48C001A7B39 /* OptionsViewController.swift */; };
+		91CE263D2428F48C001A7B39 /* SourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE263C2428F48C001A7B39 /* SourcesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,7 @@
 		9162116E242CEA38009C3CE6 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		916F014E24268CE300F88905 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		917A432F242B8AF90032F4D2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		91CE263C2428F48C001A7B39 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		91CE263C2428F48C001A7B39 /* SourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +110,7 @@
 				910E2DEC2426544000313B2A /* HomeViewController.swift */,
 				910E2DD924264E3400313B2A /* WebViewController.swift */,
 				916F014E24268CE300F88905 /* BookmarkViewController.swift */,
-				91CE263C2428F48C001A7B39 /* OptionsViewController.swift */,
+				91CE263C2428F48C001A7B39 /* SourcesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 				910E2DED2426544000313B2A /* HomeViewController.swift in Sources */,
 				910E2DDA24264E3400313B2A /* WebViewController.swift in Sources */,
 				910E2DD624264E3400313B2A /* AppDelegate.swift in Sources */,
-				91CE263D2428F48C001A7B39 /* OptionsViewController.swift in Sources */,
+				91CE263D2428F48C001A7B39 /* SourcesViewController.swift in Sources */,
 				910E2DE024264E3400313B2A /* wukela.xcdatamodeld in Sources */,
 				916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */,
 				910E2DD824264E3400313B2A /* SceneDelegate.swift in Sources */,

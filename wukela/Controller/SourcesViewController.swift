@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OptionsViewController: UIViewController {
+class SourcesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,7 +29,7 @@ class OptionsViewController: UIViewController {
         self.tableView.separatorColor = .clear;
         
         //set cell height
-        self.tableView.rowHeight = 80;
+        self.tableView.rowHeight = 70;
 
     }
 }
@@ -37,12 +37,12 @@ class OptionsViewController: UIViewController {
 
 //MARK: - TableView
 
-extension OptionsViewController: UITableViewDataSource, UITableViewDelegate {
+extension SourcesViewController: UITableViewDataSource, UITableViewDelegate {
 
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return nr of messages dynamically
-        return 1
+        return 3
     }
     
     //create our cell

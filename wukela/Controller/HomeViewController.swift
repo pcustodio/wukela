@@ -12,14 +12,25 @@ import Kingfisher
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bottomView: UIView!
+//    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     
     var refreshControl = UIRefreshControl()
     
     let data = NewsLoader().news
+
+    let timeSplit = ""
+    let currentSegment = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let dataNew = data[0].epoch
+        let currentTime = NSDate().timeIntervalSince1970
+        print(dataNew)
+        print(currentTime)
+        let timeSplit = currentTime - dataNew
+        print(timeSplit)
         
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
@@ -41,8 +52,22 @@ class HomeViewController: UIViewController {
         
         addRefreshControl()
         
-        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
+        segmentControl.selectedSegmentIndex = 0
+        segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
         
+//        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
+        
+        
+    }
+    
+    @objc fileprivate func handleSegmentChange() {
+        //print(segmentControl.selectedSegmentIndex)
+        switch segmentControl.selectedSegmentIndex {
+        case 0:
+            tableView.reloadData()
+        default:
+            tableView.reloadData()
+        }
     }
     
     func addRefreshControl() {
@@ -74,7 +99,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return nr of messages dynamically
-        return data.count
+        if segmentControl.selectedSegmentIndex == 0 {
+            return data.count
+        } else {
+            return 1
+        }
     }
     
     //create our cell
@@ -82,39 +111,46 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let newsRow: NewsData
-        newsRow = data[indexPath.row]
+        if segmentControl.selectedSegmentIndex == 0 {
+            let newsRow: NewsData
+            newsRow = data[indexPath.row]
+            
+            cell.textLabel?.text = newsRow.headline
+            cell.detailTextLabel?.text = newsRow.news_src
+            
+            //let url = URL(string: newsRow.img_src)!
+            let image = UIImage(named: "placeholder.pdf")
+            cell.imageView?.kf.indicatorType = .activity
         
-        cell.textLabel?.text = newsRow.headline
-        cell.detailTextLabel?.text = newsRow.news_src
-        
-        //let url = URL(string: newsRow.img_src)!
-        let image = UIImage(named: "placeholder.pdf")
-        cell.imageView?.kf.indicatorType = .activity
-    
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 120, height: 120)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-        
-        let resource = ImageResource(downloadURL: URL(string: newsRow.img_src)!, cacheKey: newsRow.img_src)
-        
-        cell.imageView?.kf.setImage(with: resource, placeholder: image, options: [.processor(processor), .transition(.fade(0.5))]) { result in
-            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
-            switch result {
-            case .success(let value):
-                // The image was set to image view:
-                print(value.image)
+            let processor = DownsamplingImageProcessor(size: CGSize(width: 120, height: 120)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
+            
+            let resource = ImageResource(downloadURL: URL(string: newsRow.img_src)!, cacheKey: newsRow.img_src)
+            
+            cell.imageView?.kf.setImage(with: resource, placeholder: image, options: [.processor(processor), .transition(.fade(0.5))]) { result in
+                // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
+                switch result {
+                case .success(let value):
+                    // The image was set to image view:
+                    print(value.image)
 
-                // From where the image was retrieved:
-                // - .none - Just downloaded.
-                // - .memory - Got from memory cache.
-                // - .disk - Got from disk cache.
-                print(value.cacheType)
+                    // From where the image was retrieved:
+                    // - .none - Just downloaded.
+                    // - .memory - Got from memory cache.
+                    // - .disk - Got from disk cache.
+                    print(value.cacheType)
 
-                // The source object which contains information like `url`.
-                print(value.source)
+                    // The source object which contains information like `url`.
+                    print(value.source)
 
-            case .failure(let error):
-                print(error) // The error happens
+                case .failure(let error):
+                    print(error) // The error happens
+                }
             }
+        } else {
+            print("no table")
+            cell.textLabel?.text = "test title"
+            cell.imageView?.image = UIImage(named: "placeholder")
+            cell.detailTextLabel?.text = "test detail"
         }
 
         
@@ -146,15 +182,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension UIView {
-    func setGradientBackground(colorOne: UIColor, colorTwo: UIColor, colorThree: UIColor, colorFour: UIColor) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor, colorThree.cgColor, colorFour.cgColor]
-        gradientLayer.locations = [0.0, 0.6 , 0.7 , 0.8]
-        gradientLayer.startPoint = CGPoint(x: 0.0 , y: 0.0)
-        gradientLayer.endPoint = CGPoint (x: 0.0 , y: 1.0)
-        
-        layer.insertSublayer(gradientLayer, at: 0)
-    }
-}
+//extension UIView {
+//    func setGradientBackground(colorOne: UIColor, colorTwo: UIColor, colorThree: UIColor, colorFour: UIColor) {
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.frame = bounds
+//        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor, colorThree.cgColor, colorFour.cgColor]
+//        gradientLayer.locations = [0.0, 0.6 , 0.7 , 0.8]
+//        gradientLayer.startPoint = CGPoint(x: 0.0 , y: 0.0)
+//        gradientLayer.endPoint = CGPoint (x: 0.0 , y: 1.0)
+//
+//        layer.insertSublayer(gradientLayer, at: 0)
+//    }
+//}
