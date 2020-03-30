@@ -85,15 +85,35 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.text = newsRow.headline
         cell.detailTextLabel?.text = newsRow.news_src
         
-        let url = URL(string: newsRow.img_src)!
+        //let url = URL(string: newsRow.img_src)!
         let image = UIImage(named: "placeholder.pdf")
         cell.imageView?.kf.indicatorType = .activity
     
         let processor = DownsamplingImageProcessor(size: CGSize(width: 120, height: 120)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
         
-        cell.imageView?.kf.setImage(with: url, placeholder: image, options: [.processor(processor), .transition(.fade(0.5))], completionHandler: { (image, error, cacheType, URL) in
-            cell.setNeedsLayout()
-        })
+        let resource = ImageResource(downloadURL: URL(string: newsRow.img_src)!, cacheKey: newsRow.img_src)
+        
+        cell.imageView?.kf.setImage(with: resource, placeholder: image, options: [.processor(processor), .transition(.fade(0.5))]) { result in
+            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
+            switch result {
+            case .success(let value):
+                // The image was set to image view:
+                print(value.image)
+
+                // From where the image was retrieved:
+                // - .none - Just downloaded.
+                // - .memory - Got from memory cache.
+                // - .disk - Got from disk cache.
+                print(value.cacheType)
+
+                // The source object which contains information like `url`.
+                print(value.source)
+
+            case .failure(let error):
+                print(error) // The error happens
+            }
+        }
+
         
         return cell
         
