@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
-class SourcesViewController: UIViewController {
+class SourcesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    let sources = ["Jornal Notícias", "O País", "Verdade"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +35,10 @@ class SourcesViewController: UIViewController {
         self.tableView.rowHeight = 70;
 
     }
-}
+
 
 
 //MARK: - TableView
-
-extension SourcesViewController: UITableViewDataSource, UITableViewDelegate {
 
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,6 +51,9 @@ extension SourcesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
+
+        
+        cell.textLabel?.text = sources[indexPath.row]
         
         //add switch to cell
         let switchObj = UISwitch(frame: CGRect(x: 1, y: 1, width: 20, height: 20))
@@ -60,9 +64,21 @@ extension SourcesViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
         
     }
+   
+    //MARK: - Toggle
     
     @objc func toggle(_ sender: UISwitch) {
-        print("Switched!")
+        
+        if (sender.isOn) {
+            turnOn()
+            print("Switched on!")
+        } else {
+            turnOff()
+            print("Switched off!")
+        }
+
+        
+        retrieveActiveSources()
     }
     
     //cell was tapped
@@ -74,5 +90,94 @@ extension SourcesViewController: UITableViewDataSource, UITableViewDelegate {
         //deselect row
         tableView.deselectRow(at: indexPath, animated: true)
         
+    }
+    
+    //MARK: - Create CoreData
+    
+    func turnOn() {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let userEntity = NSEntityDescription.entity(forEntityName: "ActiveSource", in: managedContext)!
+        
+        let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        user.setValue("Jornal Notícias", forKeyPath: "isActive")
+        
+        do {
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    func turnOff() {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
+        fetchRequest.predicate = NSPredicate(format: "isActive = %@", "Jornal Notícias")
+        
+        do
+        {
+            //check if there are any items to delete to prevent crash if nil
+            let saved = try managedContext.fetch(fetchRequest)
+            let savedData = saved.count
+            if savedData <= 0 {
+                print("blimey")
+            } else {
+                let objectToDelete = saved[0] as! NSManagedObject
+                managedContext.delete(objectToDelete)
+            }
+            
+            do{
+                try managedContext.save()
+            }
+            catch
+            {
+                print(error)
+            }
+        }
+        catch
+        {
+            print(error)
+        }
+        
+    }
+    
+    func retrieveActiveSources() {
+            
+        //As we know that container is set up in the AppDelegates so we need to refer that container.
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        //We need to create a context from this container
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        //Prepare the request of type NSFetchRequest  for the entity
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            
+            //Loop over CoreData entities
+            for data in result as! [NSManagedObject] {
+                
+                //check if they are saving
+//                print(data.value(forKeyPath: "ptNoted") as! String)
+//                print(data.value(forKeyPath: "trNoted") as! String)
+//                print(data.value(forKeyPath: "laNoted") as! String)
+//                print(data.value(forKeyPath: "dateNoted") as! String)
+                
+                //retrieved data is stored translation term
+                let retrievedData = data.value(forKey: "isActive") as! String
+                print(retrievedData)
+                
+                //if coredata word  matches translated term on screen
+                
+            }
+        } catch {
+            print("Failed")
+        }
     }
 }

@@ -9,28 +9,29 @@
 import UIKit
 import Kingfisher
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var bottomView: UIView!
+    //    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     var refreshControl = UIRefreshControl()
     
     let data = NewsLoader().news
-
-    let timeSplit = ""
-    let currentSegment = ""
+    let filteredData = RecentNewsLoader().news
+    
+    //    let timeSplit = ""
+    //    let currentSegment = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dataNew = data[0].epoch
-        let currentTime = NSDate().timeIntervalSince1970
-        print(dataNew)
-        print(currentTime)
-        let timeSplit = currentTime - dataNew
-        print(timeSplit)
+        //        let dataNew = data[0].epoch
+        //        let currentTime = NSDate().timeIntervalSince1970
+        //        print(dataNew)
+        //        print(currentTime)
+        //        let timeSplit = currentTime - dataNew
+        //        print(timeSplit)
         
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
@@ -46,7 +47,7 @@ class HomeViewController: UIViewController {
         
         //trigger UITableViewDelegate
         tableView.delegate = self
-
+        
         //set cell height
         self.tableView.rowHeight = 80;
         
@@ -90,19 +91,13 @@ class HomeViewController: UIViewController {
         print("refreshed")
     }
     
-}
-
-//MARK: - TableView
-
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
-
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return nr of messages dynamically
         if segmentControl.selectedSegmentIndex == 0 {
-            return data.count
+            return filteredData.count
         } else {
-            return 1
+            return data.count
         }
     }
     
@@ -110,49 +105,53 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     //indexpath indicates which cell to display on each TableView row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
+            
+//            //get epoch and current time
+//            let currentTime = NSDate().timeIntervalSince1970
+//            let pastHour = currentTime - 3600
+//            print("today starts at \(pastHour)")
+            
+            //if rows epoch occured in the past hour
+        let newsRow: NewsData
         if segmentControl.selectedSegmentIndex == 0 {
-            let newsRow: NewsData
-            newsRow = data[indexPath.row]
-            
-            cell.textLabel?.text = newsRow.headline
-            cell.detailTextLabel?.text = newsRow.news_src
-            
-            //let url = URL(string: newsRow.img_src)!
-            let image = UIImage(named: "placeholder.pdf")
-            cell.imageView?.kf.indicatorType = .activity
-        
-            let processor = DownsamplingImageProcessor(size: CGSize(width: 120, height: 120)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-            
-            let resource = ImageResource(downloadURL: URL(string: newsRow.img_src)!, cacheKey: newsRow.img_src)
-            
-            cell.imageView?.kf.setImage(with: resource, placeholder: image, options: [.processor(processor), .transition(.fade(0.5))]) { result in
-                // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
-                switch result {
-                case .success(let value):
-                    // The image was set to image view:
-                    print(value.image)
-
-                    // From where the image was retrieved:
-                    // - .none - Just downloaded.
-                    // - .memory - Got from memory cache.
-                    // - .disk - Got from disk cache.
-                    print(value.cacheType)
-
-                    // The source object which contains information like `url`.
-                    print(value.source)
-
-                case .failure(let error):
-                    print(error) // The error happens
-                }
-            }
+            newsRow = filteredData[indexPath.row]
         } else {
-            print("no table")
-            cell.textLabel?.text = "test title"
-            cell.imageView?.image = UIImage(named: "placeholder")
-            cell.detailTextLabel?.text = "test detail"
+            newsRow = data[indexPath.row]
         }
-
+        
+                
+        cell.textLabel?.text = newsRow.headline
+        cell.detailTextLabel?.text = newsRow.news_src
+        
+        //let url = URL(string: newsRow.img_src)!
+        let image = UIImage(named: "placeholder.pdf")
+        cell.imageView?.kf.indicatorType = .activity
+        
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 120, height: 120)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
+        
+        let resource = ImageResource(downloadURL: URL(string: newsRow.img_src)!, cacheKey: newsRow.img_src)
+        
+        cell.imageView?.kf.setImage(with: resource, placeholder: image, options: [.processor(processor), .transition(.fade(0.5))]) { result in
+            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
+            switch result {
+            case .success(let value):
+                // The image was set to image view:
+                print(value.image)
+                
+                // From where the image was retrieved:
+                // - .none - Just downloaded.
+                // - .memory - Got from memory cache.
+                // - .disk - Got from disk cache.
+                print(value.cacheType)
+                
+                // The source object which contains information like `url`.
+                print(value.source)
+                
+            case .failure(let error):
+                print(error) // The error happens
+            }
+        }
+        
         
         return cell
         
@@ -160,15 +159,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     //cell was tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         //will print cell that was tapped on
         //print(indexPath.row)
-
+        
         //deselect row
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "getNews" {
@@ -180,6 +179,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
+    
+    
 }
 
 //extension UIView {

@@ -1,15 +1,14 @@
 //
-//  NewsLoader.swift
+//  RecentNewsLoader.swift
 //  wukela
 //
-//  Created by Paulo Custódio on 26/03/2020.
+//  Created by Paulo Custódio on 31/03/2020.
 //  Copyright © 2020 Paulo Custódio. All rights reserved.
 //
 
 import Foundation
-
 //load data from json and turn it into my data structure on Dictionary.swift
-public class NewsLoader {
+public class RecentNewsLoader {
     
     //store all the data that is retrieved from json file
     var news = [NewsData]()
@@ -17,8 +16,8 @@ public class NewsLoader {
     //run our load & sort functions when our class DictionaryLoader is created
     init() {
         load()
-        sort()
-        //filtered()
+        //sort()
+        filtered()
     }
     
     //load our data
@@ -49,20 +48,16 @@ public class NewsLoader {
 //        //sort by pt String field in ascending sequence (alphabetically) and ignore accents
 //        self.news = self.news.sorted { $0.headline.localizedCaseInsensitiveCompare($1.headline) == ComparisonResult.orderedAscending }
 //    }
-//    
-//    func filtered() {
-//        //sort by pt String field in ascending sequence (alphabetically) and ignore accents
-//        let currentTime = NSDate().timeIntervalSince1970
-//        let pastHour = currentTime - 5000
-//        print("today starts at \(pastHour)")
-//        self.news = self.news.filter { $0.epoch > pastHour }
-//    }
-
-    //sort our data
-    func sort() {
+    
+    
+    func filtered() {
         //sort by pt String field in ascending sequence (alphabetically) and ignore accents
-        self.news = self.news.sorted { $0.epoch > $1.epoch }
+        let currentTime = NSDate().timeIntervalSince1970
+        let pastHour = currentTime - 1500
+        print("today starts at \(pastHour)")
+        self.news = self.news.filter { $0.epoch > pastHour }
     }
+
+
     
 }
-
