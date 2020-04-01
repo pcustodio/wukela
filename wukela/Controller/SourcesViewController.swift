@@ -175,33 +175,17 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func retrieveActiveSources() {
             
-        //As we know that container is set up in the AppDelegates so we need to refer that container.
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        //We need to create a context from this container
         let managedContext = appDelegate.persistentContainer.viewContext
-        
-        //Prepare the request of type NSFetchRequest  for the entity
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
-        
         do {
             let result = try managedContext.fetch(fetchRequest)
-            
+    
             //Loop over CoreData entities
             for data in result as! [NSManagedObject] {
-                
-                //check if they are saving
-//                print(data.value(forKeyPath: "ptNoted") as! String)
-//                print(data.value(forKeyPath: "trNoted") as! String)
-//                print(data.value(forKeyPath: "laNoted") as! String)
-//                print(data.value(forKeyPath: "dateNoted") as! String)
-                
-                //retrieved data is stored translation term
+
                 let retrievedData = data.value(forKey: "isActive") as! String
                 print(retrievedData)
-                
-                //if coredata word  matches translated term on screen
-                
             }
         } catch {
             print("Failed")

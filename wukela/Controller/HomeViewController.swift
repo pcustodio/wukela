@@ -20,18 +20,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let data = NewsLoader().news
     let filteredData = RecentNewsLoader().news
     
-    //    let timeSplit = ""
-    //    let currentSegment = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        let dataNew = data[0].epoch
-        //        let currentTime = NSDate().timeIntervalSince1970
-        //        print(dataNew)
-        //        print(currentTime)
-        //        let timeSplit = currentTime - dataNew
-        //        print(timeSplit)
         
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
@@ -58,8 +48,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
 //        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
         
-        
     }
+
     
     @objc fileprivate func handleSegmentChange() {
         //print(segmentControl.selectedSegmentIndex)
