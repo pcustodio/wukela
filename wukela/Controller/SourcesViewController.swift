@@ -14,6 +14,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     
     let sources = ["Jornal Notícias", "O País", "Verdade"]
+    var path = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +29,14 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         //trigger UITableViewDelegate
         tableView.delegate = self
         
+        //remove extraneous empty cells
+        tableView.tableFooterView = UIView()
+        
         //hide separator line
-        self.tableView.separatorColor = .clear;
+        //self.tableView.separatorColor = .clear;
         
         //set cell height
-        self.tableView.rowHeight = 70;
+        //self.tableView.rowHeight = 70;
 
     }
 
@@ -50,35 +54,57 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     //indexpath indicates which cell to display on each TableView row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
 
-        
         cell.textLabel?.text = sources[indexPath.row]
         
-        //add switch to cell
-        let switchObj = UISwitch(frame: CGRect(x: 1, y: 1, width: 20, height: 20))
-        switchObj.isOn = false
-        switchObj.addTarget(self, action: #selector(toggle(_:)), for: .valueChanged)
-        cell.accessoryView = switchObj
+        //switch
+        let swicthView = UISwitch(frame: .zero)
+        swicthView.tag = indexPath.row
+        swicthView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        cell.accessoryView = swicthView
         
+        //set switch on/off by checking coredata
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate!.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
+        let predicate = NSPredicate(format: "isActive == %@", sources[indexPath.row])
+        request.predicate = predicate
+        request.fetchLimit = 1
+        do{
+            let count = try managedContext.count(for: request)
+            if(count == 0){
+                swicthView.setOn(false, animated: false)
+            }
+            else{
+                swicthView.setOn(true, animated: false)
+            }
+          }
+        catch let error as NSError {
+             print("Could not fetch \(error), \(error.userInfo)")
+          }
+
         return cell
         
     }
    
     //MARK: - Toggle
     
-    @objc func toggle(_ sender: UISwitch) {
+    @objc func switchChanged(_ sender: UISwitch!) {
+        
+        //print(sender.tag)
+        path = sender.tag
+        //print("The switch is \(sender.isOn ? "ON" : "OFF")")
         
         if (sender.isOn) {
             turnOn()
-            print("Switched on!")
+            //print("Switched on!")
         } else {
             turnOff()
-            print("Switched off!")
+            //print("Switched off!")
         }
-
         
         retrieveActiveSources()
+        
     }
     
     //cell was tapped
@@ -101,7 +127,8 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         let userEntity = NSEntityDescription.entity(forEntityName: "ActiveSource", in: managedContext)!
         
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-        user.setValue("Jornal Notícias", forKeyPath: "isActive")
+        
+        user.setValue(sources[path], forKeyPath: "isActive")
         
         do {
             try managedContext.save()
@@ -117,7 +144,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
-        fetchRequest.predicate = NSPredicate(format: "isActive = %@", "Jornal Notícias")
+        fetchRequest.predicate = NSPredicate(format: "isActive = %@", sources[path])
         
         do
         {
