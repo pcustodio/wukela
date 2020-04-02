@@ -122,10 +122,10 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         do{
             let count = try managedContext.count(for: request)
             if(count == 0){
-                self.bookmarkIcon.image = UIImage(systemName: "star")
+                self.bookmarkIcon.image = UIImage(systemName: "bookmark")
             }
             else{
-                self.bookmarkIcon.image = UIImage(systemName: "star.fill")
+                self.bookmarkIcon.image = UIImage(systemName: "bookmark.fill")
             }
           }
         catch let error as NSError {

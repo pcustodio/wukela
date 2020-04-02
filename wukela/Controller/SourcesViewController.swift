@@ -36,7 +36,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         //self.tableView.separatorColor = .clear;
         
         //set cell height
-        //self.tableView.rowHeight = 70;
+        self.tableView.rowHeight = 60;
 
     }
 

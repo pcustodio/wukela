@@ -49,6 +49,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewwillappear")
+
+        //tableView.reloadData()
+        
+    }
 
     
     @objc fileprivate func handleSegmentChange() {
@@ -117,11 +125,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let image = UIImage(named: "placeholder.pdf")
         cell.imageView?.kf.indicatorType = .activity
         
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 120, height: 120)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-        
+        let scale = UIScreen.main.scale
+
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 10)
+
         let resource = ImageResource(downloadURL: URL(string: newsRow.img_src)!, cacheKey: newsRow.img_src)
         
-        cell.imageView?.kf.setImage(with: resource, placeholder: image, options: [.processor(processor), .transition(.fade(0.5))]) { result in
+        cell.imageView?.kf.setImage(
+            with: resource,
+            placeholder: image,
+            options: [.processor(processor),
+                      .transition(.fade(0.5))])
+        {
+            result in
             // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
             switch result {
             case .success(let value):
