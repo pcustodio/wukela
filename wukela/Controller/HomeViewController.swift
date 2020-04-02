@@ -129,7 +129,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 10)
 
-        let resource = ImageResource(downloadURL: URL(string: newsRow.img_src)!, cacheKey: newsRow.img_src)
+        let resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty.pdf"))!, cacheKey: newsRow.img_src)
         
         cell.imageView?.kf.setImage(
             with: resource,
@@ -179,9 +179,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segue.identifier == "getNews" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destination = segue.destination as? WebViewController
-                destination?.url = data[indexPath.row].url_src
-                destination?.headline = data[indexPath.row].headline
-                destination?.source = data[indexPath.row].news_src
+                destination?.url = data[indexPath.row].url_src!
+                destination?.headline = data[indexPath.row].headline!
+                destination?.source = data[indexPath.row].news_src!
             }
         }
     }

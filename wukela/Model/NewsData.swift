@@ -10,10 +10,10 @@ import Foundation
 
 //our data structure
 struct NewsData : Codable {
-    var headline: String
-    var img_src: String
-    var url_src: String
-    var news_src: String
-    var cat: String
+    var headline: String?
+    var img_src: String?
+    var url_src: String?
+    var news_src: String?
+    var cat: String?
     var epoch: Double
 }
