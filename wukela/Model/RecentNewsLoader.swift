@@ -82,7 +82,7 @@ public class RecentNewsLoader {
                 //sort (may be failing)
                 news = self.news.sorted { $0.epoch > $1.epoch }
                 
-                print(data)
+                //print(data)
             } catch {
                 print(error)
             }
