@@ -12,7 +12,6 @@ import CoreData
 class BookmarkViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var editBtn: UIBarButtonItem!
     
     var bookmarks: [NSManagedObject] = []
     
@@ -59,19 +58,7 @@ class BookmarkViewController: UIViewController {
         }
         
         tableView.reloadData()
-        
     }
-    
-    @IBAction func startEdit(_ sender: UIBarButtonItem) {
-        tableView.setEditing(!tableView.isEditing, animated: true)
-
-        if tableView.isEditing {
-            self.editBtn.title = "Concluir"
-        } else {
-            self.editBtn.title = "Editar"
-        }
-    }
-    
 }
     
 //MARK: - TableView
