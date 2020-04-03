@@ -13,8 +13,13 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBOutlet weak var tableView: UITableView!
     
-    let sources = ["Jornal Notícias", "O País", "Verdade"]
+    let sources = [
+        ["Jornal Notícias", "O País", "Verdade"],
+        ["Jornal Angola", "Novo Jornal"]
+    ]
     var path = 0
+    var pathSection = 0
+    var pathRow = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +49,24 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
 
 //MARK: - TableView
 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        if section == 0 {
+            label.text = "Moçambique"
+        } else {
+            label.text = "Angola"
+        }
+        return label
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sources.count
+    }
+    
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return nr of messages dynamically
-        return 3
+        return sources[section].count
     }
     
     //create our cell
@@ -55,11 +74,14 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        cell.textLabel?.text = sources[indexPath.row]
+        let newsSource = sources[indexPath.section][indexPath.row]
+        cell.textLabel?.text = newsSource
+        //cell.textLabel?.text = sources[indexPath.row]
         
         //switch
         let swicthView = UISwitch(frame: .zero)
-        swicthView.tag = indexPath.row
+        //swicthView.tag = indexPath.row
+        swicthView.tag = indexPath.section * 1000 + indexPath.row
         swicthView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
         cell.accessoryView = swicthView
         
@@ -67,7 +89,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
-        let predicate = NSPredicate(format: "isActive == %@", sources[indexPath.row])
+        let predicate = NSPredicate(format: "isActive == %@", sources[indexPath.section][indexPath.row])
         request.predicate = predicate
         request.fetchLimit = 1
         do{
@@ -93,6 +115,8 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         //print(sender.tag)
         path = sender.tag
+        pathSection = path/1000
+        pathRow = path%10
         //print("The switch is \(sender.isOn ? "ON" : "OFF")")
         
         if (sender.isOn) {
@@ -128,7 +152,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         
-        user.setValue(sources[path], forKeyPath: "isActive")
+        user.setValue(sources[pathSection][pathRow], forKeyPath: "isActive")
         
         do {
             try managedContext.save()
@@ -144,7 +168,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
-        fetchRequest.predicate = NSPredicate(format: "isActive = %@", sources[path])
+        fetchRequest.predicate = NSPredicate(format: "isActive = %@", sources[pathSection][pathRow])
         
         do
         {
