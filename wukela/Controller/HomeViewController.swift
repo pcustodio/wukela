@@ -52,7 +52,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewwillappear")
 
         //tableView.reloadData()
         
@@ -138,24 +137,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                       .transition(.fade(0.5))])
         {
             result in
-            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
-            switch result {
-            case .success(let value):
-                // The image was set to image view:
-                print(value.image)
-                
-                // From where the image was retrieved:
-                // - .none - Just downloaded.
-                // - .memory - Got from memory cache.
-                // - .disk - Got from disk cache.
-                print(value.cacheType)
-                
-                // The source object which contains information like `url`.
-                print(value.source)
-                
-            case .failure(let error):
-                print(error) // The error happens
-            }
+//            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
+//            switch result {
+//            case .success(let value):
+//                // The image was set to image view:
+//                print(value.image)
+//                
+//                // From where the image was retrieved:
+//                // - .none - Just downloaded.
+//                // - .memory - Got from memory cache.
+//                // - .disk - Got from disk cache.
+//                print(value.cacheType)
+//                
+//                // The source object which contains information like `url`.
+//                print(value.source)
+//                
+//            case .failure(let error):
+//                print(error) // The error happens
+//            }
         }
         
         

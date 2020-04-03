@@ -54,7 +54,7 @@ public class RecentNewsLoader {
                     for data in result as! [NSManagedObject] {
 
                         retrievedData = data.value(forKey: "isActive") as! String
-                        print(retrievedData)
+                        //print(retrievedData)
                         
                         //insert coredata into array in position
                         if retrievedData == "Jornal Notícias" {
@@ -65,7 +65,7 @@ public class RecentNewsLoader {
                             activeSources.insert(retrievedData, at: 1)
                         }
                         
-                        print(activeSources)
+                        //print(activeSources)
                     }
                 } catch {
                     print("Failed")
