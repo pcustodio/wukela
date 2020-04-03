@@ -22,6 +22,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let tabItems = tabBarController?.tabBar.items {
+            // In this case we want to modify the badge number of the third tab:
+            let tabItem = tabItems[0]
+            tabItem.badgeValue = "23"
+        }
+        
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
         
