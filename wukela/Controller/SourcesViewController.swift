@@ -45,8 +45,6 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
 
     }
 
-
-
 //MARK: - TableView
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

@@ -16,9 +16,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     var refreshControl = UIRefreshControl()
-    
-    let data = NewsLoader().news
-    let filteredData = RecentNewsLoader().news
+    var data = NewsLoader().news
+    var filteredData = RecentNewsLoader().news
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +26,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         view.backgroundColor = UIColor(named: "bkColor")
         
         //remove extraneous empty cells
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView.init(frame: .zero)
         
         //hide separator line
         self.tableView.separatorColor = .clear;
@@ -41,8 +40,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //set cell height
         self.tableView.rowHeight = 80;
         
+        //refresh control
         addRefreshControl()
         
+        //segments
         segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
         
@@ -50,23 +51,33 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-        //tableView.reloadData()
-        
+        //print("viewdidappear")
+        if segmentControl.selectedSegmentIndex == 0 {
+            filteredData = RecentNewsLoader().news
+        } else {
+            data = NewsLoader().news
+        }
+        tableView.reloadData()
     }
-
+    
+//MARK: - Segment Ctrl
     
     @objc fileprivate func handleSegmentChange() {
         //print(segmentControl.selectedSegmentIndex)
         switch segmentControl.selectedSegmentIndex {
         case 0:
+            filteredData = RecentNewsLoader().news
             tableView.reloadData()
         default:
+            data = NewsLoader().news
             tableView.reloadData()
         }
     }
+    
+    //MARK: - Refresh Control
     
     func addRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
@@ -79,6 +90,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func refreshContent() {
         self.perform(#selector(finishRefreshing), with: nil, afterDelay: 1.0)
+        data = NewsLoader().news
+        filteredData = RecentNewsLoader().news
         tableView.reloadData()
         print("refreshing")
     }
@@ -88,9 +101,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("refreshed")
     }
     
+    //MARK: - Tableview
+    
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return nr of messages dynamically
+
         if segmentControl.selectedSegmentIndex == 0 {
             return filteredData.count
         } else {
@@ -101,22 +116,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //create our cell
     //indexpath indicates which cell to display on each TableView row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-            
-//            //get epoch and current time
-//            let currentTime = NSDate().timeIntervalSince1970
-//            let pastHour = currentTime - 3600
-//            print("today starts at \(pastHour)")
-            
-            //if rows epoch occured in the past hour
+
         let newsRow: NewsData
+        
         if segmentControl.selectedSegmentIndex == 0 {
             newsRow = filteredData[indexPath.row]
         } else {
             newsRow = data[indexPath.row]
         }
-        
-                
+
         cell.textLabel?.text = newsRow.headline
         cell.detailTextLabel?.text = newsRow.news_src
         
@@ -142,24 +152,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            case .success(let value):
 //                // The image was set to image view:
 //                print(value.image)
-//                
+//
 //                // From where the image was retrieved:
 //                // - .none - Just downloaded.
 //                // - .memory - Got from memory cache.
 //                // - .disk - Got from disk cache.
 //                print(value.cacheType)
-//                
+//
 //                // The source object which contains information like `url`.
 //                print(value.source)
-//                
+//
 //            case .failure(let error):
 //                print(error) // The error happens
 //            }
         }
-        
-        
         return cell
         
+
     }
     
     //cell was tapped
@@ -170,9 +179,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //deselect row
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
+//MARK: - Segue to WebViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "getNews" {

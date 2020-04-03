@@ -42,6 +42,8 @@ public class NewsLoader {
                 print(error)
             }
         }
+        print("loaded json: all")
+        
     }
     
     //sort our data

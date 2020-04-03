@@ -15,7 +15,6 @@ public class RecentNewsLoader {
     //store all the data that is retrieved from json file
     var news = [NewsData]()
     
-    
     var retrievedData = ""
     
     var activeSources = ["","",""]
@@ -89,6 +88,7 @@ public class RecentNewsLoader {
             }
             
         }
+        print("loaded json: recent")
         
     }
     
@@ -111,7 +111,4 @@ public class RecentNewsLoader {
         //sort by pt String field in ascending sequence (alphabetically) and ignore accents
         self.news = self.news.sorted { $0.epoch > $1.epoch }
     }
-    
-    
-    
 }
