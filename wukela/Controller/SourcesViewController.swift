@@ -48,13 +48,28 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
 //MARK: - TableView
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+
         let label = UILabel()
+        label.frame = CGRect.init(x: 20, y: 10, width: headerView.frame.width-10, height: headerView.frame.height-10)
+
+        label.font = UIFont(name: "ProximaNova-Light", size: 20) // my custom font
+        label.textColor = UIColor(named: "subtitleColor") // my custom colour
         if section == 0 {
             label.text = "Moçambique"
         } else {
             label.text = "Angola"
         }
-        return label
+        headerView.addSubview(label)
+    
+
+        return headerView
+
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
