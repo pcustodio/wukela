@@ -24,9 +24,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if let tabItems = tabBarController?.tabBar.items {
             // In this case we want to modify the badge number of the third tab:
-            let tabItem = tabItems[0]
-            tabItem.badgeValue = "23"
+            let tabItemOne = tabItems[0]
+            let tabItemTwo = tabItems[1]
+            let tabItemThree = tabItems[2]
+            tabItemOne.badgeValue = "23"
+            tabItemOne.image = UIImage(systemName: "tray.full")!.withBaselineOffset(fromBottom: UIFont.systemFontSize / 2)
+            tabItemTwo.image = UIImage(systemName: "bookmark")!.withBaselineOffset(fromBottom: UIFont.systemFontSize / 2)
+            tabItemThree.image = UIImage(systemName: "antenna.radiowaves.left.and.right")!.withBaselineOffset(fromBottom: UIFont.systemFontSize / 2)
         }
+
+        
+        //center a SF Symbols image vertically in UITabBarItem
+//        self.tabBarItem.image = UIImage(systemName: "tray.full")!.withBaselineOffset(fromBottom: UIFont.systemFontSize / 2)
         
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
