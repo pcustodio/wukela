@@ -78,6 +78,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         print("viewwillappear")
         latestCount = NewsLoader().news.count
+        cleanseCount()
         if segmentControl.selectedSegmentIndex == 0 {
             calculateCount()
             filteredData = RecentNewsLoader().news
@@ -267,10 +268,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
+        
         let userEntity = NSEntityDescription.entity(forEntityName: "Badge", in: managedContext)!
         
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-        user.setValue(latestCount, forKeyPath: "lastCount")
+        user.setValue(latestCount, forKey: "lastCount")
 
         
         do {
@@ -302,6 +304,40 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print("Failed")
             }
         }
+    
+    //MARK: - Cleanse Coredata if there are more that 10 objects present
+    
+    func cleanseCount() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Badge")
+        do {
+            let count = try managedContext.count(for: fetchRequest)
+            print("got this many objects in CD: \(count)")
+            if count >= 10 {
+                resetAllRecords(in: "Badge")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func resetAllRecords(in entity : String) // entity = Your_Entity_Name
+    {
+
+        let context = ( UIApplication.shared.delegate as! AppDelegate ).persistentContainer.viewContext
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Badge")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do
+        {
+            try context.execute(deleteRequest)
+            try context.save()
+        }
+        catch
+        {
+            print ("There was an error")
+        }
+    }
     
     
 }
