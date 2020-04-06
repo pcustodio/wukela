@@ -74,13 +74,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        //count new items
+        
         print("viewwillappear")
+        latestCount = NewsLoader().news.count
         if segmentControl.selectedSegmentIndex == 0 {
-//            calculateCount()
+            calculateCount()
             filteredData = RecentNewsLoader().news
+            
         } else {
-//            calculateCount()
+            calculateCount()
             data = NewsLoader().news
         }
         tableView.reloadData()
@@ -88,8 +91,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
-//        updateCount()
+        updateCount()
     }
     
 //MARK: - Segment Change Ctrl
@@ -139,11 +141,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("refreshed")
     }
     
+    //MARK: - Calculate Badge Count
+    
     func calculateCount() {
+        
+        //get oldCount
         retrieveCount()
-        //count new items
-        latestCount = data.count
+        
+        //calculate new count
         newCount = latestCount - oldCount
+        
         print("Latest count is \(latestCount)")
         print("Old count is \(oldCount)")
         print("New count is \(newCount)")
@@ -151,7 +158,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //set badge value
         if let tabItems = tabBarController?.tabBar.items {
             let tabItemOne = tabItems[0]
-            tabItemOne.badgeValue = String(newCount)
+            if newCount > 0 {
+                tabItemOne.badgeValue = String(newCount)
+            } else {
+                tabItemOne.badgeValue = nil
+            }
         }
     }
     
@@ -252,14 +263,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func updateCount() {
         
-        print("creating data")
+        print("adding lastCount to coredata")
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let userEntity = NSEntityDescription.entity(forEntityName: "Badge", in: managedContext)!
         
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-        user.setValue(latestCount, forKeyPath: "latestCount")
+        user.setValue(latestCount, forKeyPath: "lastCount")
 
         
         do {
@@ -273,27 +284,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //MARK: - Retrieve Count - CoreData
         
         func retrieveCount() {
-                
-            //As we know that container is set up in the AppDelegates so we need to refer that container.
+            
+            print("look up lastCount in coredata and store it as oldCount")
+
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-            
-            //We need to create a context from this container
             let managedContext = appDelegate.persistentContainer.viewContext
-            
-            //Prepare the request of type NSFetchRequest  for the entity
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Badge")
-            
             do {
                 let result = try managedContext.fetch(fetchRequest)
                 
                 //Loop over CoreData entities
                 for data in result as! [NSManagedObject] {
-                
-                    //retrieved data is stored translation term
-                    oldCount = data.value(forKey: "latestCount") as! Int
+                    oldCount = data.value(forKey: "lastCount") as! Int
                     print(oldCount)
-
-                    
                 }
             } catch {
                 print("Failed")
