@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -16,26 +17,30 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     var refreshControl = UIRefreshControl()
-    var data = NewsLoader().news
-    var filteredData = RecentNewsLoader().news
+    var data = [NewsData]()
+    var filteredData = [NewsData]()
+
+    //badge counter
+    var latestCount = 0
+    var oldCount = 0
+    var newCount = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
-            // In this case we want to modify the badge number of the third tab:
+            
             let tabItemOne = tabItems[0]
             let tabItemTwo = tabItems[1]
             let tabItemThree = tabItems[2]
-            tabItemOne.badgeValue = "23"
+            
+            //vertically center sf-symbols
             tabItemOne.image = UIImage(systemName: "tray.full")!.withBaselineOffset(fromBottom: UIFont.systemFontSize / 2)
             tabItemTwo.image = UIImage(systemName: "bookmark")!.withBaselineOffset(fromBottom: UIFont.systemFontSize / 2)
             tabItemThree.image = UIImage(systemName: "antenna.radiowaves.left.and.right")!.withBaselineOffset(fromBottom: UIFont.systemFontSize / 2)
         }
-
-        
-        //center a SF Symbols image vertically in UITabBarItem
-//        self.tabBarItem.image = UIImage(systemName: "tray.full")!.withBaselineOffset(fromBottom: UIFont.systemFontSize / 2)
         
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
@@ -62,23 +67,32 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
         
+        
 //        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         //print("viewdidappear")
         if segmentControl.selectedSegmentIndex == 0 {
+//            calculateCount()
             filteredData = RecentNewsLoader().news
         } else {
+//            calculateCount()
             data = NewsLoader().news
         }
         tableView.reloadData()
     }
     
-//MARK: - Segment Ctrl
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+//        updateCount()
+    }
+    
+//MARK: - Segment Change Ctrl
     
     @objc fileprivate func handleSegmentChange() {
         //print(segmentControl.selectedSegmentIndex)
@@ -114,6 +128,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func finishRefreshing() {
         refreshControl.endRefreshing()
         print("refreshed")
+    }
+    
+    func calculateCount() {
+        retrieveCount()
+        //count new items
+        latestCount = data.count
+        newCount = latestCount - oldCount
+        print("Latest count is \(latestCount)")
+        print("Old count is \(oldCount)")
+        print("New count is \(newCount)")
+        
+        //set badge value
+        if let tabItems = tabBarController?.tabBar.items {
+            let tabItemOne = tabItems[0]
+            tabItemOne.badgeValue = String(newCount)
+        }
     }
     
     //MARK: - Tableview
@@ -208,6 +238,58 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
+    
+    //MARK: - Calculate new - CoreData
+    
+    func updateCount() {
+        
+        print("creating data")
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let userEntity = NSEntityDescription.entity(forEntityName: "Badge", in: managedContext)!
+        
+        let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        user.setValue(latestCount, forKeyPath: "latestCount")
+
+        
+        do {
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+        //MARK: - Retrieve Count - CoreData
+        
+        func retrieveCount() {
+                
+            //As we know that container is set up in the AppDelegates so we need to refer that container.
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            
+            //We need to create a context from this container
+            let managedContext = appDelegate.persistentContainer.viewContext
+            
+            //Prepare the request of type NSFetchRequest  for the entity
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Badge")
+            
+            do {
+                let result = try managedContext.fetch(fetchRequest)
+                
+                //Loop over CoreData entities
+                for data in result as! [NSManagedObject] {
+                
+                    //retrieved data is stored translation term
+                    oldCount = data.value(forKey: "latestCount") as! Int
+                    print(oldCount)
+
+                    
+                }
+            } catch {
+                print("Failed")
+            }
+        }
     
     
 }

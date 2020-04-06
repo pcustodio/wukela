@@ -102,7 +102,7 @@ public class RecentNewsLoader {
         //sort by pt String field in ascending sequence (alphabetically) and ignore accents
         let currentTime = NSDate().timeIntervalSince1970
         let pastDay = currentTime - 86400
-        print("today starts at \(pastDay)")
+//        print("today starts at \(pastDay)")
         self.news = self.news.filter { $0.epoch > pastDay }
     }
     
