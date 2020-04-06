@@ -72,6 +72,37 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        //check for internet availability
+        if Reachability.isConnectedToNetwork(){
+            print("Internet Connection Available!")
+        }else{
+            print("Internet Connection not Available!")
+            let alert = UIAlertController(title: "Connection Error", message: "Please check if your internet connection is active.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Try again", style: .default, handler:{(action:UIAlertAction!) in
+                print("Action")
+                if Reachability.isConnectedToNetwork(){
+                    print("Internet Connection Available!")
+                    if self.segmentControl.selectedSegmentIndex == 0 {
+                        self.calculateCount()
+                        self.filteredData = NewsLoader().filterNews
+                        
+                    } else {
+                        self.calculateCount()
+                        self.data = NewsLoader().news
+                    }
+                    self.tableView.reloadData()
+                } else{
+                    self.viewDidAppear(animated)
+                }
+                
+            }))
+
+            self.present(alert, animated: true)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //count new items
@@ -81,7 +112,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cleanseCount()
         if segmentControl.selectedSegmentIndex == 0 {
             calculateCount()
-            filteredData = RecentNewsLoader().news
+            filteredData = NewsLoader().filterNews
             
         } else {
             calculateCount()
@@ -102,7 +133,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch segmentControl.selectedSegmentIndex {
         case 0:
             DispatchQueue.main.async {
-                self.filteredData = RecentNewsLoader().news
+                self.filteredData = NewsLoader().filterNews
                 self.tableView.reloadData()
             }
             
@@ -128,7 +159,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func refreshContent() {
         self.perform(#selector(finishRefreshing), with: nil, afterDelay: 1.0)
             if segmentControl.selectedSegmentIndex == 0 {
-                filteredData = RecentNewsLoader().news
+                filteredData = NewsLoader().filterNews
                 tableView.reloadData()
             } else {
                 data = NewsLoader().news
@@ -251,7 +282,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         data = NewsLoader().news
-        filteredData = RecentNewsLoader().news
+        filteredData = NewsLoader().filterNews
         if segue.identifier == "getNews" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destination = segue.destination as? WebViewController

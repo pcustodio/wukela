@@ -14,6 +14,7 @@ public class NewsLoader {
     
     //store all the data that is retrieved from json file
     var news = [NewsData]()
+    var filterNews = [NewsData]()
     
     var retrievedData = ""
     
@@ -82,7 +83,14 @@ public class NewsLoader {
                 //sort (may be failing)
                 news = self.news.sorted { $0.epoch > $1.epoch }
                 
-                //print(data)
+                //filter todays news
+                let currentTime = NSDate().timeIntervalSince1970
+                let pastDay = currentTime - 86400
+                filterNews = self.news.sorted { $0.epoch > $1.epoch }
+                filterNews = self.news.filter { $0.epoch > pastDay }
+
+                
+                print(data)
             } catch {
                 print(error)
             }
