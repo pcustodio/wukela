@@ -75,7 +75,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        //print("viewdidappear")
+        print("viewwillappear")
         if segmentControl.selectedSegmentIndex == 0 {
 //            calculateCount()
             filteredData = RecentNewsLoader().news
@@ -98,11 +98,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //print(segmentControl.selectedSegmentIndex)
         switch segmentControl.selectedSegmentIndex {
         case 0:
-            filteredData = RecentNewsLoader().news
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.filteredData = RecentNewsLoader().news
+                self.tableView.reloadData()
+            }
+            
         default:
-            data = NewsLoader().news
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.data = NewsLoader().news
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -119,9 +124,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func refreshContent() {
         self.perform(#selector(finishRefreshing), with: nil, afterDelay: 1.0)
-        data = NewsLoader().news
-        filteredData = RecentNewsLoader().news
-        tableView.reloadData()
+            if segmentControl.selectedSegmentIndex == 0 {
+                filteredData = RecentNewsLoader().news
+                tableView.reloadData()
+            } else {
+                data = NewsLoader().news
+                tableView.reloadData()
+            }
         print("refreshing")
     }
     
