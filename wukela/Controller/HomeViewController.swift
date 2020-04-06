@@ -250,6 +250,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //MARK: - Segue to WebViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        data = NewsLoader().news
+        filteredData = RecentNewsLoader().news
         if segue.identifier == "getNews" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destination = segue.destination as? WebViewController
