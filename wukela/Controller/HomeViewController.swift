@@ -87,7 +87,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     if self.segmentControl.selectedSegmentIndex == 0 {
                         self.calculateCount()
                         self.filteredData = NewsLoader().filterNews
-                        
                     } else {
                         self.calculateCount()
                         self.data = NewsLoader().news
@@ -108,12 +107,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //count new items
         
         print("viewwillappear")
-        latestCount = NewsLoader().news.count
+        
         cleanseCount()
         if segmentControl.selectedSegmentIndex == 0 {
             calculateCount()
             filteredData = NewsLoader().filterNews
-            
+            latestCount = filteredData.count
         } else {
             calculateCount()
             data = NewsLoader().news
@@ -281,16 +280,26 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //MARK: - Segue to WebViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        data = NewsLoader().news
-        filteredData = NewsLoader().filterNews
-        if segue.identifier == "getNews" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let destination = segue.destination as? WebViewController
-                destination?.url = data[indexPath.row].url_src!
-                destination?.headline = data[indexPath.row].headline!
-                destination?.source = data[indexPath.row].news_src!
+        if segmentControl.selectedSegmentIndex == 0 {
+            if segue.identifier == "getNews" {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let destination = segue.destination as? WebViewController
+                    destination?.url = filteredData[indexPath.row].url_src!
+                    destination?.headline = filteredData[indexPath.row].headline!
+                    destination?.source = filteredData[indexPath.row].news_src!
+                }
+            }
+        } else {
+            if segue.identifier == "getNews" {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let destination = segue.destination as? WebViewController
+                    destination?.url = data[indexPath.row].url_src!
+                    destination?.headline = data[indexPath.row].headline!
+                    destination?.source = data[indexPath.row].news_src!
+                }
             }
         }
+        
     }
     
     //MARK: - Calculate new - CoreData
@@ -307,7 +316,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         user.setValue(latestCount, forKey: "lastCount")
 
-        
         do {
             try managedContext.save()
             
