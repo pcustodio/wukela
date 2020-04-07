@@ -87,13 +87,12 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
 
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return nr of messages dynamically
         if bookmarks.count == 0 {
 
             //display empty bookmarks msg
-
+            self.tableView.setEmptyMessage("Sem notas")
         } else {
-            print(bookmarks.count)
+            self.tableView.restore()
         }
         return bookmarks.count
     }
@@ -169,5 +168,28 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
                 destination?.epoch = bookmark.value(forKeyPath: "epochMarked") as! Double
             }
         }
+    }
+}
+
+//MARK: - Empty message
+
+extension UITableView {
+
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = UIColor(named: "lineColor")
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont(name: "ProximaNova-Light", size: 30)
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel
+        self.separatorStyle = .none
+    }
+
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
     }
 }
