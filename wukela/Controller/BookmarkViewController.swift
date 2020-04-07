@@ -52,7 +52,7 @@ class BookmarkViewController: UIViewController {
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Bookmarks")
         do {
-            bookmarks = try managedContext.fetch(fetchRequest)
+            bookmarks = try managedContext.fetch(fetchRequest).reversed()
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -88,7 +88,6 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if bookmarks.count == 0 {
-
             //display empty bookmarks msg
             self.tableView.setEmptyMessage("Sem notas")
         } else {
