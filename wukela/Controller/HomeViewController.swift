@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
             
@@ -67,12 +67,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
         
+        //remove navigation bar shadow
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.shadowColor = .clear
+        navBarAppearance.shadowImage = UIImage()
+        navBarAppearance.backgroundColor = UIColor(named: "bkColor") 
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
         
 //        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         //check for internet availability
         if Reachability.isConnectedToNetwork(){
@@ -109,6 +119,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("viewwillappear")
         
         cleanseCount()
+        
         if segmentControl.selectedSegmentIndex == 0 {
             calculateCount()
             filteredData = NewsLoader().filterNews

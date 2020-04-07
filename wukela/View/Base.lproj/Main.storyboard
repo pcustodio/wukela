@@ -21,38 +21,31 @@
             <objects>
                 <viewController definesPresentationContext="YES" id="VAv-ZY-IgS" customClass="HomeViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CCY-mD-ah0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_home" translatesAutoresizingMaskIntoConstraints="NO" id="EDk-Rq-kTX">
-                                <rect key="frame" x="167" y="64" width="80" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="I5a-30-Rij"/>
-                                    <constraint firstAttribute="width" constant="80" id="ZdT-34-lg9"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1qD-yd-wqP">
-                                <rect key="frame" x="0.0" y="164" width="414" height="639"/>
+                                <rect key="frame" x="0.0" y="159" width="414" height="644"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" name="lineColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Cell" textLabel="dsI-Qk-QdG" detailTextLabel="V4f-Fq-iSu" style="IBUITableViewCellStyleSubtitle" id="zYb-qh-efn">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="46.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zYb-qh-efn" id="3es-7u-gTp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dsI-Qk-QdG">
-                                                    <rect key="frame" x="20" y="6.5" width="26.5" height="16.5"/>
+                                                    <rect key="frame" x="20" y="10" width="28" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="14"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <color key="highlightedColor" name="textColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V4f-Fq-iSu">
-                                                    <rect key="frame" x="20" y="25.5" width="28" height="13"/>
+                                                    <rect key="frame" x="20" y="24" width="28" height="11"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="11"/>
                                                     <color key="textColor" name="subtitleColor"/>
@@ -69,7 +62,7 @@
                                 </prototypes>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QCA-v0-YOI">
-                                <rect key="frame" x="20" y="113" width="374" height="32"/>
+                                <rect key="frame" x="20" y="108" width="374" height="32"/>
                                 <segments>
                                     <segment title="Recentes"/>
                                     <segment title="Últimos 7 dias"/>
@@ -82,19 +75,35 @@
                             <constraint firstItem="1qD-yd-wqP" firstAttribute="top" secondItem="QCA-v0-YOI" secondAttribute="bottom" constant="20" id="Akn-Ob-22p"/>
                             <constraint firstItem="1qD-yd-wqP" firstAttribute="leading" secondItem="CCY-mD-ah0" secondAttribute="leading" id="E3d-Ba-dpj"/>
                             <constraint firstItem="wR9-BV-9Z3" firstAttribute="trailing" secondItem="1qD-yd-wqP" secondAttribute="trailing" id="Gq8-fd-Ikm"/>
-                            <constraint firstItem="QCA-v0-YOI" firstAttribute="top" secondItem="EDk-Rq-kTX" secondAttribute="bottom" constant="30" id="OQE-fG-rDC"/>
                             <constraint firstItem="wR9-BV-9Z3" firstAttribute="trailing" secondItem="QCA-v0-YOI" secondAttribute="trailing" constant="20" id="UfM-On-j9y"/>
+                            <constraint firstItem="QCA-v0-YOI" firstAttribute="top" secondItem="wR9-BV-9Z3" secondAttribute="top" constant="20" id="Y9A-xu-naI"/>
                             <constraint firstAttribute="bottom" secondItem="1qD-yd-wqP" secondAttribute="bottom" constant="10" id="fVr-oO-e2P"/>
-                            <constraint firstItem="EDk-Rq-kTX" firstAttribute="centerX" secondItem="CCY-mD-ah0" secondAttribute="centerX" id="fy3-YA-Rkf"/>
                             <constraint firstItem="QCA-v0-YOI" firstAttribute="leading" secondItem="wR9-BV-9Z3" secondAttribute="leading" constant="20" id="jPT-aR-dpk"/>
-                            <constraint firstItem="EDk-Rq-kTX" firstAttribute="top" secondItem="wR9-BV-9Z3" secondAttribute="top" constant="20" id="zrk-oA-ukp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wR9-BV-9Z3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="ckf-jd-cBz">
-                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                    </tabBarItem>
-                    <navigationItem key="navigationItem" id="QgW-T6-Frh"/>
+                    <navigationItem key="navigationItem" id="QgW-T6-Frh">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="zfL-AK-wdt">
+                            <rect key="frame" x="207" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_home" translatesAutoresizingMaskIntoConstraints="NO" id="9jl-Q3-ir9">
+                                    <rect key="frame" x="-66.5" y="-9" width="133" height="18"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="133" id="0ii-ee-9cz"/>
+                                        <constraint firstAttribute="height" constant="18" id="EdY-Yf-eKl"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="9jl-Q3-ir9" firstAttribute="centerX" secondItem="zfL-AK-wdt" secondAttribute="centerX" id="EwG-Uy-hth"/>
+                                <constraint firstItem="9jl-Q3-ir9" firstAttribute="centerY" secondItem="zfL-AK-wdt" secondAttribute="centerY" id="mLA-Yl-QQm"/>
+                            </constraints>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="slider.horizontal.3" catalog="system" id="EKF-vU-ilP"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="segmentControl" destination="QCA-v0-YOI" id="ukF-DO-QqI"/>
                         <outlet property="tableView" destination="1qD-yd-wqP" id="MfF-dv-NlP"/>
@@ -102,14 +111,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14N-Uc-obt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39.130434782608695" y="138.61607142857142"/>
+            <point key="canvasLocation" x="949.27536231884062" y="138.61607142857142"/>
         </scene>
         <!--Notas-->
         <scene sceneID="eP9-C6-C4i">
             <objects>
                 <viewController id="EKZ-5h-im7" customClass="BookmarkViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xOv-Z3-gp8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X4S-cp-umn">
@@ -119,21 +128,21 @@
                                 <color key="separatorColor" name="lineColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="inA-1u-ivK" detailTextLabel="aw3-Gt-z1N" style="IBUITableViewCellStyleSubtitle" id="cS9-Px-PsY">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="46.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cS9-Px-PsY" id="Br9-NM-tUw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="inA-1u-ivK">
-                                                    <rect key="frame" x="20" y="6.5" width="26.5" height="16.5"/>
+                                                    <rect key="frame" x="20" y="10" width="28" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="14"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aw3-Gt-z1N">
-                                                    <rect key="frame" x="20" y="25.5" width="37.5" height="13"/>
+                                                    <rect key="frame" x="20" y="24" width="36.5" height="11"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="11"/>
                                                     <nil key="textColor"/>
@@ -234,14 +243,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1952.1739130434785" y="138.61607142857142"/>
         </scene>
         <!--Fontes-->
         <scene sceneID="rbh-hR-Yd9">
             <objects>
                 <viewController id="SS7-HP-P8R" customClass="SourcesViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f1t-rQ-byt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Bb-MV-eLa">
@@ -309,7 +318,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="VAv-ZY-IgS" kind="relationship" relationship="viewControllers" id="r8m-oC-fhs"/>
+                        <segue destination="98P-7G-DhJ" kind="relationship" relationship="viewControllers" id="r8m-oC-fhs"/>
                         <segue destination="UsU-KG-3xD" kind="relationship" relationship="viewControllers" id="MUE-fu-zcw"/>
                         <segue destination="1N1-Sr-TrB" kind="relationship" relationship="viewControllers" id="PfX-eq-uh2"/>
                     </connections>
@@ -327,6 +336,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BRI-mf-tNl">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="14"/>
+                            <color key="textColor" name="textColor"/>
+                        </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="38"/>
                             <color key="textColor" name="textColor"/>
@@ -351,7 +364,7 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="14"/>
                             <color key="textColor" name="textColor"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
@@ -368,14 +381,42 @@
             </objects>
             <point key="canvasLocation" x="-871.01449275362324" y="-641.51785714285711"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ope-wQ-3Ix">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="98P-7G-DhJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="ckf-jd-cBz">
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ybi-PK-fz2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="bkColor"/>
+                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="bkColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VAv-ZY-IgS" kind="relationship" relationship="rootViewController" id="TWt-pi-g1E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="diP-A8-yLg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="39.130434782608695" y="138.61607142857142"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gbC-WT-ESX"/>
+        <segue reference="Fuj-dd-FrU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="logo_home" width="128" height="29"/>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <namedColor name="bkColor">
             <color red="0.96078431372549022" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
