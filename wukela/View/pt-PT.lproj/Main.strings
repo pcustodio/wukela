@@ -1,0 +1,33 @@
+
+/* Class = "UINavigationItem"; title = "Fontes"; ObjectID = "H9A-Ml-Efm"; */
+"H9A-Ml-Efm.title" = "Fontes";
+
+/* Class = "UINavigationItem"; title = "Notas"; ObjectID = "Mpx-8b-Yzw"; */
+"Mpx-8b-Yzw.title" = "Notas";
+
+/* Class = "UISegmentedControl"; QCA-v0-YOI.segmentTitles[0] = "Recentes"; ObjectID = "QCA-v0-YOI"; */
+"QCA-v0-YOI.segmentTitles[0]" = "Recentes";
+
+/* Class = "UISegmentedControl"; QCA-v0-YOI.segmentTitles[1] = "Últimos 7 dias"; ObjectID = "QCA-v0-YOI"; */
+"QCA-v0-YOI.segmentTitles[1]" = "Últimos 7 dias";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "V4f-Fq-iSu"; */
+"V4f-Fq-iSu.text" = "Detail";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "aw3-Gt-z1N"; */
+"aw3-Gt-z1N.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "dsI-Qk-QdG"; */
+"dsI-Qk-QdG.text" = "Title";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "hra-58-KlJ"; */
+"hra-58-KlJ.title" = "Item";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "inA-1u-ivK"; */
+"inA-1u-ivK.text" = "Title";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "n2U-Vq-HoP"; */
+"n2U-Vq-HoP.title" = "Item";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "vw8-1e-ol2"; */
+"vw8-1e-ol2.text" = "Title";

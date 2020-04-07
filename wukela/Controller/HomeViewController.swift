@@ -287,6 +287,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.url = filteredData[indexPath.row].url_src!
                     destination?.headline = filteredData[indexPath.row].headline!
                     destination?.source = filteredData[indexPath.row].news_src!
+                    destination?.epoch = filteredData[indexPath.row].epoch
                 }
             }
         } else {
@@ -296,10 +297,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.url = data[indexPath.row].url_src!
                     destination?.headline = data[indexPath.row].headline!
                     destination?.source = data[indexPath.row].news_src!
+                    destination?.epoch = data[indexPath.row].epoch
                 }
             }
         }
-        
     }
     
     //MARK: - Calculate new - CoreData

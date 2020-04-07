@@ -18,6 +18,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     var url = ""
     var headline = ""
     var source = ""
+    var epoch = 0.0
     
     
     //activity idicator
@@ -53,7 +54,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     
     @IBAction func bookmarkBtn(_ sender: UIBarButtonItem) {
         
-        if self.bookmarkIcon.image == UIImage(systemName: "star.fill") {
+        if self.bookmarkIcon.image == UIImage(systemName: "bookmark.fill") {
             deleteData()
             verifyData()
             
@@ -93,6 +94,8 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         user.setValue(headline, forKeyPath: "headlineMarked")
         user.setValue(source, forKeyPath: "sourceMarked")
+        user.setValue(epoch, forKeyPath: "epochMarked")
+        user.setValue(url, forKeyPath: "urlMarked")
         
         do {
             try managedContext.save()
@@ -157,7 +160,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 managedContext.delete(objectToDelete)
             }
             
-            self.bookmarkIcon.image = UIImage(systemName: "star")
+            self.bookmarkIcon.image = UIImage(systemName: "bookmark")
             
             do{
                 try managedContext.save()

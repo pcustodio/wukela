@@ -7,13 +7,14 @@
         <attribute name="lastCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Bookmarks" representedClassName="Bookmarks" syncable="YES" codeGenerationType="class">
-        <attribute name="activeSource" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="epochMarked" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="headlineMarked" optional="YES" attributeType="String"/>
         <attribute name="sourceMarked" optional="YES" attributeType="String"/>
+        <attribute name="urlMarked" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="ActiveSource" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Badge" positionX="-63" positionY="9" width="128" height="58"/>
-        <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
