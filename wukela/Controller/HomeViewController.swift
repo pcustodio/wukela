@@ -76,7 +76,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
-        
 //        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
         
     }
@@ -95,19 +94,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if Reachability.isConnectedToNetwork(){
                     print("Internet Connection Available!")
                     if self.segmentControl.selectedSegmentIndex == 0 {
-                        self.calculateCount()
                         self.filteredData = NewsLoader().filterNews
                     } else {
-                        self.calculateCount()
                         self.data = NewsLoader().news
                     }
                     self.tableView.reloadData()
                 } else{
                     self.viewDidAppear(animated)
                 }
-                
             }))
-
             self.present(alert, animated: true)
         }
     }
@@ -117,15 +112,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //count new items
         
         print("viewwillappear")
-        
-        cleanseCount()
-        
+
         if segmentControl.selectedSegmentIndex == 0 {
-            calculateCount()
             filteredData = NewsLoader().filterNews
-            latestCount = filteredData.count
         } else {
-            calculateCount()
             data = NewsLoader().news
         }
         tableView.reloadData()
@@ -133,7 +123,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        updateCount()
+
     }
     
 //MARK: - Segment Change Ctrl
@@ -181,31 +171,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func finishRefreshing() {
         refreshControl.endRefreshing()
         print("refreshed")
-    }
-    
-    //MARK: - Calculate Badge Count
-    
-    func calculateCount() {
-        
-        //get oldCount
-        retrieveCount()
-        
-        //calculate new count
-        newCount = latestCount - oldCount
-        
-        print("Latest count is \(latestCount)")
-        print("Old count is \(oldCount)")
-        print("New count is \(newCount)")
-        
-        //set badge value
-        if let tabItems = tabBarController?.tabBar.items {
-            let tabItemOne = tabItems[0]
-            if newCount > 0 {
-                tabItemOne.badgeValue = String(newCount)
-            } else {
-                tabItemOne.badgeValue = nil
-            }
-        }
     }
     
     //MARK: - Tableview
@@ -313,86 +278,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
-    
-    //MARK: - Calculate new - CoreData
-    
-    func updateCount() {
-        
-        print("adding lastCount to coredata")
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let userEntity = NSEntityDescription.entity(forEntityName: "Badge", in: managedContext)!
-        
-        let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-        user.setValue(latestCount, forKey: "lastCount")
-
-        do {
-            try managedContext.save()
-            
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-        //MARK: - Retrieve Count - CoreData
-        
-        func retrieveCount() {
-            
-            print("look up lastCount in coredata and store it as oldCount")
-
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Badge")
-            do {
-                let result = try managedContext.fetch(fetchRequest)
-                
-                //Loop over CoreData entities
-                for data in result as! [NSManagedObject] {
-                    oldCount = data.value(forKey: "lastCount") as! Int
-                    print(oldCount)
-                }
-            } catch {
-                print("Failed")
-            }
-        }
-    
-    //MARK: - Cleanse Coredata if there are more that 10 objects present
-    
-    func cleanseCount() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Badge")
-        do {
-            let count = try managedContext.count(for: fetchRequest)
-            print("got this many objects in CD: \(count)")
-            if count >= 10 {
-                resetAllRecords(in: "Badge")
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func resetAllRecords(in entity : String) // entity = Your_Entity_Name
-    {
-
-        let context = ( UIApplication.shared.delegate as! AppDelegate ).persistentContainer.viewContext
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Badge")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        do
-        {
-            try context.execute(deleteRequest)
-            try context.save()
-        }
-        catch
-        {
-            print ("There was an error")
-        }
-    }
-    
-    
 }
 
 //extension UIView {
