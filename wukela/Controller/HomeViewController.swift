@@ -12,6 +12,7 @@ import CoreData
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+
     @IBOutlet weak var tableView: UITableView!
     //    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -19,16 +20,26 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var refreshControl = UIRefreshControl()
     var data = [NewsData]()
     var filteredData = [NewsData]()
-
-    //badge counter
-    var latestCount = 0
-    var oldCount = 0
-    var newCount = 0
     
+    var headlineRead = ""
+    var readHistory = [String]()
+    
+    let categories = ["Sociedade",
+                      "Desporto",
+                      "Economia",
+                      "Política",
+                      "Cultura",
+                      "Desporto",
+                      "Ciência e Tecnologia",
+                      "Opinião"]
+    
+    var selectedCat : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("viewdidload")
+        
         //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
             
@@ -80,51 +91,47 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
-        //check for internet availability
+        print("viewWillAppear")
+
+        //check for checkmarks
+        retrieveHistory()
+
         if Reachability.isConnectedToNetwork(){
-            print("Internet Connection Available!")
-        }else{
+            if self.segmentControl.selectedSegmentIndex == 0 {
+                self.filteredData = NewsLoader().filterNews
+            } else {
+                self.data = NewsLoader().news
+            }
+            self.tableView.reloadData()
+        } else {
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Connection Error", message: "Please check if your internet connection is active.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try again", style: .default, handler:{(action:UIAlertAction!) in
                 print("Action")
                 if Reachability.isConnectedToNetwork(){
                     print("Internet Connection Available!")
-                    if self.segmentControl.selectedSegmentIndex == 0 {
-                        self.filteredData = NewsLoader().filterNews
-                    } else {
-                        self.data = NewsLoader().news
-                    }
-                    self.tableView.reloadData()
+                    self.viewWillAppear(true)
                 } else{
-                    self.viewDidAppear(animated)
+                    self.viewWillAppear(true)
                 }
             }))
             self.present(alert, animated: true)
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //count new items
-        
-        print("viewwillappear")
-
-        if segmentControl.selectedSegmentIndex == 0 {
-            filteredData = NewsLoader().filterNews
-        } else {
-            data = NewsLoader().news
-        }
-        tableView.reloadData()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//    }
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//
+//    }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-    }
     
 //MARK: - Segment Change Ctrl
     
@@ -160,11 +167,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.perform(#selector(finishRefreshing), with: nil, afterDelay: 1.0)
             if segmentControl.selectedSegmentIndex == 0 {
                 filteredData = NewsLoader().filterNews
-                tableView.reloadData()
             } else {
                 data = NewsLoader().news
-                tableView.reloadData()
             }
+        tableView.reloadData()
         print("refreshing")
     }
     
@@ -175,7 +181,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: - Tableview
     
-    //how many rows on TableView
+    //define row qty
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if segmentControl.selectedSegmentIndex == 0 {
@@ -186,71 +192,63 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //create our cell
-    //indexpath indicates which cell to display on each TableView row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         let newsRow: NewsData
-        
         if segmentControl.selectedSegmentIndex == 0 {
             newsRow = filteredData[indexPath.row]
         } else {
             newsRow = data[indexPath.row]
         }
-
+        
+        //check if row is in history
+        if readHistory.contains(newsRow.url_src!) {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
+        //set row title/subtitle
         cell.textLabel?.text = newsRow.headline
         cell.detailTextLabel?.text = newsRow.news_src
         
-        //let url = URL(string: newsRow.img_src)!
+        //set row img
         let image = UIImage(named: "placeholder.pdf")
         cell.imageView?.kf.indicatorType = .activity
-        
         let scale = UIScreen.main.scale
-
         let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 10)
-
         let resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty.pdf"))!, cacheKey: newsRow.img_src)
-        
         cell.imageView?.kf.setImage(
             with: resource,
             placeholder: image,
             options: [.processor(processor),
                       .transition(.fade(0.5))])
-        {
-            result in
-//            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
-//            switch result {
-//            case .success(let value):
-//                // The image was set to image view:
-//                print(value.image)
-//
-//                // From where the image was retrieved:
-//                // - .none - Just downloaded.
-//                // - .memory - Got from memory cache.
-//                // - .disk - Got from disk cache.
-//                print(value.cacheType)
-//
-//                // The source object which contains information like `url`.
-//                print(value.source)
-//
-//            case .failure(let error):
-//                print(error) // The error happens
-//            }
-        }
-        return cell
         
-
+        return cell
     }
     
     //cell was tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //will print cell that was tapped on
+        //print cell that was tapped on
         //print(indexPath.row)
+
+        //set checkmark
+        let newsRow: NewsData
+        if segmentControl.selectedSegmentIndex == 0 {
+            newsRow = filteredData[indexPath.row]
+        } else {
+            newsRow = data[indexPath.row]
+        }
+        self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        headlineRead = newsRow.url_src!
+        //print("last selection was: \(headlineRead)")
+        self.tableView.deselectRow(at: indexPath, animated: true)
         
-        //deselect row
-        tableView.deselectRow(at: indexPath, animated: true)
+        markRead()
+        retrieveHistory()
     }
     
 //MARK: - Segue to WebViewController
@@ -277,6 +275,44 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
         }
+    }
+    
+    
+    //MARK: - Mark as Read - CoreData
+    func markRead(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let userEntity = NSEntityDescription.entity(forEntityName: "Read", in: managedContext)!
+        let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        user.setValue(headlineRead, forKeyPath: "isRead")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    //MARK: - Retrieve Read History - CoreData
+    
+    func retrieveHistory() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Read")
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            
+            for data in result as! [NSManagedObject] {
+                let viewRead = data.value(forKey: "isRead") as! String
+                readHistory.append(viewRead)
+                readHistory = Array(Set(readHistory))
+            }
+
+        } catch {
+            print("Failed")
+        }
+        print(readHistory)
     }
 }
 

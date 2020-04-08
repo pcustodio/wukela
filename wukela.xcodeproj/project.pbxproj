@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		910573FF243DECF900233292 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917A432F242B8AF90032F4D2 /* WebKit.framework */; };
 		910E2DD624264E3400313B2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DD524264E3400313B2A /* AppDelegate.swift */; };
 		910E2DD824264E3400313B2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DD724264E3400313B2A /* SceneDelegate.swift */; };
 		910E2DDA24264E3400313B2A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DD924264E3400313B2A /* WebViewController.swift */; };
@@ -19,7 +20,6 @@
 		9162116D242CE9CA009C3CE6 /* NewsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162116C242CE9CA009C3CE6 /* NewsLoader.swift */; };
 		9162116F242CEA38009C3CE6 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162116E242CEA38009C3CE6 /* NewsData.swift */; };
 		916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916F014E24268CE300F88905 /* BookmarkViewController.swift */; };
-		917A4330242B8AF90032F4D2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917A432F242B8AF90032F4D2 /* WebKit.framework */; };
 		91972703242E33A800E49154 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 91972702242E33A800E49154 /* Kingfisher */; };
 		91CE263D2428F48C001A7B39 /* SourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE263C2428F48C001A7B39 /* SourcesViewController.swift */; };
 		91E1F8BB243609F60053693B /* ProximaNova Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91E1F8B7243609F60053693B /* ProximaNova Semibold.otf */; };
@@ -58,8 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				910573FF243DECF900233292 /* WebKit.framework in Frameworks */,
 				91972703242E33A800E49154 /* Kingfisher in Frameworks */,
-				917A4330242B8AF90032F4D2 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

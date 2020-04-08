@@ -9,8 +9,12 @@
         <attribute name="sourceMarked" optional="YES" attributeType="String"/>
         <attribute name="urlMarked" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Read" representedClassName="Read" syncable="YES" codeGenerationType="class">
+        <attribute name="isRead" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="ActiveSource" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Read" positionX="-63" positionY="9" width="128" height="58"/>
     </elements>
 </model>

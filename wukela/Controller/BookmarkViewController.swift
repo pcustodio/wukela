@@ -14,11 +14,10 @@ class BookmarkViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var bookmarks: [NSManagedObject] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+
         //bkg color
         view.backgroundColor = UIColor(named: "bkColor")
         
