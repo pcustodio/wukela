@@ -142,7 +142,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
    
-    //MARK: - Toggle
+//MARK: - Toggle
     
     @objc func switchChanged(_ sender: UISwitch!) {
         
@@ -175,7 +175,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    //MARK: - Turn on Source - CoreData
+//MARK: - Turn on Source - CoreData
     
     func turnOn() {
         
@@ -197,7 +197,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    //MARK: - Turn off Source
+//MARK: - Turn off Source
     
     func turnOff() {
         
@@ -234,7 +234,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    //MARK: - Check active source - Coredata
+//MARK: - Check active source - Coredata
     
     func retrieveActiveSources() {
             

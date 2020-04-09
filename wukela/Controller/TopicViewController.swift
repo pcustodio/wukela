@@ -53,7 +53,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - Tableview
+//MARK: - Tableview
     
     //how many rows on TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,7 +66,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         cell.textLabel?.text = categories[indexPath.row]
         
-        //check coredata for active topics
+        //check coredata for active topics and set checkmark
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveTopics")
@@ -80,18 +80,11 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if retrievedData == categories[indexPath.row] {
                     cell.accessoryType = .checkmark
                 }
-                else{
-//                    cell.accessoryType = .none
-                }
             }
         } catch {
             print("Failed")
         }
-
-
-
         return cell
-        
     }
     
     //cell was tapped
@@ -118,7 +111,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    //MARK: - Turn on Topic
+//MARK: - Turn on Topic in CoreData
     
     func turnOn() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -140,7 +133,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    //MARK: - Turn off Topic
+//MARK: - Turn off Topic in CoreData
     
     func turnOff() {
         
@@ -173,29 +166,5 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         {
             print(error)
         }
-        
     }
-    
-    
-//    func checkTopics() {
-//        //check coredata for active topics
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveTopics")
-//        do {
-//            let result = try managedContext.fetch(fetchRequest)
-//
-//            //Loop over CoreData entities
-//            for data in result as! [NSManagedObject] {
-//
-//                let retrievedData = data.value(forKey: "isActiveTopic") as! String
-//                print(retrievedData)
-//
-//            }
-//        } catch {
-//            print("Failed")
-//        }
-//    }
-
-    
 }

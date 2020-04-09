@@ -78,6 +78,23 @@ class BookmarkViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
+    
+    
+    //MARK: - Segue to WebViewController
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "getNews" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destination = segue.destination as? WebViewController
+                let bookmark = bookmarks[indexPath.row]
+                destination?.url = bookmark.value(forKeyPath: "urlMarked") as! String
+                destination?.headline = bookmark.value(forKeyPath: "headlineMarked") as! String
+                destination?.source = bookmark.value(forKeyPath: "sourceMarked") as! String
+                destination?.epoch = bookmark.value(forKeyPath: "epochMarked") as! Double
+            }
+        }
+    }
 }
     
 //MARK: - TableView
@@ -145,22 +162,6 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
             catch
             {
                 print(error)
-            }
-        }
-    }
-    
-    //MARK: - Segue to WebViewController
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "getNews" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let destination = segue.destination as? WebViewController
-                let bookmark = bookmarks[indexPath.row]
-                destination?.url = bookmark.value(forKeyPath: "urlMarked") as! String
-                destination?.headline = bookmark.value(forKeyPath: "headlineMarked") as! String
-                destination?.source = bookmark.value(forKeyPath: "sourceMarked") as! String
-                destination?.epoch = bookmark.value(forKeyPath: "epochMarked") as! Double
             }
         }
     }

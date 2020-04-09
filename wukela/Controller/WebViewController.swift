@@ -48,7 +48,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     }
 
     
-    //MARK: - Buttons
+//MARK: - Buttons
     
     @IBAction func bookmarkBtn(_ sender: UIBarButtonItem) {
         
@@ -66,7 +66,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - Loader
+//MARK: - Loader
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         activityIndicator.isHidden = false
@@ -79,7 +79,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     }
     
     
-    //MARK: - Create CoreData
+//MARK: - Create CoreData
     
     func createData() {
         
@@ -103,7 +103,8 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    //MARK: - Verify CoreData
+    
+//MARK: - Verify CoreData
     
     //check if headline string exists in coredata as attribute
     
@@ -133,7 +134,8 @@ class WebViewController: UIViewController, WKNavigationDelegate {
           }
     }
     
-    //MARK: - Delete CoreData
+    
+//MARK: - Delete CoreData
     
     func deleteData(){
         

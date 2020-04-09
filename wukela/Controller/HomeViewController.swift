@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var readHistory = [String]()
     
     
-    //MARK: - viewDidLoad
+//MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    //MARK: - viewDidAppear
+//MARK: - viewDidAppear
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -137,7 +137,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    //MARK: - Refresh Control
+    
+//MARK: - Refresh Control
     
     func addRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
@@ -284,7 +285,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    //MARK: - Mark as Read - CoreData
+//MARK: - Mark as Read - CoreData
+    
     func markRead(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -299,7 +301,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    //MARK: - Retrieve Read History - CoreData
+    
+//MARK: - Retrieve Read History - CoreData
     
     func retrieveHistory() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
