@@ -20,7 +20,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     var source = ""
     var epoch = 0.0
     
-    
     //activity idicator
     var activityIndicator: UIActivityIndicatorView!
     
@@ -46,7 +45,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         
         //check if headline exists in coredata
         verifyData()
-        
     }
 
     

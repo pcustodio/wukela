@@ -96,7 +96,6 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     //create our cell
-    //indexpath indicates which cell to display on each TableView row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
@@ -111,8 +110,6 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
         dateFormatter.locale = Locale.init(identifier: Locale.preferredLanguages[1])
         dateFormatter.setLocalizedDateFormatFromTemplate("ddMMMM")
         let strDate = dateFormatter.string(from: date)
-        
-        
         
         cell.detailTextLabel?.text = strDate
 //        cell.detailTextLabel?.text = "\(strDate), \(bookmark.value(forKeyPath: "sourceMarked") as! String)"
