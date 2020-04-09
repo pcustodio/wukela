@@ -121,8 +121,8 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         //set switch on/off by checking coredata
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
-        let predicate = NSPredicate(format: "isActive == %@", sources[indexPath.section][indexPath.row])
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSources")
+        let predicate = NSPredicate(format: "isActiveSource == %@", sources[indexPath.section][indexPath.row])
         request.predicate = predicate
         request.fetchLimit = 1
         do{
@@ -135,8 +135,8 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
             }
           }
         catch let error as NSError {
-             print("Could not fetch \(error), \(error.userInfo)")
-          }
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
 
         return cell
         
@@ -175,17 +175,17 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    //MARK: - Create CoreData
+    //MARK: - Turn on Source - CoreData
     
     func turnOn() {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let userEntity = NSEntityDescription.entity(forEntityName: "ActiveSource", in: managedContext)!
+        let userEntity = NSEntityDescription.entity(forEntityName: "ActiveSources", in: managedContext)!
         
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         
-        user.setValue(sources[pathSection][pathRow], forKeyPath: "isActive")
+        user.setValue(sources[pathSection][pathRow], forKeyPath: "isActiveSource")
         
         do {
             try managedContext.save()
@@ -196,12 +196,15 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    
+    //MARK: - Turn off Source
+    
     func turnOff() {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
-        fetchRequest.predicate = NSPredicate(format: "isActive = %@", sources[pathSection][pathRow])
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSources")
+        fetchRequest.predicate = NSPredicate(format: "isActiveSource = %@", sources[pathSection][pathRow])
         
         do
         {
@@ -230,18 +233,21 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    
+    //MARK: - Check active source - Coredata
+    
     func retrieveActiveSources() {
             
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSources")
         do {
             let result = try managedContext.fetch(fetchRequest)
     
             //Loop over CoreData entities
             for data in result as! [NSManagedObject] {
 
-                let retrievedData = data.value(forKey: "isActive") as! String
+                let retrievedData = data.value(forKey: "isActiveSource") as! String
                 print(retrievedData)
             }
         } catch {

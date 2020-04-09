@@ -21,7 +21,7 @@
 		9162116F242CEA38009C3CE6 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162116E242CEA38009C3CE6 /* NewsData.swift */; };
 		916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916F014E24268CE300F88905 /* BookmarkViewController.swift */; };
 		91972703242E33A800E49154 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 91972702242E33A800E49154 /* Kingfisher */; };
-		91990A12243F3CAE001DAAA6 /* CatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91990A11243F3CAE001DAAA6 /* CatViewController.swift */; };
+		91990A12243F3CAE001DAAA6 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91990A11243F3CAE001DAAA6 /* TopicViewController.swift */; };
 		91CE263D2428F48C001A7B39 /* SourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE263C2428F48C001A7B39 /* SourcesViewController.swift */; };
 		91E1F8BB243609F60053693B /* ProximaNova Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91E1F8B7243609F60053693B /* ProximaNova Semibold.otf */; };
 		91E1F8BC243609F60053693B /* ProximaNova Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91E1F8B8243609F60053693B /* ProximaNova Light.otf */; };
@@ -45,7 +45,7 @@
 		9162116E242CEA38009C3CE6 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		916F014E24268CE300F88905 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		917A432F242B8AF90032F4D2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		91990A11243F3CAE001DAAA6 /* CatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewController.swift; sourceTree = "<group>"; };
+		91990A11243F3CAE001DAAA6 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		919D418F243CD14E009E3594 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Main.strings"; sourceTree = "<group>"; };
 		919D4190243CD14E009E3594 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		91CE263C2428F48C001A7B39 /* SourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewController.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				910E2DEC2426544000313B2A /* HomeViewController.swift */,
-				91990A11243F3CAE001DAAA6 /* CatViewController.swift */,
+				91990A11243F3CAE001DAAA6 /* TopicViewController.swift */,
 				910E2DD924264E3400313B2A /* WebViewController.swift */,
 				916F014E24268CE300F88905 /* BookmarkViewController.swift */,
 				91CE263C2428F48C001A7B39 /* SourcesViewController.swift */,
@@ -239,7 +239,7 @@
 				91CE263D2428F48C001A7B39 /* SourcesViewController.swift in Sources */,
 				910E2DE024264E3400313B2A /* wukela.xcdatamodeld in Sources */,
 				916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */,
-				91990A12243F3CAE001DAAA6 /* CatViewController.swift in Sources */,
+				91990A12243F3CAE001DAAA6 /* TopicViewController.swift in Sources */,
 				910E2DD824264E3400313B2A /* SceneDelegate.swift in Sources */,
 				9110AB4B243B76CB00669A6B /* Reachability.swift in Sources */,
 				9162116D242CE9CA009C3CE6 /* NewsLoader.swift in Sources */,

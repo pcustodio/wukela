@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ActiveSource" representedClassName="ActiveSource" syncable="YES" codeGenerationType="class">
-        <attribute name="isActive" optional="YES" attributeType="String"/>
+    <entity name="ActiveSources" representedClassName="ActiveSources" syncable="YES" codeGenerationType="class">
+        <attribute name="isActiveSource" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ActiveTopics" representedClassName="ActiveTopics" syncable="YES" codeGenerationType="class">
+        <attribute name="isActiveTopic" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Bookmarks" representedClassName="Bookmarks" syncable="YES" codeGenerationType="class">
         <attribute name="epochMarked" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -13,8 +16,9 @@
         <attribute name="isRead" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="ActiveSource" positionX="-63" positionY="9" width="128" height="58"/>
+        <element name="ActiveSources" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Read" positionX="-63" positionY="9" width="128" height="58"/>
+        <element name="ActiveTopics" positionX="-63" positionY="9" width="128" height="58"/>
     </elements>
 </model>

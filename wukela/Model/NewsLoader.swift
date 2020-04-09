@@ -17,15 +17,32 @@ class NewsLoader {
     var filterNews = [NewsData]()
     var latestCount = 0
     
-    var retrievedData = ""
+    var retrievedSource = ""
+    var retrievedTopic = ""
     var newsBulk = [NewsData]()
     
+    let categories = ["Sociedade",
+                  "Desporto",
+                  "Economia",
+                  "Política",
+                  "Cultura",
+                  "Ciência e Tecnologia",
+                  "Opinião"]
+    
+    let sources = ["Jornal Notícias",
+                   "O País",
+                   "Verdade",
+                   "Jornal Angola",
+                   "Novo Jornal"]
+    
     var activeSources = ["","",""]
+    var activeTopics = ["","",""]
     
     //run our load & sort functions when our class NewsLoader is created
     init() {
         self.load()
-        coreCheck()
+        sourceCheck()
+        topicCheck()
         filter()
 
         //sort()
@@ -53,32 +70,58 @@ class NewsLoader {
         }
     }
     
-    func coreCheck() {
+    
+    func sourceCheck() {
         
         //check Coredata for active news
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSource")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveSources")
         do {
             let result = try managedContext.fetch(fetchRequest)
 
             //Loop over CoreData entities
             for data in result as! [NSManagedObject] {
-
-                retrievedData = data.value(forKey: "isActive") as! String
-                //print(retrievedData)
                 
-                //insert coredata into array in position
-                if retrievedData == "Jornal Notícias" {
-                    activeSources.insert(retrievedData, at: 0)
-                } else if retrievedData == "O País" {
-                    activeSources.insert(retrievedData, at: 1)
-                } else if retrievedData == "Verdade" {
-                    activeSources.insert(retrievedData, at: 1)
+                //get active sources from coredata
+                retrievedSource = data.value(forKey: "isActiveSource") as! String
+                
+                //loop over active sources and add them to array
+                for source in sources {
+                    if retrievedSource == source {
+                        activeTopics.insert(retrievedSource, at: 0)
+                    }
                 }
-                
-                //print(activeSources)
             }
+        } catch {
+            print("Failed")
+        }
+    }
+    
+    func topicCheck() {
+        
+        //check Coredata for active news
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate!.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActiveTopics")
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+
+            //Loop over CoreData entities
+            for data in result as! [NSManagedObject] {
+                
+                //loop over active topics
+                retrievedTopic = data.value(forKey: "isActiveTopic") as! String
+                
+                for category in categories {
+                    if retrievedTopic == category {
+                        activeTopics.insert(retrievedTopic, at: 0)
+                    }
+                }
+
+            
+            }
+            print("active topics are: \(activeTopics)")
         } catch {
             print("Failed")
         }
@@ -92,7 +135,22 @@ class NewsLoader {
         let checkSourceThree = newsBulk.filter { $0.news_src == activeSources[2]}
         
         //and then mash all the filtered news sources
-        news = checkSourceThree + checkSourceTwo + checkSourceOne
+        let newsSources = checkSourceThree + checkSourceTwo + checkSourceOne
+        
+        //check for active topics
+        let checkTopicOne = newsBulk.filter { $0.cat == activeTopics[0]}
+//        let checkTopicTwo = newsBulk.filter { $0.cat == activeTopics[1]}
+//        let checkTopicThree = newsBulk.filter { $0.cat == activeTopics[2]}
+//        let checkTopicFour = newsBulk.filter { $0.cat == activeTopics[3]}
+//        let checkTopicFive = newsBulk.filter { $0.cat == activeTopics[4]}
+//        let checkTopicSix = newsBulk.filter { $0.cat == activeTopics[5]}
+//        let checkTopicSeven = newsBulk.filter { $0.cat == activeTopics[6]}
+//        let checkTopicEight = newsBulk.filter { $0.cat == activeTopics[7]}
+        
+        let newsTopics = checkTopicOne
+        print("these are les news with active topics: \(newsTopics)")
+        news = newsSources + newsTopics
+
         
         //sort all news
         news = self.news.sorted { $0.epoch > $1.epoch }
