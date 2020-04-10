@@ -89,10 +89,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
 //MARK: - viewDidAppear
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         
-        print("viewWillAppear")
+        print("viewDidAppear")
 
         //check for checkmarks
         retrieveHistory()
@@ -113,9 +113,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print("Action")
                 if Reachability.isConnectedToNetwork(){
                     print("Internet Connection Available!")
-                    self.viewWillAppear(true)
+                    self.viewDidAppear(true)
                 } else{
-                    self.viewWillAppear(true)
+                    self.viewDidAppear(true)
                 }
             }))
             self.present(alert, animated: true)
@@ -128,11 +128,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //required delegate func
     func popoverDismissed() {
         self.navigationController?.dismiss(animated: true, completion: nil)
-//        if self.segmentControl.selectedSegmentIndex == 0 {
-//            self.filteredData = NewsLoader().filterNews
-//        } else {
-//            self.data = NewsLoader().news
-//        }
         DispatchQueue.main.async{
             if self.segmentControl.selectedSegmentIndex == 0 {
                 self.filteredData = NewsLoader().filterNews
@@ -177,11 +172,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func refreshContent() {
         self.perform(#selector(finishRefreshing), with: nil, afterDelay: 1.0)
-            if segmentControl.selectedSegmentIndex == 0 {
-                filteredData = NewsLoader().filterNews
+        DispatchQueue.main.async {
+            if self.segmentControl.selectedSegmentIndex == 0 {
+                self.filteredData = NewsLoader().filterNews
             } else {
-                data = NewsLoader().news
+                self.data = NewsLoader().news
             }
+        }
         tableView.reloadData()
         print("refreshing")
     }
@@ -195,7 +192,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //define row qty
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         if segmentControl.selectedSegmentIndex == 0 {
             return filteredData.count
         } else {
