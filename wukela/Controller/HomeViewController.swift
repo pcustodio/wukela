@@ -29,7 +29,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print("viewdidload")
         
         //implement the protocol
@@ -123,7 +122,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-//MARK: - Update UI after Topic change
+//MARK: - Delegate: Update UI after Topic change
     
     //required delegate func
     func popoverDismissed() {

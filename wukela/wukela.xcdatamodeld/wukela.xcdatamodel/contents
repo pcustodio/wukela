@@ -6,6 +6,9 @@
     <entity name="ActiveTopics" representedClassName="ActiveTopics" syncable="YES" codeGenerationType="class">
         <attribute name="isActiveTopic" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="AppViews" representedClassName="AppViews" syncable="YES" codeGenerationType="class">
+        <attribute name="appView" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Bookmarks" representedClassName="Bookmarks" syncable="YES" codeGenerationType="class">
         <attribute name="epochMarked" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="headlineMarked" optional="YES" attributeType="String"/>
@@ -17,8 +20,9 @@
     </entity>
     <elements>
         <element name="ActiveSources" positionX="-63" positionY="9" width="128" height="58"/>
+        <element name="ActiveTopics" positionX="-63" positionY="9" width="128" height="58"/>
+        <element name="AppViews" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Read" positionX="-63" positionY="9" width="128" height="58"/>
-        <element name="ActiveTopics" positionX="-63" positionY="9" width="128" height="58"/>
     </elements>
 </model>

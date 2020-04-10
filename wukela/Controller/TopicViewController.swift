@@ -126,8 +126,6 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         user.setValue(categories[path], forKeyPath: "isActiveTopic")
         
-        //add checkmark
-        
         do {
             try managedContext.save()
             
