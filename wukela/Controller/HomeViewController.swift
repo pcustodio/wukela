@@ -98,12 +98,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         retrieveHistory()
 
         if Reachability.isConnectedToNetwork(){
-            if self.segmentControl.selectedSegmentIndex == 0 {
-                self.filteredData = NewsLoader().filterNews
-            } else {
-                self.data = NewsLoader().news
+            DispatchQueue.main.async{
+                if self.segmentControl.selectedSegmentIndex == 0 {
+                    self.filteredData = NewsLoader().filterNews
+                } else {
+                    self.data = NewsLoader().news
+                }
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
         } else {
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Connection Error", message: "Please check if your internet connection is active.", preferredStyle: .alert)
@@ -120,15 +122,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    
+//MARK: - Update UI after Topic change
+    
     //required delegate func
     func popoverDismissed() {
         self.navigationController?.dismiss(animated: true, completion: nil)
-        if self.segmentControl.selectedSegmentIndex == 0 {
-            self.filteredData = NewsLoader().filterNews
-        } else {
-            self.data = NewsLoader().news
+//        if self.segmentControl.selectedSegmentIndex == 0 {
+//            self.filteredData = NewsLoader().filterNews
+//        } else {
+//            self.data = NewsLoader().news
+//        }
+        DispatchQueue.main.async{
+            if self.segmentControl.selectedSegmentIndex == 0 {
+                self.filteredData = NewsLoader().filterNews
+            } else {
+                self.data = NewsLoader().news
+            }
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     

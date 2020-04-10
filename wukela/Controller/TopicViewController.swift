@@ -46,16 +46,15 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ModalTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
     }
     
     @IBAction func dismissView(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func okView(_ sender: UIBarButtonItem) {
-        ModalTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -113,7 +112,6 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             print("turningon")
         }
-        
     }
     
     
