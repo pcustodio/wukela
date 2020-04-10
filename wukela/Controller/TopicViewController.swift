@@ -46,10 +46,16 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+    }
+    
     @IBAction func dismissView(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func okView(_ sender: UIBarButtonItem) {
+        ModalTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
         self.dismiss(animated: true, completion: nil)
     }
     

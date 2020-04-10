@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import CoreData
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalTransitionListener {
     
 
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +31,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         print("viewdidload")
+        
+        //implement the protocol
+        ModalTransitionMediator.instance.setListener(listener: self)
         
         //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
@@ -115,6 +118,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }))
             self.present(alert, animated: true)
         }
+    }
+    
+    //required delegate func
+    func popoverDismissed() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+        if self.segmentControl.selectedSegmentIndex == 0 {
+            self.filteredData = NewsLoader().filterNews
+        } else {
+            self.data = NewsLoader().news
+        }
+        tableView.reloadData()
     }
     
     

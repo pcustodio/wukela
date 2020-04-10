@@ -325,7 +325,7 @@
                                     <color key="textColor" name="textColor"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Escolher Tópicos" id="q2a-H4-ECF">
+                                    <navigationItem title="Filtrar por tópico" id="q2a-H4-ECF">
                                         <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="Y0d-Sx-8oH">
                                             <color key="tintColor" name="primaryColor"/>
                                             <connections>
@@ -447,7 +447,7 @@
                     <tabBarItem key="tabBarItem" title="" id="NOX-bB-3OX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="RfT-T2-AKt">
-                        <rect key="frame" x="0.0" y="44" width="414" height="103.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="14"/>
