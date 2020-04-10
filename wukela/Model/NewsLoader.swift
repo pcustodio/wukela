@@ -36,7 +36,7 @@ class NewsLoader {
                   "Opinião"]
     
     var activeSources = ["","","","",""]
-    var activeTopics = [""]
+    var activeTopics = ["","","","","","",""]
     var appViewed = 0
     
     //run our load & sort functions when our class NewsLoader is created
