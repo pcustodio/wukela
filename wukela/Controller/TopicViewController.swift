@@ -44,6 +44,9 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         //reload table
         tableView.reloadData()
+        
+        //remove navigation bar shadow
+        UINavigationBar.appearance().barTintColor = UIColor(named: "subBkColor")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
