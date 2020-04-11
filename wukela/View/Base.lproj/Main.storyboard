@@ -197,7 +197,6 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUj-Eo-zdf">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                                <color key="barTintColor" name="bkColor"/>
                                 <items>
                                     <navigationItem id="03h-Fv-FpP">
                                         <barButtonItem key="leftBarButtonItem" image="arrow.left" catalog="system" id="ivf-1U-gaB">

@@ -72,7 +72,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
         
-        //remove navigation bar shadow
+        //customise navigation bar
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.shadowColor = .clear

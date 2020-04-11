@@ -14,8 +14,10 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     
     let sources = [
-        ["Jornal Notícias", "O País", "Verdade"],
-        ["Jornal Angola", "Novo Jornal"]
+        ["Jornal Notícias", "O País", "Verdade", "Savana"],
+        ["Jornal Angola", "Novo Jornal", "Folha 8", "AngoNotícias"],
+        ["A Semana", "Expresso das Ilhas", "A Nação"],
+        ["O Democrata", "Novas de Guiné Bissau", "Público"]
     ]
     var path = 0
     var pathSection = 0
@@ -42,6 +44,15 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         //set cell height
         self.tableView.rowHeight = 60;
+        
+        //customise navigation bar
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.shadowColor = .clear
+        navBarAppearance.shadowImage = UIImage()
+        navBarAppearance.backgroundColor = UIColor(named: "bkColor")
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
 
     }
     
@@ -70,16 +81,22 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        headerView.backgroundColor = UIColor(named: "bkColor")
 
         let label = UILabel()
         label.frame = CGRect.init(x: 20, y: 10, width: headerView.frame.width-10, height: headerView.frame.height-10)
 
         label.font = UIFont(name: "ProximaNova-Light", size: 20) // my custom font
         label.textColor = UIColor(named: "subtitleColor") // my custom colour
+        
         if section == 0 {
             label.text = "Moçambique"
-        } else {
+        } else if section == 1 {
             label.text = "Angola"
+        } else if section == 2 {
+            label.text = "Cabo Verde"
+        } else {
+            label.text = "Guiné-Bissau"
         }
         headerView.addSubview(label)
     

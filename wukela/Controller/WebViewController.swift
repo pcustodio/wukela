@@ -45,6 +45,9 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         
         //check if headline exists in coredata
         verifyData()
+        
+        //change navigation bar color
+        UINavigationBar.appearance().barTintColor = UIColor(named: "subBkColor")
     }
 
     
