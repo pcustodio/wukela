@@ -61,6 +61,8 @@ class BookmarkViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        super.viewDidAppear(animated)
+        
         //check for internet availability
         if Reachability.isConnectedToNetwork(){
             print("Internet Connection Available!")

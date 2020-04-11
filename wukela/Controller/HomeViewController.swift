@@ -144,16 +144,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //print(segmentControl.selectedSegmentIndex)
         switch segmentControl.selectedSegmentIndex {
         case 0:
-            DispatchQueue.main.async {
-                self.filteredData = NewsLoader().filterNews
-                self.tableView.reloadData()
-            }
-            
+            filteredData = NewsLoader().filterNews
+            tableView.reloadData()
         default:
-            DispatchQueue.main.async {
-                self.data = NewsLoader().news
-                self.tableView.reloadData()
-            }
+            data = NewsLoader().news
+            tableView.reloadData()
         }
     }
     
@@ -170,14 +165,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func refreshContent() {
-        self.perform(#selector(finishRefreshing), with: nil, afterDelay: 1.0)
-        DispatchQueue.main.async {
-            if self.segmentControl.selectedSegmentIndex == 0 {
-                self.filteredData = NewsLoader().filterNews
+        perform(#selector(finishRefreshing), with: nil, afterDelay: 2.0)
+            if segmentControl.selectedSegmentIndex == 0 {
+                filteredData = NewsLoader().filterNews
             } else {
-                self.data = NewsLoader().news
+                data = NewsLoader().news
             }
-        }
         tableView.reloadData()
         print("refreshing")
     }
