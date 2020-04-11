@@ -49,6 +49,9 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.shadowColor = .clear
+        navBarAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "textColor")!]
+        navBarAppearance.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ProximaNova-Light", size: 38)!]
+        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ProximaNova-Bold", size: 14)!]
         navBarAppearance.shadowImage = UIImage()
         navBarAppearance.backgroundColor = UIColor(named: "bkColor")
         navigationController?.navigationBar.standardAppearance = navBarAppearance
@@ -80,11 +83,11 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
         headerView.backgroundColor = UIColor(named: "bkColor")
 
         let label = UILabel()
-        label.frame = CGRect.init(x: 20, y: 10, width: headerView.frame.width-10, height: headerView.frame.height-10)
+        label.frame = CGRect.init(x: 20, y: 0, width: headerView.frame.width-10, height: headerView.frame.height+10)
 
         label.font = UIFont(name: "ProximaNova-Light", size: 20) // my custom font
         label.textColor = UIColor(named: "subtitleColor") // my custom colour
