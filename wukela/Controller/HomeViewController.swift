@@ -109,7 +109,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Connection Error", message: "Please check if your internet connection is active.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try again", style: .default, handler:{(action:UIAlertAction!) in
-                print("Action")
                 if Reachability.isConnectedToNetwork(){
                     print("Internet Connection Available!")
                     self.viewDidAppear(true)
@@ -335,7 +334,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } catch {
             print("Failed")
         }
-        print(readHistory)
     }
 }
 
