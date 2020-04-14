@@ -31,9 +31,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         print("viewdidload")
         
-        //implement the protocol
+        //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
         
+        //refresh the news
         newsRefresh()
         
         //tabBar items
@@ -128,19 +129,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-//MARK: - Delegate: Update UI after Topic change
+//MARK: - Delegate: Refresh News after Topic & Sources
     
     //required delegate func
     func popoverDismissed() {
         self.navigationController?.dismiss(animated: true, completion: nil)
-        DispatchQueue.main.async{
-            if self.segmentControl.selectedSegmentIndex == 0 {
-                self.filteredData = NewsLoader().filterNews
-            } else {
-                self.data = NewsLoader().news
-            }
-            self.tableView.reloadData()
-        }
+        newsRefresh()
     }
     
     
@@ -172,12 +166,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func refreshContent() {
         perform(#selector(finishRefreshing), with: nil, afterDelay: 2.0)
-            if segmentControl.selectedSegmentIndex == 0 {
-                filteredData = NewsLoader().filterNews
-            } else {
-                data = NewsLoader().news
-            }
-        tableView.reloadData()
+        newsRefresh()
         print("refreshing")
     }
     
@@ -224,13 +213,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let image = UIImage(named: "placeholder.pdf")
         cell.imageView?.kf.indicatorType = .activity
         let scale = UIScreen.main.scale
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 10)
-        let resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty.pdf"))!, cacheKey: newsRow.img_src)
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
+        var resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty.pdf"))!, cacheKey: newsRow.img_src)
+        if scale == 2.0 {
+            resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty@2x.pdf"))!, cacheKey: newsRow.img_src)
+        } else if scale == 3.0 {
+            resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsRow.img_src)
+        }
+        
         cell.imageView?.kf.setImage(
             with: resource,
             placeholder: image,
             options: [.processor(processor),
-                      .transition(.fade(0.5))])
+                      .scaleFactor(UIScreen.main.scale),
+                      .transition(.fade(0.5)),
+                      .cacheOriginalImage
+            ])
         {
             result in
             // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`

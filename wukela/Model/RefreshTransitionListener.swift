@@ -8,6 +8,8 @@
 
 import Foundation
 
+//Update content when dismissing a view
+
 protocol RefreshTransitionListener {
     func popoverDismissed()
 }

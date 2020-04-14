@@ -51,6 +51,8 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        //implement the refresh dismisser
         RefreshTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
     }
     

@@ -79,7 +79,7 @@ class NewsLoader {
                 //get data from json file using decoder
                 let dataFromJson = try jsonDecoder.decode([NewsData].self, from: data)
                 newsBulk = dataFromJson
-                //print(data)
+                print(data)
             } catch {
                 print(error)
             }

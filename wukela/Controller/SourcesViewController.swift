@@ -81,6 +81,8 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        //implement the refresh dismisser
         RefreshTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
     }
 
