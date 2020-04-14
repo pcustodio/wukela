@@ -50,17 +50,24 @@ class NewsLoader {
     
     //run our load & sort functions when our class NewsLoader is created
     init() {
-        load()
+        //check if user activated any sources
         sourceCheck()
+        //check if user activated any topics
+        topicCheck()
+        //stop loading json if user has no sources or topics active
+        if activeSources == ["","","","","","","","","","","","","",""] || activeTopics == ["","","","","","",""] {
+            print("we can stop here")
+        } else {
+            load()
+            filterSourcesAndTopics()
+        }
+        //activate all topics on 1st load
         appViewGetter()
         if appViewed < 1 {
             appViewCounter()
             turnOnAll()
         }
-        topicCheck()
-        filterSourcesAndTopics()
         //print("app was viewed \(appViewed) times")
-
         //sort()
         //filtered()
     }
