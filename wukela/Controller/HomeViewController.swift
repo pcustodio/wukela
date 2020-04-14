@@ -180,10 +180,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //define row qty
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmentControl.selectedSegmentIndex == 0 {
+            if filteredData.count == 0 {
+                //display empty bookmarks msg
+                self.tableView.setEmptyMessage("Sem notícias")
+            } else {
+                self.tableView.restore()
+            }
             return filteredData.count
         } else {
+            if data.count == 0 {
+                //display empty bookmarks msg
+                self.tableView.setEmptyMessage("Sem notícias")
+            } else {
+                self.tableView.restore()
+            }
             return data.count
         }
+        
+
     }
     
     //create our cell
@@ -354,3 +368,27 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        layer.insertSublayer(gradientLayer, at: 0)
 //    }
 //}
+
+
+//MARK: - Empty message
+
+extension UITableView {
+
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = UIColor(named: "lineColor")
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont(name: "ProximaNova-Light", size: 30)
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel
+        self.separatorStyle = .none
+    }
+
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
+    }
+}
