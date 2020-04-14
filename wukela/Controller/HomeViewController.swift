@@ -106,14 +106,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func newsRefresh() {
         if Reachability.isConnectedToNetwork(){
-            DispatchQueue.main.async{
-                if self.segmentControl.selectedSegmentIndex == 0 {
-                    self.filteredData = NewsLoader().filterNews
-                } else {
-                    self.data = NewsLoader().news
-                }
-                self.tableView.reloadData()
+            if self.segmentControl.selectedSegmentIndex == 0 {
+                self.filteredData = NewsLoader().filterNews
+            } else {
+                self.data = NewsLoader().news
             }
+            self.tableView.reloadData()
         } else {
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Connection Error", message: "Please check if your internet connection is active.", preferredStyle: .alert)
