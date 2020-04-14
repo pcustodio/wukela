@@ -1,5 +1,5 @@
 //
-//  ModalTransitionListener.swift
+//  RefreshTransitionListener.swift
 //  wukela
 //
 //  Created by Paulo Custódio on 10/04/2020.
@@ -8,24 +8,24 @@
 
 import Foundation
 
-protocol ModalTransitionListener {
+protocol RefreshTransitionListener {
     func popoverDismissed()
 }
 
-class ModalTransitionMediator {
+class RefreshTransitionMediator {
     /* Singleton */
-    class var instance: ModalTransitionMediator {
+    class var instance: RefreshTransitionMediator {
         struct Static {
-            static let instance: ModalTransitionMediator = ModalTransitionMediator()
+            static let instance: RefreshTransitionMediator = RefreshTransitionMediator()
         }
         return Static.instance
     }
     
-    private var listener: ModalTransitionListener?
+    private var listener: RefreshTransitionListener?
     
     private init() {}
     
-    func setListener(listener: ModalTransitionListener) {
+    func setListener(listener: RefreshTransitionListener) {
         self.listener = listener
     }
     

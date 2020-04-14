@@ -78,6 +78,11 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
             self.present(alert, animated: true)
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        RefreshTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
+    }
 
 //MARK: - TableView
 

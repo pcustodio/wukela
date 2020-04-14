@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import CoreData
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalTransitionListener {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RefreshTransitionListener {
     
 
     @IBOutlet weak var tableView: UITableView!
@@ -32,7 +32,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("viewdidload")
         
         //implement the protocol
-        ModalTransitionMediator.instance.setListener(listener: self)
+        RefreshTransitionMediator.instance.setListener(listener: self)
+        
+        newsRefresh()
         
         //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
@@ -96,6 +98,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //check for checkmarks
         retrieveHistory()
 
+    }
+    
+    
+//MARK: - Refresh News
+    
+    func newsRefresh() {
         if Reachability.isConnectedToNetwork(){
             DispatchQueue.main.async{
                 if self.segmentControl.selectedSegmentIndex == 0 {
@@ -119,7 +127,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.present(alert, animated: true)
         }
     }
-    
     
 //MARK: - Delegate: Update UI after Topic change
     
