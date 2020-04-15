@@ -8,7 +8,11 @@
 
 import Foundation
 
-//Update content when dismissing a view
+/*
+ Reload a ViewController after dismissing a modally presented view controller
+ 
+ https://stackoverflow.com/questions/28706877/how-can-you-reload-a-viewcontroller-after-dismissing-a-modally-presented-view-co
+ */
 
 protocol RefreshTransitionListener {
     func popoverDismissed()
