@@ -8,12 +8,47 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    //ask user for permission
+    private func requestNotificationAuthorization(application : UIApplication) {
+        let center = UNUserNotificationCenter.current()
+        let options : UNAuthorizationOptions = [.alert, .badge, .sound]
+        
+        center.requestAuthorization(options: options) { granted, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    //check for 1st load
+    public func isAppAlreadyLaunchedOnce()->Bool{
+        let defaults = UserDefaults.standard
+        if let _ = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
+            print("App already launched")
+            return true
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+            print("App launched first time")
+            turnOnAll()
+            return false
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //request authorization when app launches
+        requestNotificationAuthorization(application: application)
+        
+        //turn on all topics in coredata if is 1st load
+        _ = isAppAlreadyLaunchedOnce()
+        
+        print("opened")
         
         return true
     }
@@ -75,6 +110,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    //MARK: - Turn on all Topics
+        
+    func turnOnAll() {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "ActiveTopics", in: context)
+
+        let categories = ["Sociedade",
+                  "Desporto",
+                  "Economia",
+                  "Política",
+                  "Cultura",
+                  "Ciência e Tecnologia",
+                  "Opinião"]
+
+        for category in categories {
+          let newUser = NSManagedObject(entity: entity!, insertInto: context)
+          newUser.setValue(category, forKey: "isActiveTopic")
+        }
+
+        do {
+          try context.save()
+        } catch {
+          print("Failed saving")
+        }
+
     }
 
 }

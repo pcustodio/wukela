@@ -12,7 +12,6 @@ import CoreData
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RefreshTransitionListener {
     
-
     @IBOutlet weak var tableView: UITableView!
     //    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -24,6 +23,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var headlineRead = ""
     var readHistory = [String]()
     
+    private let notificationPublisher = NotificationPublisher()
+    
     
 //MARK: - viewDidLoad
     
@@ -33,6 +34,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
+        
+        //observe when app becomes active
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //refresh the news
         newsRefresh()
@@ -100,7 +104,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         retrieveHistory()
 
     }
+ 
     
+//MARK: - Local Notifications
+    
+    @IBAction func notifyBtn(_ sender: UIBarButtonItem) {
+        notificationPublisher.sendNotification(title: "This is a title", subtitle: "My subtitle", body: "This is a body", badge: 1, delayInterval: 10)
+    }
+    
+    //reset badge number when app is back in the foreground
+    @objc func applicationDidBecomeActive(notification: NSNotification) {
+        print("active")
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
     
 //MARK: - Refresh News
     

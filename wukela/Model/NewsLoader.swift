@@ -46,7 +46,6 @@ class NewsLoader {
     
     var activeSources = ["","","","","","","","","","","","","",""]
     var activeTopics = ["","","","","","",""]
-    var appViewed = 0
     
     //run our load & sort functions when our class NewsLoader is created
     init() {
@@ -61,15 +60,6 @@ class NewsLoader {
             load()
             filterSourcesAndTopics()
         }
-        //activate all topics on 1st load
-        appViewGetter()
-        if appViewed < 1 {
-            appViewCounter()
-            turnOnAll()
-        }
-        //print("app was viewed \(appViewed) times")
-        //sort()
-        //filtered()
     }
     
     //load our data
@@ -176,68 +166,6 @@ class NewsLoader {
         let currentTime = NSDate().timeIntervalSince1970
         let pastDay = currentTime - 86400
         filterNews = self.news.filter { $0.epoch > pastDay }
-    }
-    
-//MARK: - Turn on all Topics
-        
-    func turnOnAll() {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "ActiveTopics", in: context)
-
-        let categories = ["Sociedade",
-                  "Desporto",
-                  "Economia",
-                  "Política",
-                  "Cultura",
-                  "Ciência e Tecnologia",
-                  "Opinião"]
-
-        for category in categories {
-          let newUser = NSManagedObject(entity: entity!, insertInto: context)
-          newUser.setValue(category, forKey: "isActiveTopic")
-        }
-
-        do {
-          try context.save()
-        } catch {
-          print("Failed saving")
-        }
-
-    }
-        
-        
-//MARK: - Coredata Disabler
-    
-    func appViewCounter() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let userEntity = NSEntityDescription.entity(forEntityName: "AppViews", in: managedContext)!
-        let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-        user.setValue(appViewed + 1, forKeyPath: "appView")
-        do {
-            try managedContext.save()
-           
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-    func appViewGetter() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AppViews")
-        do {
-            let result = try managedContext.fetch(fetchRequest)
-            //Loop over CoreData entities
-            for data in result as! [NSManagedObject] {
-                appViewed = data.value(forKey: "appView") as! Int
-                //print(appViewed)
-            }
-        } catch {
-            print("Failed")
-        }
     }
 }
 

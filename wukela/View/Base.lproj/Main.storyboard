@@ -88,6 +88,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="QgW-T6-Frh">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="notify" id="7CO-sA-Cxz">
+                            <connections>
+                                <action selector="notifyBtn:" destination="VAv-ZY-IgS" id="GaE-7o-Rr0"/>
+                            </connections>
+                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="zfL-AK-wdt">
                             <rect key="frame" x="207" y="22" width="0.0" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
