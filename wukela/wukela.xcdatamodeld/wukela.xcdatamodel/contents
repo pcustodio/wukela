@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ActiveSources" representedClassName="ActiveSources" syncable="YES" codeGenerationType="class">
         <attribute name="isActiveSource" optional="YES" attributeType="String"/>
     </entity>
     <entity name="ActiveTopics" representedClassName="ActiveTopics" syncable="YES" codeGenerationType="class">
         <attribute name="isActiveTopic" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="AppViews" representedClassName="AppViews" syncable="YES" codeGenerationType="class">
-        <attribute name="appView" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Bookmarks" representedClassName="Bookmarks" syncable="YES" codeGenerationType="class">
         <attribute name="epochMarked" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -15,14 +12,23 @@
         <attribute name="sourceMarked" optional="YES" attributeType="String"/>
         <attribute name="urlMarked" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="NewsSync" representedClassName="NewsSync" syncable="YES" codeGenerationType="class">
+        <attribute name="catSync" optional="YES" attributeType="String"/>
+        <attribute name="countSync" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="epochSync" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="headlineSync" optional="YES" attributeType="String"/>
+        <attribute name="img_srcSync" optional="YES" attributeType="String"/>
+        <attribute name="news_srcSync" optional="YES" attributeType="String"/>
+        <attribute name="url_srcSync" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Read" representedClassName="Read" syncable="YES" codeGenerationType="class">
         <attribute name="isRead" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="ActiveSources" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="ActiveTopics" positionX="-63" positionY="9" width="128" height="58"/>
-        <element name="AppViews" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="NewsSync" positionX="-63" positionY="9" width="128" height="148"/>
         <element name="Read" positionX="-63" positionY="9" width="128" height="58"/>
     </elements>
 </model>

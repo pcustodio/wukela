@@ -43,7 +43,8 @@ class BookmarkViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-      
+        
+        //retrieve bookmarks coredata
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
               return

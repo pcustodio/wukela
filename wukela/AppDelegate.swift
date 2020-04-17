@@ -30,11 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         if let _ = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
             print("App already launched")
+            
             return true
         }else{
             defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
             print("App launched first time")
+            let newsLoader = NewsLoader()
             turnOnAll()
+            newsLoader.getJson()
+            newsLoader.storeNews()
             return false
         }
     }
@@ -47,8 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //turn on all topics in coredata if is 1st load
         _ = isAppAlreadyLaunchedOnce()
-        
-        print("opened")
         
         return true
     }

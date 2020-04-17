@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uQb-ja-dC6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -88,11 +88,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="QgW-T6-Frh">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="notify" id="7CO-sA-Cxz">
-                            <connections>
-                                <action selector="notifyBtn:" destination="VAv-ZY-IgS" id="GaE-7o-Rr0"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem image="arrow.clockwise" catalog="system" id="YNz-vh-8Op">
+                                <connections>
+                                    <action selector="syncNews:" destination="VAv-ZY-IgS" id="wyg-fD-lP1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="notify" id="7CO-sA-Cxz">
+                                <connections>
+                                    <action selector="notifyBtn:" destination="VAv-ZY-IgS" id="GaE-7o-Rr0"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <view key="titleView" contentMode="scaleToFill" id="zfL-AK-wdt">
                             <rect key="frame" x="207" y="22" width="0.0" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -507,6 +514,7 @@
         <segue reference="Fuj-dd-FrU"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="line.horizontal.3.decrease" catalog="system" width="128" height="73"/>

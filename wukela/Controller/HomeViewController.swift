@@ -17,19 +17,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     var refreshControl = UIRefreshControl()
-    var data = [NewsData]()
-    var filteredData = [NewsData]()
     
     var headlineRead = ""
     var readHistory = [String]()
     
     private let notificationPublisher = NotificationPublisher()
     
+    var newsLoader = NewsLoader()
+    
+    var newsSync = [[Any]]()
+    
     
 //MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         print("viewdidload")
         
         //implement the refresh listener
@@ -37,9 +40,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //observe when app becomes active
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        
-        //refresh the news
-        newsRefresh()
         
         //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
@@ -89,8 +89,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
 //        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
-        
-    }
+            }
     
     
 //MARK: - viewDidAppear
@@ -103,6 +102,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //check for checkmarks
         retrieveHistory()
 
+
     }
  
     
@@ -114,18 +114,30 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //reset badge number when app is back in the foreground
     @objc func applicationDidBecomeActive(notification: NSNotification) {
-        print("active")
+//        print("active")
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
+    
+    
+    //MARK: - Sync News
+    
+    @IBAction func syncNews(_ sender: UIBarButtonItem) {
+        newsLoader.getJson()
+        newsLoader.deleteNews()
+        newsLoader.storeNews()
+        newsRefresh()
+    }
+    
     
 //MARK: - Refresh News
     
     func newsRefresh() {
+        print("newsrefresh active")
         if Reachability.isConnectedToNetwork(){
             if self.segmentControl.selectedSegmentIndex == 0 {
-                self.filteredData = NewsLoader().filterNews
+                newsSync = NewsLoader().newsCore
             } else {
-                self.data = NewsLoader().news
+                newsSync = NewsLoader().newsCore
             }
             self.tableView.reloadData()
         } else {
@@ -158,10 +170,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //print(segmentControl.selectedSegmentIndex)
         switch segmentControl.selectedSegmentIndex {
         case 0:
-            filteredData = NewsLoader().filterNews
+            newsRefresh()
             tableView.reloadData()
         default:
-            data = NewsLoader().news
+            newsRefresh()
             tableView.reloadData()
         }
     }
@@ -194,21 +206,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //define row qty
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmentControl.selectedSegmentIndex == 0 {
-            if filteredData.count == 0 {
+            if newsSync.count == 0 {
                 //display empty bookmarks msg
                 self.tableView.setEmptyMessage("Sem notícias")
             } else {
                 self.tableView.restore()
             }
-            return filteredData.count
+            return newsSync.count
         } else {
-            if data.count == 0 {
+            if newsSync.count == 0 {
                 //display empty bookmarks msg
                 self.tableView.setEmptyMessage("Sem notícias")
             } else {
                 self.tableView.restore()
             }
-            return data.count
+            return newsSync.count
         }
         
 
@@ -217,37 +229,42 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //create our cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        //check for checkmarks
+        retrieveHistory()
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let newsRow: NewsData
-        if segmentControl.selectedSegmentIndex == 0 {
-            newsRow = filteredData[indexPath.row]
-        } else {
-            newsRow = data[indexPath.row]
-        }
-        
+//        let newsRow: NewsData
+//        if segmentControl.selectedSegmentIndex == 0 {
+//            newsRow = filteredData[indexPath.row]
+//        } else {
+//            newsRow = data[indexPath.row]
+//        }
+
         //check if row is in history
-        if readHistory.contains(newsRow.url_src!) {
+        //print("readHistory is: \(readHistory)")
+        if readHistory.contains(newsSync[indexPath.row][1] as! String) {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
         }
         
         //set row title/subtitle
-        cell.textLabel?.text = newsRow.headline
-        cell.detailTextLabel?.text = newsRow.news_src
+        cell.textLabel?.text = newsSync[indexPath.row][0] as? String
+        cell.detailTextLabel?.text = newsSync[indexPath.row][3] as? String
         
         //set row img
         let image = UIImage(named: "placeholder.pdf")
         cell.imageView?.kf.indicatorType = .activity
         let scale = UIScreen.main.scale
         let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-        var resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty.pdf"))!, cacheKey: newsRow.img_src)
-        if scale == 2.0 {
-            resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty@2x.pdf"))!, cacheKey: newsRow.img_src)
-        } else if scale == 3.0 {
-            resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsRow.img_src)
-        }
+        let resource = ImageResource(downloadURL: URL(string: newsSync[indexPath.row][2] as! String )!, cacheKey: newsSync[indexPath.row][2] as? String)
+        
+//        if scale == 2.0 {
+//            resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty@2x.pdf"))!, cacheKey: newsRow.img_src)
+//        } else if scale == 3.0 {
+//            resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsRow.img_src)
+//        }
         
         cell.imageView?.kf.setImage(
             with: resource,
@@ -257,27 +274,27 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                       .transition(.fade(0.5)),
                       .cacheOriginalImage
             ])
-        {
-            result in
-            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
-            switch result {
-            case .success(let value):
-                // The image was set to image view:
-                print(value.image)
-
-                // From where the image was retrieved:
-                // - .none - Just downloaded.
-                // - .memory - Got from memory cache.
-                // - .disk - Got from disk cache.
-                print(value.cacheType)
-
-                // The source object which contains information like `url`.
-                print(value.source)
-
-            case .failure(let error):
-                print(error) // The error happens
-            }
-        }
+//        {
+//            result in
+//            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
+//            switch result {
+//            case .success(let value):
+//                // The image was set to image view:
+//                print(value.image)
+//
+//                // From where the image was retrieved:
+//                // - .none - Just downloaded.
+//                // - .memory - Got from memory cache.
+//                // - .disk - Got from disk cache.
+//                print(value.cacheType)
+//
+//                // The source object which contains information like `url`.
+//                print(value.source)
+//
+//            case .failure(let error):
+//                print(error) // The error happens
+//            }
+//        }
         
         return cell
     }
@@ -289,19 +306,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //print(indexPath.row)
 
         //set checkmark
-        let newsRow: NewsData
-        if segmentControl.selectedSegmentIndex == 0 {
-            newsRow = filteredData[indexPath.row]
-        } else {
-            newsRow = data[indexPath.row]
-        }
+//        let newsRow: NewsData
+//        if segmentControl.selectedSegmentIndex == 0 {
+//            newsRow = filteredData[indexPath.row]
+//        } else {
+//            newsRow = data[indexPath.row]
+//        }
         self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        headlineRead = newsRow.url_src!
-        //print("last selection was: \(headlineRead)")
+        headlineRead = newsSync[indexPath.row][1] as! String
+//        print("last selection was: \(headlineRead)")
         self.tableView.deselectRow(at: indexPath, animated: true)
         
         markRead()
-        retrieveHistory()
     }
     
 //MARK: - Segue to WebViewController
@@ -311,20 +327,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if segue.identifier == "getNews" {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let destination = segue.destination as? WebViewController
-                    destination?.url = filteredData[indexPath.row].url_src!
-                    destination?.headline = filteredData[indexPath.row].headline!
-                    destination?.source = filteredData[indexPath.row].news_src!
-                    destination?.epoch = filteredData[indexPath.row].epoch
+                    destination?.headline = newsSync[indexPath.row][0] as! String
+                    destination?.url = newsSync[indexPath.row][1] as! String
+                    destination?.source = newsSync[indexPath.row][3] as! String
+                    destination?.epoch = newsSync[indexPath.row][5] as! Double
                 }
             }
         } else {
             if segue.identifier == "getNews" {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let destination = segue.destination as? WebViewController
-                    destination?.url = data[indexPath.row].url_src!
-                    destination?.headline = data[indexPath.row].headline!
-                    destination?.source = data[indexPath.row].news_src!
-                    destination?.epoch = data[indexPath.row].epoch
+                    destination?.headline = newsSync[indexPath.row][0] as! String
+                    destination?.url = newsSync[indexPath.row][1] as! String
+                    destination?.source = newsSync[indexPath.row][3] as! String
+                    destination?.epoch = newsSync[indexPath.row][5] as! Double
                 }
             }
         }
@@ -363,6 +379,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 readHistory.append(viewRead)
                 readHistory = Array(Set(readHistory))
             }
+            //print(readHistory)
 
         } catch {
             print("Failed")

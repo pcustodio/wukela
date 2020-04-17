@@ -47,7 +47,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         verifyData()
         
         //change navigation bar color
-        UINavigationBar.appearance().barTintColor = UIColor(named: "subBkColor")
+        UINavigationBar.appearance().barTintColor = UIColor(named: "altBkColor")
     }
 
     
