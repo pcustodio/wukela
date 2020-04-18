@@ -53,7 +53,8 @@ class OnboardingViewController: UIViewController {
         let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC") as! UITabBarController
         mainVC.modalPresentationStyle = .fullScreen
         mainVC.modalTransitionStyle = .crossDissolve
-        self.present(mainVC, animated: true, completion: nil)
+//        self.present(mainVC, animated: true, completion: nil)
+        self.show(mainVC, sender: .none)
     
     }
     
