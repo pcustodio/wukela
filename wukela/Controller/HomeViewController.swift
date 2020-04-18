@@ -81,12 +81,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //customise navigation bar
         let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
+//        navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.shadowColor = .clear
-        navBarAppearance.shadowImage = UIImage()
-        navBarAppearance.backgroundColor = UIColor(named: "bkColor") 
+//        navBarAppearance.shadowImage = UIImage()
+        navBarAppearance.backgroundColor = UIColor(named: "bkColor")
         navigationController?.navigationBar.standardAppearance = navBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
 //        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
             }
@@ -101,7 +101,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         //check for checkmarks
         retrieveHistory()
-
 
     }
  
@@ -159,7 +158,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //required delegate func
     func popoverDismissed() {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+//        self.navigationController?.dismiss(animated: true, completion: nil)
         newsRefresh()
     }
     

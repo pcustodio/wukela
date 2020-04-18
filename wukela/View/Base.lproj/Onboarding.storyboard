@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ProximaNova Bold.otf">
+            <string>ProximaNova-Bold</string>
+        </array>
+        <array key="ProximaNova Light.otf">
+            <string>ProximaNova-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--onboardingVC-->
+        <scene sceneID="Ol8-rg-skS">
+            <objects>
+                <viewController storyboardIdentifier="onboardingVC" title="onboardingVC" id="vSQ-zO-qqq" customClass="OnboardingViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FL1-OB-nhz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bem-vindo ao wukela, onde vais encontrar todas as notícias de África." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpB-Tl-qSa">
+                                <rect key="frame" x="40" y="658" width="334" height="91"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="26"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVb-OR-k8b">
+                                <rect key="frame" x="183" y="789" width="48" height="33"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="18"/>
+                                <state key="normal" title="Iniciar">
+                                    <color key="titleColor" name="primaryColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="endSetup:" destination="vSQ-zO-qqq" eventType="touchUpInside" id="tJd-Vg-AS3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="bkColor"/>
+                        <constraints>
+                            <constraint firstItem="uVb-OR-k8b" firstAttribute="top" secondItem="VpB-Tl-qSa" secondAttribute="bottom" constant="40" id="1mN-TK-Cuv"/>
+                            <constraint firstItem="VpB-Tl-qSa" firstAttribute="leading" secondItem="P6I-kY-xKl" secondAttribute="leading" constant="40" id="2Bg-f6-eaT"/>
+                            <constraint firstItem="P6I-kY-xKl" firstAttribute="bottom" secondItem="uVb-OR-k8b" secondAttribute="bottom" constant="40" id="8A2-v7-Fq4"/>
+                            <constraint firstItem="uVb-OR-k8b" firstAttribute="centerX" secondItem="FL1-OB-nhz" secondAttribute="centerX" id="Hbd-ST-ncp"/>
+                            <constraint firstItem="P6I-kY-xKl" firstAttribute="trailing" secondItem="VpB-Tl-qSa" secondAttribute="trailing" constant="40" id="nNO-D4-piW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="P6I-kY-xKl"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWS-Ea-obF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-326.08695652173918" y="-253.125"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="bkColor">
+            <color red="0.96100002527236938" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryColor">
+            <color red="0.2627450980392157" green="0.2627450980392157" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

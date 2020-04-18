@@ -25,23 +25,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    //check for 1st load
-    public func isAppAlreadyLaunchedOnce()->Bool{
-        let defaults = UserDefaults.standard
-        if let _ = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
-            print("App already launched")
-            
-            return true
-        }else{
-            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
-            print("App launched first time")
-            let newsLoader = NewsLoader()
-            turnOnAll()
-            newsLoader.getJson()
-            newsLoader.storeNews()
-            return false
-        }
-    }
+//    //check for 1st load
+//    public func isAppAlreadyLaunchedOnce()->Bool{
+//        let defaults = UserDefaults.standard
+//        if let _ = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
+//            print("App already launched")
+//
+//            return true
+//        }else{
+//            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+//            print("App launched first time")
+//            let newsLoader = NewsLoader()
+//            turnOnAll()
+//            newsLoader.getJson()
+//            newsLoader.storeNews()
+//            return false
+//        }
+//    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         requestNotificationAuthorization(application: application)
         
         //turn on all topics in coredata if is 1st load
-        _ = isAppAlreadyLaunchedOnce()
+//        _ = isAppAlreadyLaunchedOnce()
         
         return true
     }
@@ -116,32 +116,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - Turn on all Topics
         
-    func turnOnAll() {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "ActiveTopics", in: context)
-
-        let categories = ["Sociedade",
-                  "Desporto",
-                  "Economia",
-                  "Política",
-                  "Cultura",
-                  "Ciência e Tecnologia",
-                  "Opinião"]
-
-        for category in categories {
-          let newUser = NSManagedObject(entity: entity!, insertInto: context)
-          newUser.setValue(category, forKey: "isActiveTopic")
-        }
-
-        do {
-          try context.save()
-        } catch {
-          print("Failed saving")
-        }
-
-    }
+//    func turnOnAll() {
+//
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = appDelegate.persistentContainer.viewContext
+//        let entity = NSEntityDescription.entity(forEntityName: "ActiveTopics", in: context)
+//
+//        let categories = ["Sociedade",
+//                  "Desporto",
+//                  "Economia",
+//                  "Política",
+//                  "Cultura",
+//                  "Ciência e Tecnologia",
+//                  "Opinião"]
+//
+//        for category in categories {
+//          let newUser = NSManagedObject(entity: entity!, insertInto: context)
+//          newUser.setValue(category, forKey: "isActiveTopic")
+//        }
+//
+//        do {
+//          try context.save()
+//        } catch {
+//          print("Failed saving")
+//        }
+//
+//    }
 
 }
 
