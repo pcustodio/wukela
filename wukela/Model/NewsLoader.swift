@@ -127,8 +127,13 @@ public class NewsLoader {
             user.setValue(newsBulk[count].headline, forKeyPath: "headlineSync")
             user.setValue(newsBulk[count].url_src, forKeyPath: "url_srcSync")
             //look out for empty img and set default
-            if newsBulk[count].img_src == nil {
+            let scale = UIScreen.main.scale
+            if newsBulk[count].img_src == nil && scale == 1.0 {
                 user.setValue("http://paulocustodio.com/wukela/empty.pdf", forKeyPath: "img_srcSync")
+            } else if newsBulk[count].img_src == nil && scale == 2.0 {
+                user.setValue("http://paulocustodio.com/wukela/empty@2x.pdf", forKeyPath: "img_srcSync")
+            } else if newsBulk[count].img_src == nil && scale == 3.0 {
+                user.setValue("http://paulocustodio.com/wukela/empty@3x.pdf", forKeyPath: "img_srcSync")
             } else {
                 user.setValue(newsBulk[count].img_src, forKeyPath: "img_srcSync")
             }
