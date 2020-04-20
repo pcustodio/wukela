@@ -23,8 +23,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private let notificationPublisher = NotificationPublisher()
     
-    var newsLoader = NewsLoader()
-    
     var newsSync = [[Any]]()
     
     
@@ -34,6 +32,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         print("viewdidload")
+        
+        newsRefresh()
         
         //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
@@ -121,6 +121,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: - Sync News
     
     @IBAction func syncNews(_ sender: UIBarButtonItem) {
+        let newsLoader = NewsLoader()
         newsLoader.getJson()
         newsLoader.deleteNews()
         newsLoader.storeNews()

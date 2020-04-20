@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 //load data from json and turn it into my data structure on Dictionary.swift
-public class NewsLoader {
+class NewsLoader {
     
     //store all the data that is retrieved from json file
 //    var news = [NewsData]()
