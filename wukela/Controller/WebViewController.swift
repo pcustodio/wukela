@@ -127,9 +127,11 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             let count = try managedContext.count(for: request)
             if(count == 0){
                 self.bookmarkIcon.image = UIImage(systemName: "bookmark")
+                self.bookmarkIcon.tintColor = UIColor(named: "iconColor")
             }
             else{
                 self.bookmarkIcon.image = UIImage(systemName: "bookmark.fill")
+                self.bookmarkIcon.tintColor = UIColor(named: "primaryColor")
             }
           }
         catch let error as NSError {
