@@ -13,6 +13,8 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var window: UIWindow?
+    
     //ask user for permission
     private func requestNotificationAuthorization(application : UIApplication) {
         let center = UNUserNotificationCenter.current()
@@ -49,11 +51,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //request authorization when app launches
         requestNotificationAuthorization(application: application)
         
+        //background fetch
+        UIApplication.shared.setMinimumBackgroundFetchInterval(
+        UIApplication.backgroundFetchIntervalMinimum)
+        
         //turn on all topics in coredata if is 1st load
 //        _ = isAppAlreadyLaunchedOnce()
         
         return true
     }
+    
+    // Support for background fetch
+      func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let newsLoader = NewsLoader()
+        print("background fetch")
+        newsLoader.getJson()
+        newsLoader.deleteNews()
+        newsLoader.storeNews()
+        completionHandler(.newData)
+
+      }
+    
 
     // MARK: UISceneSession Lifecycle
 

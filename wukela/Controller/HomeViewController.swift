@@ -33,7 +33,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         print("viewdidload")
         
-        newsRefresh()
+//        newsRefresh()
+        
+        // set observer for UIApplication.willEnterForegroundNotification
+        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
@@ -131,7 +135,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
 //MARK: - Refresh News
     
-    func newsRefresh() {
+    @objc func newsRefresh() {
         print("newsrefresh active")
         if Reachability.isConnectedToNetwork(){
             if self.segmentControl.selectedSegmentIndex == 0 {
