@@ -69,7 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newsLoader.deleteNews()
         newsLoader.storeNews()
         completionHandler(.newData)
-
       }
     
 

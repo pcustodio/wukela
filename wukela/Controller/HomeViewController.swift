@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        newsRefresh()
         
         // set observer for UIApplication.willEnterForegroundNotification
-        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //implement the refresh listener
@@ -143,7 +143,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             } else {
                 newsSync = NewsLoader().newsCore
             }
-            self.tableView.reloadData()
+            //avoid flickering
+            UIView.performWithoutAnimation {
+                self.tableView.reloadData()
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            }
         } else {
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Connection Error", message: "Please check if your internet connection is active.", preferredStyle: .alert)
