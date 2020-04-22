@@ -12,6 +12,9 @@
         <attribute name="sourceMarked" optional="YES" attributeType="String"/>
         <attribute name="urlMarked" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Count" representedClassName="Count" syncable="YES" codeGenerationType="class">
+        <attribute name="lastCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="NewsSync" representedClassName="NewsSync" syncable="YES" codeGenerationType="class">
         <attribute name="catSync" optional="YES" attributeType="String"/>
         <attribute name="countSync" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -30,5 +33,6 @@
         <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="NewsSync" positionX="-63" positionY="9" width="128" height="148"/>
         <element name="Read" positionX="-63" positionY="9" width="128" height="58"/>
+        <element name="Count" positionX="-63" positionY="45" width="128" height="58"/>
     </elements>
 </model>

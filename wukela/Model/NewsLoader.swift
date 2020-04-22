@@ -20,6 +20,7 @@ class NewsLoader {
     var retrievedTopic = ""
     var newsBulk = [NewsData]()
     var newsCore = [[Any]]()
+    var newCount = 0
     
     let sources = ["Jornal Notícias",
                    "O País",
@@ -89,8 +90,15 @@ class NewsLoader {
         //create json count
         jsonCount = newsBulk.count
 //        print("count is \(jsonCount)")
+        newCount = jsonCount
         
         newsBulk = self.newsBulk.sorted { $0.epoch > $1.epoch }
+    }
+    
+    
+    func getCount() -> Int {
+        newCount = jsonCount
+        return newCount
     }
     
     

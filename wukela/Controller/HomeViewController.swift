@@ -25,6 +25,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var newsSync = [[Any]]()
     
+    var lastCount = 0
+    
     
 //MARK: - viewDidLoad
     
@@ -105,7 +107,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         //check for checkmarks
         retrieveHistory()
-
+        
+        //get lastCount
+        lastCount = newsSync.count
+        print("lastcount is: \(lastCount)")
+        setCount()
     }
  
     
@@ -352,6 +358,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.epoch = newsSync[indexPath.row][5] as! Double
                 }
             }
+        }
+    }
+
+    
+//MARK: - Set count - CoreData
+    
+    func setCount(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let userEntity = NSEntityDescription.entity(forEntityName: "Count", in: managedContext)!
+        let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        user.setValue(lastCount, forKeyPath: "lastCount")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
