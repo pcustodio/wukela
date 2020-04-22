@@ -13,9 +13,9 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
-    let categories = ["Sociedade",
+    var categories = ["Sociedade",
                   "Desporto",
-                  "Economia",
+                  "Economia e Negócios",
                   "Política",
                   "Cultura",
                   "Ciência e Tecnologia",
@@ -26,6 +26,8 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        categories = categories.sorted {$0 < $1}
         
         //trigger UITableViewDataSource
         tableView.dataSource = self

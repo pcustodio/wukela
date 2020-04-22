@@ -21,7 +21,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var headlineRead = ""
     var readHistory = [String]()
     
-    private let notificationPublisher = NotificationPublisher()
+//    private let notificationPublisher = NotificationPublisher()
     
     var newsSync = [[Any]]()
     
@@ -117,9 +117,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
 //MARK: - Local Notifications
     
-    @IBAction func notifyBtn(_ sender: UIBarButtonItem) {
-        notificationPublisher.sendNotification(title: "This is a title", subtitle: "My subtitle", body: "This is a body", badge: 1, delayInterval: 10)
-    }
+//    @IBAction func notifyBtn(_ sender: UIBarButtonItem) {
+//        notificationPublisher.sendNotification(title: "This is a title", subtitle: "My subtitle", body: "This is a body", badge: 1, delayInterval: 10)
+//    }
     
     //reset badge number when app is back in the foreground
     @objc func applicationDidBecomeActive(notification: NSNotification) {

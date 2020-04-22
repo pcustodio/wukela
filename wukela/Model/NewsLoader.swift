@@ -39,7 +39,7 @@ class NewsLoader {
     
     let categories = ["Sociedade",
                       "Desporto",
-                      "Economia",
+                      "Economia e Negócios",
                       "Política",
                       "Cultura",
                       "Ciência e Tecnologia",
