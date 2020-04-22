@@ -41,6 +41,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
+//        NotificationCenter.default.addObserver(self, selector: #selector(setLastCount), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setLastCount), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
         //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
         
@@ -107,13 +110,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         //check for checkmarks
         retrieveHistory()
-        
+
+    }
+ 
+    @objc func setLastCount() {
         //get lastCount
         lastCount = newsSync.count
         print("lastcount is: \(lastCount)")
         setCount()
     }
- 
     
 //MARK: - Local Notifications
     
