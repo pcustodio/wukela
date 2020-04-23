@@ -21,7 +21,7 @@ class NewsLoader {
     var newsBulk = [NewsData]()
     var newsCore = [[Any]]()
     var newCount = 0
-    
+    var newsPop = [[Any]]()
     let sources = ["Jornal Notícias",
                    "O País",
                    "Verdade",
@@ -90,7 +90,7 @@ class NewsLoader {
         //create json count
         jsonCount = newsBulk.count
 //        print("count is \(jsonCount)")
-        newCount = jsonCount
+//        newCount = jsonCount
         
         newsBulk = self.newsBulk.sorted { $0.epoch > $1.epoch }
     }
@@ -149,6 +149,7 @@ class NewsLoader {
             user.setValue(newsBulk[count].cat, forKeyPath: "catSync")
             user.setValue(newsBulk[count].epoch, forKeyPath: "epochSync")
             user.setValue(count, forKeyPath: "countSync")
+            user.setValue(newsBulk[count].isPop, forKeyPath: "popSync")
         }
         do {
             try managedContext.save()
@@ -180,12 +181,15 @@ class NewsLoader {
                 let cat = data.value(forKey: "catSync") as! String
                 let epoch = data.value(forKey: "epochSync") as! Double
                 let count = data.value(forKey: "countSync") as! Int
+                let pop = data.value(forKey: "popSync") as! Bool
                 
                 //create 2d array
-                newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count])
+                newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count, pop])
                 
                 //sort 2d array
 //                print(newsCore)
+                
+                //sort count by coredata countSync appended to newsCore to array
                 newsCore = newsCore.sorted(by: {($0[6] as! Int) < ($1[6] as! Int) })
                 
 //                print(newsCore)
@@ -280,6 +284,18 @@ class NewsLoader {
         let foundTopics = newsCore.filter { $0[4] as! String == activeTopics[0] || $0[4] as! String == activeTopics[1] || $0[4] as! String == activeTopics[2] || $0[4] as! String == activeTopics[3] || $0[4] as! String == activeTopics[4] || $0[4] as! String == activeTopics[5] || $0[4] as! String == activeTopics[6]}
         
         newsCore = foundTopics
+        
+//        print(newsCore[1][7])
+        
+        //filter based on json isPop attribute retrieved via 2d array newsCore
+        newsPop = newsCore.filter { $0[7] as! Bool == true }
+        
+//        print("newspop is: \(newsPop)")
+        
+//        for popCounted in 0..<popCounter {
+//            let popList = newsCore[popCounted][0]
+//            newsCore.filter { $0.contains(popList) }
+//        }
         
 //        newsCore = self.newsCore.sorted { $0[5] > $1[5] }
         

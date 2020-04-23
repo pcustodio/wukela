@@ -22,6 +22,7 @@
         <attribute name="headlineSync" optional="YES" attributeType="String"/>
         <attribute name="img_srcSync" optional="YES" attributeType="String"/>
         <attribute name="news_srcSync" optional="YES" attributeType="String"/>
+        <attribute name="popSync" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="url_srcSync" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Read" representedClassName="Read" syncable="YES" codeGenerationType="class">
@@ -31,8 +32,8 @@
         <element name="ActiveSources" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="ActiveTopics" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="NewsSync" positionX="-63" positionY="9" width="128" height="148"/>
-        <element name="Read" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Count" positionX="-63" positionY="45" width="128" height="58"/>
+        <element name="NewsSync" positionX="-63" positionY="9" width="128" height="163"/>
+        <element name="Read" positionX="-63" positionY="9" width="128" height="58"/>
     </elements>
 </model>

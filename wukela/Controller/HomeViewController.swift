@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        newsRefresh()
         
         // set observer for UIApplication.willEnterForegroundNotification
+        
 //        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
@@ -152,7 +153,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if self.segmentControl.selectedSegmentIndex == 0 {
                 newsSync = NewsLoader().newsCore
             } else {
-                newsSync = NewsLoader().newsCore
+                newsSync = NewsLoader().newsPop
             }
             //avoid flickering
             UIView.performWithoutAnimation {
