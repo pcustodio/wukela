@@ -49,6 +49,9 @@ class NewsLoader {
     var activeTopics = ["","","","","","",""]
     var jsonCount = 0
     
+    var readHistory = [String]()
+    var newsRead = [[Any]]()
+    
     //run our load & sort functions when our class NewsLoader is created
     init() {
         
@@ -283,9 +286,34 @@ class NewsLoader {
         let foundTopics = newsCore.filter { $0[4] as! String == activeTopics[0] || $0[4] as! String == activeTopics[1] || $0[4] as! String == activeTopics[2] || $0[4] as! String == activeTopics[3] || $0[4] as! String == activeTopics[4] || $0[4] as! String == activeTopics[5] || $0[4] as! String == activeTopics[6]}
         
         newsCore = foundTopics
+        retrieveHistory()
+        newsRead = newsCore.filter { readHistory.contains($0[0] as! String)}
+//        newsRead = self.newsRead.sorted { $0.epoch > $1.epoch }
+        
+        print(newsRead)
         
 //        print(newsCore[1][7])
         
+    }
+    
+    func retrieveHistory() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Read")
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            
+            for data in result as! [NSManagedObject] {
+                let viewRead = data.value(forKey: "isRead") as! String
+                readHistory.append(viewRead)
+//                readHistory = Array(Set(readHistory))
+            }
+            //print(readHistory)
+
+        } catch {
+            print("Failed")
+        }
     }
 }
 

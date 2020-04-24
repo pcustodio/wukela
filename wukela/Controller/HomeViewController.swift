@@ -151,7 +151,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if self.segmentControl.selectedSegmentIndex == 0 {
                 newsSync = NewsLoader().newsCore
             } else {
-                newsSync = NewsLoader().newsCore
+                newsSync = NewsLoader().newsRead
             }
             //avoid flickering
             UIView.performWithoutAnimation {
@@ -358,6 +358,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let userEntity = NSEntityDescription.entity(forEntityName: "Read", in: managedContext)!
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         user.setValue(headlineRead, forKeyPath: "isRead")
+//        user.setValue(NSDate().timeIntervalSince1970, forKeyPath: "timeRead")
         
         do {
             try managedContext.save()
