@@ -227,7 +227,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segmentControl.selectedSegmentIndex == 0 {
             if newsSync.count == 0 {
                 //display empty bookmarks msg
-                self.tableView.setEmptyMessage("Sem notícias")
+                self.tableView.setEmptyMessage("Sem artigos")
             } else {
                 self.tableView.restore()
             }
@@ -235,7 +235,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             if newsSync.count == 0 {
                 //display empty bookmarks msg
-                self.tableView.setEmptyMessage("Sem notícias")
+                self.tableView.setEmptyMessage("Sem artigos")
             } else {
                 self.tableView.restore()
             }
@@ -251,8 +251,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        
-        
         //        let newsRow: NewsData
         //        if segmentControl.selectedSegmentIndex == 0 {
         //            newsRow = filteredData[indexPath.row]
@@ -286,7 +284,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                       .scaleFactor(UIScreen.main.scale),
                       .transition(.fade(0.5)),
                       .cacheOriginalImage
-            ])
+            ]
+        )
         
         return cell
     }
@@ -317,6 +316,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.url = newsSync[indexPath.row][1] as! String
                     destination?.source = newsSync[indexPath.row][3] as! String
                     destination?.epoch = newsSync[indexPath.row][5] as! Double
+                    destination?.img = newsSync[indexPath.row][2] as! String
                 }
             }
         } else {

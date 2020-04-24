@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class BookmarkViewController: UIViewController, RefreshTransitionListener {
 
@@ -28,7 +29,7 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
         tableView.delegate = self
         
         //hide separator line
-        //self.tableView.separatorColor = .clear;
+        self.tableView.separatorColor = .clear;
         
         //set cell height
         self.tableView.rowHeight = 80;
@@ -121,7 +122,7 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if bookmarks.count == 0 {
             //display empty bookmarks msg
-            self.tableView.setEmptyMessage("Sem notas")
+            self.tableView.setEmptyMessage("Sem artigos")
         } else {
             self.tableView.restore()
         }
@@ -145,7 +146,23 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
         let strDate = dateFormatter.string(from: date)
         
         cell.detailTextLabel?.text = strDate
-//        cell.detailTextLabel?.text = "\(strDate), \(bookmark.value(forKeyPath: "sourceMarked") as! String)"
+
+        //set row img
+        let image = UIImage(named: "placeholder.pdf")
+        cell.imageView?.kf.indicatorType = .activity
+        let scale = UIScreen.main.scale
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
+        let resource = ImageResource(downloadURL: URL(string: (bookmark.value(forKeyPath: "imgMarked") as? String)! )!, cacheKey: bookmark.value(forKeyPath: "imgMarked") as? String)
+        
+        cell.imageView?.kf.setImage(
+            with: resource,
+            placeholder: image,
+            options: [.processor(processor),
+                      .scaleFactor(UIScreen.main.scale),
+                      .transition(.fade(0.5)),
+                      .cacheOriginalImage
+            ]
+        )
 
         return cell
         
@@ -159,7 +176,6 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
 
         //deselect row
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
     //swipe to delete rows in Coredata

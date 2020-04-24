@@ -19,6 +19,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     var headline = ""
     var source = ""
     var epoch = 0.0
+    var img = ""
     
     //activity idicator
     var activityIndicator: UIActivityIndicatorView!
@@ -89,7 +90,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     }
     
     
-//MARK: - Create CoreData
+//MARK: - Create Bookmark CoreData
     
     func createData() {
         
@@ -104,6 +105,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         user.setValue(source, forKeyPath: "sourceMarked")
         user.setValue(epoch, forKeyPath: "epochMarked")
         user.setValue(url, forKeyPath: "urlMarked")
+        user.setValue(img, forKeyPath: "imgMarked")
         
         do {
             try managedContext.save()
@@ -114,7 +116,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     }
     
     
-//MARK: - Verify CoreData
+//MARK: - Verify Bookmark CoreData
     
     //check if headline string exists in coredata as attribute
     
@@ -147,7 +149,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     }
     
     
-//MARK: - Delete CoreData
+//MARK: - Delete Bookmark CoreData
     
     func deleteData(){
         
