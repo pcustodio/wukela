@@ -35,21 +35,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         print("viewdidload")
         
-//        newsRefresh()
-        
-        // set observer for UIApplication.willEnterForegroundNotification
-        
+        // set observer to refresh news
 //        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
+        //set observer to set last count
 //        NotificationCenter.default.addObserver(self, selector: #selector(setLastCount), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setLastCount), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
         
-        //observe when app becomes active
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        //observe when app becomes active and update badge
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBadge), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
@@ -128,7 +126,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //    }
     
     //reset badge number when app is back in the foreground
-    @objc func applicationDidBecomeActive(notification: NSNotification) {
+    @objc func updateBadge(notification: NSNotification) {
 //        print("active")
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
