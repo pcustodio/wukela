@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class BookmarkViewController: UIViewController {
+class BookmarkViewController: UIViewController, RefreshTransitionListener {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,13 +31,14 @@ class BookmarkViewController: UIViewController {
         //self.tableView.separatorColor = .clear;
         
         //set cell height
-        self.tableView.rowHeight = 60;
+        self.tableView.rowHeight = 80;
         
         //remove extraneous empty cells
         tableView.tableFooterView = UIView()
 
         //reload table
         tableView.reloadData()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +65,9 @@ class BookmarkViewController: UIViewController {
         
         super.viewDidAppear(animated)
         
+        //implement the refresh listener
+        RefreshTransitionMediator.instance.setListener(listener: self)
+        
         //check for internet availability
         if Reachability.isConnectedToNetwork(){
             print("Internet Connection Available!")
@@ -80,6 +84,15 @@ class BookmarkViewController: UIViewController {
             }))
             self.present(alert, animated: true)
         }
+    }
+    
+//MARK: - Delegate: Refresh News after Topic & Sources
+    
+    //required delegate func
+    func popoverDismissed() {
+//        self.navigationController?.dismiss(animated: true, completion: nil)
+        self.viewWillAppear(true)
+        print("dismissed")
     }
     
     
