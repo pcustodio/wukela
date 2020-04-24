@@ -241,8 +241,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             return newsSync.count
         }
-        
-
     }
     
     //create our cell
@@ -253,20 +251,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-//        let newsRow: NewsData
-//        if segmentControl.selectedSegmentIndex == 0 {
-//            newsRow = filteredData[indexPath.row]
-//        } else {
-//            newsRow = data[indexPath.row]
-//        }
-
+        
+        
+        //        let newsRow: NewsData
+        //        if segmentControl.selectedSegmentIndex == 0 {
+        //            newsRow = filteredData[indexPath.row]
+        //        } else {
+        //            newsRow = data[indexPath.row]
+        //        }
+        
         //check if row is in history
-        //print("readHistory is: \(readHistory)")
-        if readHistory.contains(newsSync[indexPath.row][1] as! String) {
+        if readHistory.contains(newsSync[indexPath.row][0] as! String) {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
         }
+        //print("readHistory is: \(readHistory)")
         
         //set row title/subtitle
         cell.textLabel?.text = newsSync[indexPath.row][0] as? String
@@ -279,12 +279,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
         let resource = ImageResource(downloadURL: URL(string: newsSync[indexPath.row][2] as! String )!, cacheKey: newsSync[indexPath.row][2] as? String)
         
-//        if scale == 2.0 {
-//            resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty@2x.pdf"))!, cacheKey: newsRow.img_src)
-//        } else if scale == 3.0 {
-//            resource = ImageResource(downloadURL: URL(string: newsRow.img_src ?? String("http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsRow.img_src)
-//        }
-        
         cell.imageView?.kf.setImage(
             with: resource,
             placeholder: image,
@@ -293,46 +287,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                       .transition(.fade(0.5)),
                       .cacheOriginalImage
             ])
-//        {
-//            result in
-//            // `result` is either a `.success(RetrieveImageResult)` or a `.failure(KingfisherError)`
-//            switch result {
-//            case .success(let value):
-//                // The image was set to image view:
-//                print(value.image)
-//
-//                // From where the image was retrieved:
-//                // - .none - Just downloaded.
-//                // - .memory - Got from memory cache.
-//                // - .disk - Got from disk cache.
-//                print(value.cacheType)
-//
-//                // The source object which contains information like `url`.
-//                print(value.source)
-//
-//            case .failure(let error):
-//                print(error) // The error happens
-//            }
-//        }
         
         return cell
     }
     
     //cell was tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        //print cell that was tapped on
-        //print(indexPath.row)
 
-        //set checkmark
-//        let newsRow: NewsData
-//        if segmentControl.selectedSegmentIndex == 0 {
-//            newsRow = filteredData[indexPath.row]
-//        } else {
-//            newsRow = data[indexPath.row]
-//        }
-        self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        headlineRead = newsSync[indexPath.row][1] as! String
+//        self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { timer in
+            self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        })
+        
+        headlineRead = newsSync[indexPath.row][0] as! String
 //        print("last selection was: \(headlineRead)")
         self.tableView.deselectRow(at: indexPath, animated: true)
         
