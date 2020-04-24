@@ -153,7 +153,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if self.segmentControl.selectedSegmentIndex == 0 {
                 newsSync = NewsLoader().newsCore
             } else {
-                newsSync = NewsLoader().newsPop
+                newsSync = NewsLoader().newsCore
             }
             //avoid flickering
             UIView.performWithoutAnimation {

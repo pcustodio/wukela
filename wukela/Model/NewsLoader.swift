@@ -21,7 +21,7 @@ class NewsLoader {
     var newsBulk = [NewsData]()
     var newsCore = [[Any]]()
     var newCount = 0
-    var newsPop = [[Any]]()
+    
     let sources = ["Jornal Notícias",
                    "O País",
                    "Verdade",
@@ -149,7 +149,6 @@ class NewsLoader {
             user.setValue(newsBulk[count].cat, forKeyPath: "catSync")
             user.setValue(newsBulk[count].epoch, forKeyPath: "epochSync")
             user.setValue(count, forKeyPath: "countSync")
-            user.setValue(newsBulk[count].isPop, forKeyPath: "popSync")
         }
         do {
             try managedContext.save()
@@ -181,10 +180,10 @@ class NewsLoader {
                 let cat = data.value(forKey: "catSync") as! String
                 let epoch = data.value(forKey: "epochSync") as! Double
                 let count = data.value(forKey: "countSync") as! Int
-                let pop = data.value(forKey: "popSync") as! Bool
+
                 
                 //create 2d array
-                newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count, pop])
+                newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count])
                 
                 //sort 2d array
 //                print(newsCore)
@@ -287,25 +286,6 @@ class NewsLoader {
         
 //        print(newsCore[1][7])
         
-        //filter based on json isPop attribute retrieved via 2d array newsCore
-        newsPop = newsCore.filter { $0[7] as! Bool == true }
-        
-//        print("newspop is: \(newsPop)")
-        
-//        for popCounted in 0..<popCounter {
-//            let popList = newsCore[popCounted][0]
-//            newsCore.filter { $0.contains(popList) }
-//        }
-        
-//        newsCore = self.newsCore.sorted { $0[5] > $1[5] }
-        
-//        //sort all news
-//        news = self.news.sorted { $0.epoch > $1.epoch }
-//
-//        //filter recent news
-//        let currentTime = NSDate().timeIntervalSince1970
-//        let pastDay = currentTime - 86400
-//        filterNews = self.news.filter { $0.epoch > pastDay }
     }
 }
 

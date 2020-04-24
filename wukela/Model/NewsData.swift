@@ -16,5 +16,4 @@ struct NewsData : Codable {
     var news_src: String?
     var cat: String?
     var epoch: Double
-    var isPop: Bool?
 }
