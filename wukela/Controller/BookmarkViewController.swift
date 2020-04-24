@@ -40,6 +40,18 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
         //reload table
         tableView.reloadData()
         
+        //customise navigation bar
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.shadowColor = .clear
+        navBarAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "textColor")!]
+        navBarAppearance.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ProximaNova-Light", size: 38)!]
+        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ProximaNova-Bold", size: 14)!]
+        navBarAppearance.shadowImage = UIImage()
+        navBarAppearance.backgroundColor = UIColor(named: "bkColor")
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
