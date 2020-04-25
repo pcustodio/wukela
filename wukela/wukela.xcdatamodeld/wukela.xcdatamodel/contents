@@ -27,7 +27,12 @@
         <attribute name="url_srcSync" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Read" representedClassName="Read" syncable="YES" codeGenerationType="class">
-        <attribute name="isRead" optional="YES" attributeType="String"/>
+        <attribute name="catRead" optional="YES" attributeType="String"/>
+        <attribute name="epochRead" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="headlineRead" optional="YES" attributeType="String"/>
+        <attribute name="imgRead" optional="YES" attributeType="String"/>
+        <attribute name="srcRead" optional="YES" attributeType="String"/>
+        <attribute name="urlRead" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="ActiveSources" positionX="-63" positionY="9" width="128" height="58"/>
@@ -35,6 +40,6 @@
         <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="Count" positionX="-63" positionY="45" width="128" height="58"/>
         <element name="NewsSync" positionX="-63" positionY="9" width="128" height="163"/>
-        <element name="Read" positionX="-63" positionY="9" width="128" height="58"/>
+        <element name="Read" positionX="-63" positionY="9" width="128" height="133"/>
     </elements>
 </model>

@@ -19,11 +19,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var refreshControl = UIRefreshControl()
     
     var headlineRead = ""
+    var urlRead = ""
+    var imgRead = ""
+    var srcRead = ""
+    var catRead = ""
+    var epochRead = 0.0
+    
     var readHistory = [String]()
     
 //    private let notificationPublisher = NotificationPublisher()
     
     var newsSync = [[Any]]()
+    var historySync : [NSManagedObject] = []
     
     var lastCount = 0
     
@@ -46,7 +53,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
         
-        //observe when app becomes active and update badge
+        //observe when app becomes active and reset badge
         NotificationCenter.default.addObserver(self, selector: #selector(updateBadge), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //tabBar items
@@ -150,8 +157,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if Reachability.isConnectedToNetwork(){
             if self.segmentControl.selectedSegmentIndex == 0 {
                 newsSync = NewsLoader().newsCore
-            } else {
-                newsSync = NewsLoader().newsRead
+//            } else {
+//                newsSync = NewsLoader().newsRead
+                
             }
             //avoid flickering
             UIView.performWithoutAnimation {
@@ -233,81 +241,121 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             return newsSync.count
         } else {
-            if newsSync.count == 0 {
+            if historySync.count == 0 {
                 //display empty bookmarks msg
                 self.tableView.setEmptyMessage("Sem artigos")
             } else {
                 self.tableView.restore()
             }
-            return newsSync.count
+            return historySync.count
         }
     }
     
     //create our cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //check for checkmarks
-        retrieveHistory()
+
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        //        let newsRow: NewsData
-        //        if segmentControl.selectedSegmentIndex == 0 {
-        //            newsRow = filteredData[indexPath.row]
-        //        } else {
-        //            newsRow = data[indexPath.row]
-        //        }
         
-        //check if row is in history
-        if readHistory.contains(newsSync[indexPath.row][0] as! String) {
-            cell.accessoryType = .checkmark
+        if segmentControl.selectedSegmentIndex == 0 {
+            
+            //check for checkmarks
+            retrieveHistory()
+            
+            //check if row is in history
+            if readHistory.contains(newsSync[indexPath.row][0] as! String) {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
+            
+            //set headline
+            cell.textLabel?.text = newsSync[indexPath.row][0] as? String
+            
+            //set source
+            cell.detailTextLabel?.text = newsSync[indexPath.row][3] as? String
+            
+            //set row img
+            let image = UIImage(named: "placeholder.pdf")
+            cell.imageView?.kf.indicatorType = .activity
+            let scale = UIScreen.main.scale
+            let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
+            let resource = ImageResource(downloadURL: URL(string: newsSync[indexPath.row][2] as! String )!, cacheKey: newsSync[indexPath.row][2] as? String)
+            
+            cell.imageView?.kf.setImage(
+                with: resource,
+                placeholder: image,
+                options: [.processor(processor),
+                          .scaleFactor(UIScreen.main.scale),
+                          .transition(.fade(0.5)),
+                          .cacheOriginalImage
+                ]
+            )
         } else {
+            //set tableview based on history saved in coredata
+            
+            //clear checkmarks
             cell.accessoryType = .none
+            
+            
+            //aligh coredata with indexpath
+            let historySynced = historySync[indexPath.row]
+            
+            //get headline
+            cell.textLabel?.text = historySynced.value(forKeyPath: "headlineRead") as? String
+            
+            //get source
+            cell.detailTextLabel?.text = historySynced.value(forKeyPath: "srcRead") as? String
+            
+            //set row img
+            let image = UIImage(named: "placeholder.pdf")
+            cell.imageView?.kf.indicatorType = .activity
+            let scale = UIScreen.main.scale
+            let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
+            let resource = ImageResource(downloadURL: URL(string: historySynced.value(forKeyPath: "imgRead") as! String )!, cacheKey: historySynced.value(forKeyPath: "imgRead") as? String)
+            
+            cell.imageView?.kf.setImage(
+                with: resource,
+                placeholder: image,
+                options: [.processor(processor),
+                          .scaleFactor(UIScreen.main.scale),
+                          .transition(.fade(0.5)),
+                          .cacheOriginalImage
+                ]
+            )
         }
-        //print("readHistory is: \(readHistory)")
-        
-        //set row title/subtitle
-        cell.textLabel?.text = newsSync[indexPath.row][0] as? String
-        cell.detailTextLabel?.text = newsSync[indexPath.row][3] as? String
-        
-        //set row img
-        let image = UIImage(named: "placeholder.pdf")
-        cell.imageView?.kf.indicatorType = .activity
-        let scale = UIScreen.main.scale
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-        let resource = ImageResource(downloadURL: URL(string: newsSync[indexPath.row][2] as! String )!, cacheKey: newsSync[indexPath.row][2] as? String)
-        
-        cell.imageView?.kf.setImage(
-            with: resource,
-            placeholder: image,
-            options: [.processor(processor),
-                      .scaleFactor(UIScreen.main.scale),
-                      .transition(.fade(0.5)),
-                      .cacheOriginalImage
-            ]
-        )
         
         return cell
     }
     
     //cell was tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if segmentControl.selectedSegmentIndex == 0 {
 
-//        self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { timer in
-            self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        })
-        
-        headlineRead = newsSync[indexPath.row][0] as! String
-//        print("last selection was: \(headlineRead)")
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        
-        markRead()
+            _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { timer in
+                self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            })
+            
+            headlineRead = newsSync[indexPath.row][0] as! String
+            urlRead = newsSync[indexPath.row][1] as! String
+            imgRead = newsSync[indexPath.row][2] as! String
+            srcRead = newsSync[indexPath.row][3] as! String
+            catRead = newsSync[indexPath.row][4] as! String
+            epochRead = newsSync[indexPath.row][5] as! Double
+
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            
+            markRead()
+        } else {
+            
+        }
     }
     
 //MARK: - Segue to WebViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segmentControl.selectedSegmentIndex == 0 {
             if segue.identifier == "getNews" {
                 if let indexPath = tableView.indexPathForSelectedRow {
@@ -322,11 +370,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             if segue.identifier == "getNews" {
                 if let indexPath = tableView.indexPathForSelectedRow {
+                    let historySynced = historySync[indexPath.row]
                     let destination = segue.destination as? WebViewController
-                    destination?.headline = newsSync[indexPath.row][0] as! String
-                    destination?.url = newsSync[indexPath.row][1] as! String
-                    destination?.source = newsSync[indexPath.row][3] as! String
-                    destination?.epoch = newsSync[indexPath.row][5] as! Double
+                    destination?.headline = (historySynced.value(forKeyPath: "headlineRead") as? String)!
+                    destination?.url = (historySynced.value(forKeyPath: "urlRead") as? String)!
+                    destination?.source = (historySynced.value(forKeyPath: "srcRead") as? String)!
+                    destination?.epoch = (historySynced.value(forKeyPath: "epochRead") as? Double)!
+                    destination?.img = (historySynced.value(forKeyPath: "imgRead") as? String)!
                 }
             }
         }
@@ -357,7 +407,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let managedContext = appDelegate.persistentContainer.viewContext
         let userEntity = NSEntityDescription.entity(forEntityName: "Read", in: managedContext)!
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-        user.setValue(headlineRead, forKeyPath: "isRead")
+        user.setValue(headlineRead, forKeyPath: "headlineRead")
+        user.setValue(urlRead, forKeyPath: "urlRead")
+        user.setValue(imgRead, forKeyPath: "imgRead")
+        user.setValue(srcRead, forKeyPath: "srcRead")
+        user.setValue(catRead, forKeyPath: "catRead")
+        user.setValue(epochRead, forKeyPath: "epochRead")
 //        user.setValue(NSDate().timeIntervalSince1970, forKeyPath: "timeRead")
         
         do {
@@ -371,16 +426,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //MARK: - Retrieve Read History - CoreData
     
     func retrieveHistory() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+              return
+        }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Read")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Read")
         
         do {
-            let result = try managedContext.fetch(fetchRequest)
+            historySync = try managedContext.fetch(fetchRequest).reversed()
             
-            for data in result as! [NSManagedObject] {
-                let viewRead = data.value(forKey: "isRead") as! String
-                readHistory.append(viewRead)
+            for data in historySync {
+                let viewHeadlineRead = data.value(forKey: "headlineRead") as! String
+                readHistory.append(viewHeadlineRead)
                 readHistory = Array(Set(readHistory))
             }
             //print(readHistory)
