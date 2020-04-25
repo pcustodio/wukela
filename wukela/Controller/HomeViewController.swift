@@ -254,8 +254,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //create our cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         if segmentControl.selectedSegmentIndex == 0 {
@@ -297,7 +295,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //clear checkmarks
             cell.accessoryType = .none
-            
             
             //aligh coredata with indexpath
             let historySynced = historySync[indexPath.row]
@@ -348,7 +345,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             markRead()
         } else {
-            
+            self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
