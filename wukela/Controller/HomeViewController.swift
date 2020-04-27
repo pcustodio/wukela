@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     //    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet var syncNews: UIBarButtonItem!
     
     var refreshControl = UIRefreshControl()
     
@@ -143,11 +144,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: - Sync News
     
     @IBAction func syncNews(_ sender: UIBarButtonItem) {
+        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let barButton = UIBarButtonItem(customView: activityIndicator)
+        self.navigationItem.setLeftBarButton(barButton, animated: true)
+        activityIndicator.startAnimating()
+        
         let newsLoader = NewsLoader()
         newsLoader.getJson()
         newsLoader.deleteNews()
         newsLoader.storeNews()
         newsRefresh()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            activityIndicator.stopAnimating()
+            self.navigationItem.setLeftBarButton(self.syncNews, animated: true)
+        }
+        
     }
     
     

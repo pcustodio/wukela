@@ -121,6 +121,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="segmentControl" destination="QCA-v0-YOI" id="ukF-DO-QqI"/>
+                        <outlet property="syncNews" destination="YNz-vh-8Op" id="sqe-zH-5E8"/>
                         <outlet property="tableView" destination="1qD-yd-wqP" id="MfF-dv-NlP"/>
                     </connections>
                 </viewController>
@@ -513,7 +514,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gbC-WT-ESX"/>
+        <segue reference="Fuj-dd-FrU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
