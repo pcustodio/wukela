@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var srcRead = ""
     var catRead = ""
     var epochRead = 0.0
+    var timeRead = 0.0
     
     var readHistory = [String]()
     
@@ -302,8 +303,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //get headline
             cell.textLabel?.text = historySynced.value(forKeyPath: "headlineRead") as? String
             
-            //get source
-            cell.detailTextLabel?.text = historySynced.value(forKeyPath: "srcRead") as? String
+            //get time read
+            //convert epoch with dateformatter
+            let unixTimestamp = historySynced.value(forKeyPath: "timeRead")
+            let date = Date(timeIntervalSince1970: unixTimestamp as! TimeInterval)
+            let calendar = Calendar.current
+            if calendar.isDateInToday(date) {
+                cell.detailTextLabel?.text = "Hoje"
+            } else if calendar.isDateInYesterday(date) {
+                cell.detailTextLabel?.text = "Ontem"
+            } else {
+                let dateFormatter = DateFormatter()
+                dateFormatter.timeZone = TimeZone.current
+                dateFormatter.locale = Locale.init(identifier: Locale.preferredLanguages[1])
+                dateFormatter.setLocalizedDateFormatFromTemplate("ddMMMM")
+                let strDate = dateFormatter.string(from: date)
+                cell.detailTextLabel?.text = strDate
+            }
             
             //set row img
             let image = UIImage(named: "placeholder.pdf")
@@ -340,6 +356,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             srcRead = newsSync[indexPath.row][3] as! String
             catRead = newsSync[indexPath.row][4] as! String
             epochRead = newsSync[indexPath.row][5] as! Double
+            timeRead = newsSync[indexPath.row][5] as! Double
 
             self.tableView.deselectRow(at: indexPath, animated: true)
             
@@ -410,7 +427,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         user.setValue(srcRead, forKeyPath: "srcRead")
         user.setValue(catRead, forKeyPath: "catRead")
         user.setValue(epochRead, forKeyPath: "epochRead")
-//        user.setValue(NSDate().timeIntervalSince1970, forKeyPath: "timeRead")
+        user.setValue(NSDate().timeIntervalSince1970, forKeyPath: "timeRead")
         
         do {
             try managedContext.save()
