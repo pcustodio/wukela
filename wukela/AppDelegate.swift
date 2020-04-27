@@ -73,35 +73,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newsLoader.getJson()
         newsLoader.deleteNews()
         newsLoader.storeNews()
-        completionHandler(.newData)
         
-//        //check for new content
-//        newCount = newsLoader.getCount()
-//        print("newcount is: \(newCount)")
-//        
-//        //retrieve bookmarks coredata
-//        guard let appDelegate =
-//            UIApplication.shared.delegate as? AppDelegate else {
-//              return
-//        }
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Count")
-//        
-//        do {
-//            let result = try managedContext.fetch(fetchRequest)
-//            
-//            for data in result as! [NSManagedObject] {
-//                lastCount = data.value(forKey: "lastCount") as! Int
-//            }
-//            //print(readHistory)
-//
-//        } catch {
-//            print("Failed")
-//        }
-//        print("lastcount is: \(lastCount)")
-//        if newCount > lastCount {
-//            notificationPublisher.sendNotification(title: "You have \(newCount - lastCount) news awaiting", subtitle: "My subtitle", body: "This is a body", badge: 1, delayInterval: 10)
-//        }
+        
+        //check for new content
+        newCount = newsLoader.getCount()
+        print("newcount is: \(newCount)")
+        
+        //retrieve bookmarks coredata
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+              return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Count")
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            
+            for data in result as! [NSManagedObject] {
+                lastCount = data.value(forKey: "lastCount") as! Int
+            }
+            //print(readHistory)
+
+        } catch {
+            print("Failed")
+        }
+        print("lastcount is: \(lastCount)")
+        if newCount > lastCount {
+            notificationPublisher.sendNotification(title: "You have \(newCount - lastCount) news awaiting", subtitle: "My subtitle", body: "This is a body", badge: 1, delayInterval: 10)
+        }
+        
+        completionHandler(.newData)
 
         
         
