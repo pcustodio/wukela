@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_home_reverse" translatesAutoresizingMaskIntoConstraints="NO" id="utA-sK-33e">
-                                <rect key="frame" x="143.5" y="433.5" width="127" height="29"/>
+                                <rect key="frame" x="143" y="433.5" width="128" height="29"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="primaryColor"/>
