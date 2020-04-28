@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class OnboardingViewController: UIViewController {
+class OnboardingLastStepViewController: UIViewController {
     
     var newsLoader = NewsLoader()
     
