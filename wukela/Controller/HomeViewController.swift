@@ -98,12 +98,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //customise navigation bar
         let navBarAppearance = UINavigationBarAppearance()
-//        navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.shadowColor = .clear
-//        navBarAppearance.shadowImage = UIImage()
         navBarAppearance.backgroundColor = UIColor(named: "bkColor")
         navigationController?.navigationBar.standardAppearance = navBarAppearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
 //        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
             }
@@ -116,11 +113,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         print("viewDidAppear")
 
-        //check for checkmarks
+        //get checkmarks
         retrieveHistory()
+        
+        //check for  1st launch refresh
+        _ = isAppAlreadyLaunchedOnce()
 
     }
  
+    
+//MARK: - Set last count
+    
     @objc func setLastCount() {
         //get lastCount
         lastCount = newsSync.count
@@ -128,6 +131,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         setCount()
     }
     
+    
+//MARK: - Check 1st load
+    
+    //check for 1st load
+    public func isAppAlreadyLaunchedOnce()->Bool{
+        let defaults = UserDefaults.standard
+        if let _ = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
+            print("App already launched")
+            return true
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+            print("App launched first time")
+            newsRefresh()
+            return false
+        }
+    }
 //MARK: - Local Notifications
     
 //    @IBAction func notifyBtn(_ sender: UIBarButtonItem) {
@@ -198,7 +217,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //required delegate func
     func popoverDismissed() {
-//        self.navigationController?.dismiss(animated: true, completion: nil)
         newsRefresh()
     }
     
@@ -239,6 +257,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.endRefreshing()
         print("refreshed")
     }
+    
     
     //MARK: - Tableview
     
@@ -292,7 +311,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let scale = UIScreen.main.scale
             let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
             let resource = ImageResource(downloadURL: URL(string: newsSync[indexPath.row][2] as! String )!, cacheKey: newsSync[indexPath.row][2] as? String)
-            
             cell.imageView?.kf.setImage(
                 with: resource,
                 placeholder: image,
@@ -338,7 +356,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let scale = UIScreen.main.scale
             let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
             let resource = ImageResource(downloadURL: URL(string: historySynced.value(forKeyPath: "imgRead") as! String )!, cacheKey: historySynced.value(forKeyPath: "imgRead") as? String)
-            
             cell.imageView?.kf.setImage(
                 with: resource,
                 placeholder: image,

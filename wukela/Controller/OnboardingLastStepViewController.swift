@@ -17,7 +17,8 @@ class OnboardingLastStepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        turnOnAll()
+        //activate all topics
+        turnOnAllTopics()
         
     }
     
@@ -31,7 +32,7 @@ class OnboardingLastStepViewController: UIViewController {
             print("Internet Connection Available!")
             newsLoader.getJson()
             newsLoader.storeNews()
-        }else{
+        } else {
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Connection Error", message: "Please check if your internet connection is active.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try again", style: .default, handler:{(action:UIAlertAction!) in
@@ -49,20 +50,19 @@ class OnboardingLastStepViewController: UIViewController {
 
     @IBAction func endSetup(_ sender: Any) {
         
+        //move to Main storyboard and reset root view controller
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC") as! UITabBarController
         UIApplication.shared.windows.first?.rootViewController = mainVC
         UIApplication.shared.windows.first?.makeKeyAndVisible()
-//        mainVC.modalPresentationStyle = .fullScreen
         mainVC.modalTransitionStyle = .crossDissolve
-//        self.present(mainVC, animated: true, completion: nil)
         self.show(mainVC, sender: .none)
     
     }
     
 //MARK: - Turn on all Topics
        
-   func turnOnAll() {
+   func turnOnAllTopics() {
        
        let appDelegate = UIApplication.shared.delegate as! AppDelegate
        let context = appDelegate.persistentContainer.viewContext
