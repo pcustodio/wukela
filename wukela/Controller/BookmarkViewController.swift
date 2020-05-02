@@ -78,8 +78,8 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
         
         super.viewDidAppear(animated)
         
-        //implement the refresh listener
-        RefreshTransitionMediator.instance.setListener(listener: self)
+//        //implement the refresh listener
+//        RefreshTransitionMediator.instance.setListener(listener: self)
         
         //check for internet availability
         if Reachability.isConnectedToNetwork(){

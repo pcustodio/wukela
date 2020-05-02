@@ -220,6 +220,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //required delegate func
     func popoverDismissed() {
         newsRefresh()
+        print("transistion listened to")
     }
     
     
