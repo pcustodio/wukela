@@ -74,7 +74,7 @@ class NewsLoader {
         
         //access file location of local json file
         //if file is accessed code inside is run
-        if let fileLocation = URL(string : "http://paulocustodio.com/scraper/jornalnoticias_done.json") {
+        if let fileLocation = URL(string : "http://paulocustodio.com/scraper/news_done.json") {
             //run do catch in case of an error
             do {
                 //try to get data from json file
