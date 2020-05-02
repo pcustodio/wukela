@@ -173,7 +173,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
                   "Desporto",
                   "Economia e Negócios",
                   "Política",
-                  "Cultura",
+                  "Cultura e Entretenimento",
                   "Ciência e Tecnologia",
                   "Opinião"]
 

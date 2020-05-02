@@ -181,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //                  "Desporto",
     //                  "Economia",
     //                  "Política",
-    //                  "Cultura",
+    //                  "Cultura e Entretenimento",
     //                  "Ciência e Tecnologia",
     //                  "Opinião"]
     //

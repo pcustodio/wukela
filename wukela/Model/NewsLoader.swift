@@ -41,7 +41,7 @@ class NewsLoader {
                       "Desporto",
                       "Economia e Negócios",
                       "Política",
-                      "Cultura",
+                      "Cultura e Entretenimento",
                       "Ciência e Tecnologia",
                       "Opinião"]
     
