@@ -16,9 +16,9 @@ class SourceCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                backgroundColor = UIColor(white: 1, alpha: 0.2)
+                backgroundColor = UIColor(named: "selectColor")
                 layer.borderWidth = 1.0
-                layer.borderColor = backgroundColor?.cgColor
+                layer.borderColor = UIColor(named: "selectColor")?.resolvedColor(with: traitCollection).cgColor
                 layer.cornerRadius = 10.0
             } else {
                 backgroundColor = nil

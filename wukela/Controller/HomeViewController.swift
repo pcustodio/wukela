@@ -143,6 +143,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }else{
             defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
             print("App launched first time")
+
             newsRefresh()
             return false
         }
@@ -167,16 +168,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let barButton = UIBarButtonItem(customView: activityIndicator)
         self.navigationItem.setLeftBarButton(barButton, animated: true)
         activityIndicator.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            activityIndicator.stopAnimating()
+            self.navigationItem.setLeftBarButton(self.syncNews, animated: true)
+        }
         
         let newsLoader = NewsLoader()
         newsLoader.getJson()
         newsLoader.deleteNews()
         newsLoader.storeNews()
         newsRefresh()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            activityIndicator.stopAnimating()
-            self.navigationItem.setLeftBarButton(self.syncNews, animated: true)
-        }
+
         
     }
     
