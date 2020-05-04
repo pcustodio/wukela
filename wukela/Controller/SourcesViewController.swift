@@ -17,7 +17,8 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         ["Jornal Notícias", "O País", "Verdade", "Savana"],
         ["Jornal Angola", "Novo Jornal", "Folha 8", "AngoNotícias"],
         ["A Semana", "Expresso das Ilhas", "A Nação"],
-        ["O Democrata", "Novas de Guiné Bissau", "Público"]
+        ["O Democrata", "Novas de Guiné Bissau", "Público"],
+        ["Itara Burundi", "Burundi Eco", "Nawe"]
     ]
     var path = 0
     var pathSection = 0
@@ -105,9 +106,11 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
             label.text = "Angola"
         } else if section == 2 {
             label.text = "Cabo Verde"
-        } else {
+        } else if section == 3 {
             label.text = "Guiné-Bissau"
-        }
+        } else {
+           label.text = "Burundi"
+       }
         headerView.addSubview(label)
     
 
