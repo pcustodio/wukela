@@ -294,7 +294,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //check for checkmarks
             retrieveHistory()
-            
+
             //check if row is in history
             if readHistory.contains(newsSync[indexPath.row][0] as! String) {
                 cell.accessoryType = .checkmark
@@ -313,7 +313,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.imageView?.kf.indicatorType = .activity
             let scale = UIScreen.main.scale
             let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-            let resource = ImageResource(downloadURL: URL(string: newsSync[indexPath.row][2] as! String )!, cacheKey: newsSync[indexPath.row][2] as? String)
+            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
             cell.imageView?.kf.setImage(
                 with: resource,
                 placeholder: image,

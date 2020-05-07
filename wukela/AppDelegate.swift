@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newsLoader.getJson()
         newsLoader.deleteNews()
         newsLoader.storeNews()
-        
+        completionHandler(.newData)
 //
 //        //check for new content
 //        newCount = newsLoader.getCount()
@@ -105,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         
         
-        completionHandler(.newData)
+        
     }
     
     
