@@ -57,8 +57,6 @@
 		918FCFC62458468B008D6759 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		918FCFCA24586BBE008D6759 /* SourceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCollectionViewCell.swift; sourceTree = "<group>"; };
 		91990A11243F3CAE001DAAA6 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
-		919D418F243CD14E009E3594 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Main.strings"; sourceTree = "<group>"; };
-		919D4190243CD14E009E3594 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		91CE263C2428F48C001A7B39 /* SourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewController.swift; sourceTree = "<group>"; };
 		91E1F8B7243609F60053693B /* ProximaNova Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova Semibold.otf"; sourceTree = "<group>"; };
 		91E1F8B8243609F60053693B /* ProximaNova Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova Light.otf"; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 			knownRegions = (
 				en,
 				Base,
-				"pt-PT",
 			);
 			mainGroup = 910E2DC924264E3400313B2A;
 			packageReferences = (
@@ -278,7 +275,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				910E2DDC24264E3400313B2A /* Base */,
-				919D418F243CD14E009E3594 /* pt-PT */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -287,7 +283,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				910E2DE424264E3600313B2A /* Base */,
-				919D4190243CD14E009E3594 /* pt-PT */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

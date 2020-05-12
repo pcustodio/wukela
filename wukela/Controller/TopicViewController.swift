@@ -23,7 +23,6 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var path = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

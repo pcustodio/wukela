@@ -14,11 +14,18 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     
     let sources = [
-        ["Jornal Notícias", "O País", "Verdade", "Savana"],
-        ["Jornal Angola", "Novo Jornal", "Folha 8", "AngoNotícias"],
-        ["A Semana", "Expresso das Ilhas", "A Nação"],
-        ["O Democrata", "Novas de Guiné Bissau", "Público"],
-        ["Itara Burundi", "Burundi Eco", "Nawe"]
+        ["Algérie 360", "Echorouk", "El Khabar", "Observ'Algérie"],
+        ["Folha 8", "Jornal de Angola", "Novo Jornal", "O País (Angola)"],
+        ["La Nation", "L'Evénement Précis", "Quotidien le Matinal"],
+        ["Mmegi", "The Midweek Sun", "The Voice"],
+        ["Burkina 24", "Le Faso", "Sidwaya"],
+        ["Itara Burundi", "Iwacu", "Nawe"],
+        ["Actu Cameroun", "Cameroon Online", "Cameroon Tribune", "Journal du Cameroun"],
+        ["A Nação", "A Semana", "Expresso das Ilhas"],
+        ["Akhbar El Yom", "Al-Ahram", "Al Wafd", "Egypt Today", "El Balad", "Youm7"],
+        ["Jornal Notícias", "O País", "Verdade", "Carta de Moçambique", "Jornal Txopela", "Club of Mozambique"],
+        ["The Guardian", "Punch", "The Nation", "Vanguard"],
+        ["Citizen", "Herald", "Isolezwe", "Mail & Guardian", "Sowetan", "Times"]
     ]
     var path = 0
     var pathSection = 0
@@ -101,15 +108,29 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         label.textColor = UIColor(named: "subtitleColor") // my custom colour
         
         if section == 0 {
-            label.text = "Moçambique"
+            label.text = "Algeria"
         } else if section == 1 {
             label.text = "Angola"
         } else if section == 2 {
-            label.text = "Cabo Verde"
+            label.text = "Benin"
         } else if section == 3 {
-            label.text = "Guiné-Bissau"
+            label.text = "Botswana"
+        } else if section == 4 {
+            label.text = "Burkina Faso"
+        } else if section == 5 {
+            label.text = "Burundi"
+        } else if section == 6 {
+            label.text = "Cameroon"
+        } else if section == 7 {
+            label.text = "Cape Verde"
+        } else if section == 8 {
+            label.text = "Egypt"
+        } else if section == 9 {
+            label.text = "Mozambique"
+        } else if section == 10 {
+            label.text = "Nigeria"
         } else {
-           label.text = "Burundi"
+           label.text = "South Africa"
        }
         headerView.addSubview(label)
     

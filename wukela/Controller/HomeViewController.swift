@@ -34,8 +34,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var newsSync = [[Any]]()
     var historySync : [NSManagedObject] = []
     
-    var lastCount = 0
-    
     
 //MARK: - viewDidLoad
     
@@ -48,15 +46,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
-        //set observer to set last count
-//        NotificationCenter.default.addObserver(self, selector: #selector(setLastCount), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setLastCount), name: UIApplication.didBecomeActiveNotification, object: nil)
-        
         //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
-        
-        //observe when app becomes active and reset badge
-        NotificationCenter.default.addObserver(self, selector: #selector(updateBadge), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
@@ -119,16 +110,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //check for  1st launch refresh
         _ = isAppAlreadyLaunchedOnce()
 
-    }
- 
-    
-//MARK: - Set last count
-    
-    @objc func setLastCount() {
-        //get lastCount
-        lastCount = newsSync.count
-        print("lastcount is: \(lastCount)")
-        setCount()
     }
     
     
@@ -424,23 +405,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.img = (historySynced.value(forKeyPath: "imgRead") as? String)!
                 }
             }
-        }
-    }
-
-    
-//MARK: - Set count - CoreData
-    
-    func setCount(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let userEntity = NSEntityDescription.entity(forEntityName: "Count", in: managedContext)!
-        let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-        user.setValue(lastCount, forKeyPath: "lastCount")
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     

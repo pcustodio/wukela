@@ -12,33 +12,61 @@ import CoreData
 //load data from json and turn it into my data structure on Dictionary.swift
 class NewsLoader {
     
-    //store all the data that is retrieved from json file
-//    var news = [NewsData]()
-//    var filterNews = [NewsData]()
+    //array containing json
+    var newsJson = [NewsData]()
     
-    var retrievedSource = ""
-    var retrievedTopic = ""
-    var newsBulk = [NewsData]()
+    //array containing coredata
     var newsCore = [[Any]]()
-    var newCount = 0
     
-    let sources = ["Jornal Notícias",
-                   "O País",
-                   "Verdade",
-                   "Savana",
-                   "Jornal Angola",
-                   "Novo Jornal",
+    let sources = ["Algérie 360",
+                   "Echorouk",
+                   "El Khabar",
+                   "Observ'Algérie",
                    "Folha 8",
-                   "AngoNotícias",
+                   "Jornal de Angola",
+                   "Novo Jornal",
+                   "O País (Angola)",
+                   "La Nation",
+                   "L'Evénement Précis",
+                   "Quotidien le Matinal",
+                   "Mmegi",
+                   "The Midweek Sun",
+                   "The Voice",
+                   "Burkina 24",
+                   "Le Faso",
+                   "Sidwaya",
+                   "Itara Burundi",
+                   "Iwacu",
+                   "Nawe",
+                   "Actu Cameroun",
+                   "Cameroon Online",
+                   "Cameroon Tribune",
+                   "Journal du Cameroun",
+                   "A Nação",
                    "A Semana",
                    "Expresso das Ilhas",
-                   "A Nação",
-                   "O Democrata",
-                   "Novas de Guiné Bissau",
-                   "Público",
-                   "Itara Burundi",
-                   "Burundi Eco",
-                   "Nawe"]
+                   "Akhbar El Yom",
+                   "Al-Ahram",
+                   "Al Wafd",
+                   "Egypt Today",
+                   "El Balad",
+                   "Youm7",
+                   "Jornal Notícias",
+                   "O País",
+                   "Verdade",
+                   "Carta de Moçambique",
+                   "Jornal Txopela",
+                   "Club of Mozambique",
+                   "The Guardian",
+                   "Punch",
+                   "The Nation",
+                   "Vanguard",
+                   "Citizen",
+                   "Herald",
+                   "Isolezwe",
+                   "Mail & Guardian",
+                   "Sowetan",
+                   "Times"]
     
     let categories = ["Sociedade",
                       "Desporto",
@@ -48,14 +76,18 @@ class NewsLoader {
                       "Ciência e Tecnologia",
                       "Opinião"]
     
+    //array with sources coredata
+    var retrievedSource = ""
     var activeSources = ["","","","","","","","","","","","","","","","",""]
+    
+    //array with topics coredata
+    var retrievedTopic = ""
     var activeTopics = ["","","","","","",""]
+    
+    //count json items
     var jsonCount = 0
     
-//    var readHistory = [String]()
-//    var newsRead = [[Any]]()
-    
-    //run our load & sort functions when our class NewsLoader is created
+    //run when NewsLoader is created
     init() {
         
         sourceCheck()
@@ -70,7 +102,7 @@ class NewsLoader {
         }
     }
     
-    //load our data
+    //get our json data
     public func getJson() {
         
         print("getJson")
@@ -86,29 +118,22 @@ class NewsLoader {
                 let jsonDecoder = JSONDecoder()
                 //get data from json file using decoder
                 let dataFromJson = try jsonDecoder.decode([NewsData].self, from: data)
-                newsBulk = dataFromJson
-                //print(data)
+                newsJson = dataFromJson
             } catch {
                 print(error)
             }
         }
         
         //create json count
-        jsonCount = newsBulk.count
-//        print("count is \(jsonCount)")
-//        newCount = jsonCount
+        jsonCount = newsJson.count
         
-        newsBulk = self.newsBulk.sorted { $0.epoch > $1.epoch }
+        //sort json
+        newsJson = self.newsJson.sorted { $0.epoch > $1.epoch }
     }
     
     
-    func getCount() -> Int {
-        newCount = jsonCount
-        return newCount
-    }
     
-    
-//MARK: - Delete news in Coredata
+//MARK: - Delete news in NewsSync Coredata
     
     public func deleteNews() {
         
@@ -126,34 +151,36 @@ class NewsLoader {
     }
     
     
-    //MARK: - Add Json to Coredata
+    //MARK: - Add Json to NewsSync Coredata
     
     public func storeNews() {
         
-        print("storeNews")
+        print("storeNews: store json data in Coredata")
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let userEntity = NSEntityDescription.entity(forEntityName: "NewsSync", in: managedContext)!
         
+        //loop over total elements in json
         for count in 0..<jsonCount {
             let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-            user.setValue(newsBulk[count].headline, forKeyPath: "headlineSync")
-            user.setValue(newsBulk[count].url_src, forKeyPath: "url_srcSync")
+            user.setValue(newsJson[count].headline, forKeyPath: "headlineSync")
+            user.setValue(newsJson[count].url_src, forKeyPath: "url_srcSync")
             //look out for empty img and set default
             let scale = UIScreen.main.scale
-            if newsBulk[count].img_src == nil && scale == 1.0 {
+            if newsJson[count].img_src == nil && scale == 1.0 {
                 user.setValue("http://paulocustodio.com/wukela/empty.pdf", forKeyPath: "img_srcSync")
-            } else if newsBulk[count].img_src == nil && scale == 2.0 {
+            } else if newsJson[count].img_src == nil && scale == 2.0 {
                 user.setValue("http://paulocustodio.com/wukela/empty@2x.pdf", forKeyPath: "img_srcSync")
-            } else if newsBulk[count].img_src == nil && scale == 3.0 {
+            } else if newsJson[count].img_src == nil && scale == 3.0 {
                 user.setValue("http://paulocustodio.com/wukela/empty@3x.pdf", forKeyPath: "img_srcSync")
             } else {
-                user.setValue(newsBulk[count].img_src, forKeyPath: "img_srcSync")
+                user.setValue(newsJson[count].img_src, forKeyPath: "img_srcSync")
             }
-            user.setValue(newsBulk[count].news_src, forKeyPath: "news_srcSync")
-            user.setValue(newsBulk[count].cat, forKeyPath: "catSync")
-            user.setValue(newsBulk[count].epoch, forKeyPath: "epochSync")
+            user.setValue(newsJson[count].news_src, forKeyPath: "news_srcSync")
+            user.setValue(newsJson[count].cat, forKeyPath: "catSync")
+            user.setValue(newsJson[count].epoch, forKeyPath: "epochSync")
+            //number each stored coredata element to allow sorting
             user.setValue(count, forKeyPath: "countSync")
         }
         do {
@@ -164,11 +191,11 @@ class NewsLoader {
     }
     
     
-    //MARK: - Append Coredata to 2D Array
+    //MARK: - Append NewsSync Coredata to newsCore array
     
     public func appendNews() {
         
-        print("appendNews")
+        print("appendNews: append coredata to newsCore array")
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -187,33 +214,23 @@ class NewsLoader {
                 let epoch = data.value(forKey: "epochSync") as! Double
                 let count = data.value(forKey: "countSync") as! Int
 
-                
                 //create 2d array
                 newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count])
                 
-                //sort 2d array
-//                print(newsCore)
-                
-                //sort count by coredata countSync appended to newsCore to array
+                //sort count by coredata countSync appended to newsCore array
                 newsCore = newsCore.sorted(by: {($0[6] as! Int) < ($1[6] as! Int) })
-                
-//                print(newsCore)
-//                print(headline)
             }
         } catch {
             print("Failed")
         }
-
     }
-    
-    
     
     
     //MARK: - Check Coredata for active Sources
     
     public func sourceCheck() {
         
-        print("sourcecheck")
+        print("sourcecheck: add sources in coredata to activeSources array")
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
@@ -230,9 +247,9 @@ class NewsLoader {
                 //loop over active sources and add them to array
                 for source in sources {
                     if retrievedSource == source {
+                        //add sources in coredata to array
                         activeSources.insert(retrievedSource, at: 0)
                     }
-                    //print(activeSources)
                 }
             }
         } catch {
@@ -245,7 +262,7 @@ class NewsLoader {
     
     public func topicCheck() {
         
-        print("topiccheck")
+        print("topiccheck: add topics in coredata to activeTopics array")
         
         //check Coredata for active news
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -262,11 +279,11 @@ class NewsLoader {
                 
                 for category in categories {
                     if retrievedTopic == category {
+                        //add topics in coredata to array
                         activeTopics.insert(retrievedTopic, at: 0)
                     }
                 }
             }
-            //print("active topics are: \(activeTopics)")
         } catch {
             print("Failed")
         }
@@ -277,46 +294,22 @@ class NewsLoader {
     
     public func filterNews() {
         
-        print("filterNews")
-        //filter news source based on what is available on the array generated by coredata
-        //when user toggles news source off, it triggers coredata, then updates this list
-        let foundSources = newsCore.filter { $0[3] as! String == activeSources[0] || $0[3] as! String == activeSources[1] || $0[3] as! String == activeSources[2] || $0[3] as! String == activeSources[3] || $0[3] as! String == activeSources[4] || $0[3] as! String == activeSources[5] || $0[3] as! String == activeSources[6] || $0[3] as! String == activeSources[7] || $0[3] as! String == activeSources[8] || $0[3] as! String == activeSources[9] || $0[3] as! String == activeSources[10] || $0[3] as! String == activeSources[11] || $0[3] as! String == activeSources[12] || $0[3] as! String == activeSources[13] || $0[3] as! String == activeSources[14] || $0[3] as! String == activeSources[15] || $0[3] as! String == activeSources[16]}
+        print("filterNews: filter news sources and topics")
+        //appendNews generates newsCore array with coredata
+        //filter news_src in newsCore array with active news sources
+        //when user toggles news source off he triggers coredata, which is then used to filter newsCore
+        //let foundSources = newsCore.filter { $0[3] as! String == activeSources[0] || $0[3] as! String == activeSources[1] || $0[3] as! String == activeSources[2] || $0[3] as! String == activeSources[3] || $0[3] as! String == activeSources[4] || $0[3] as! String == activeSources[5] || $0[3] as! String == activeSources[6] || $0[3] as! String == activeSources[7] || $0[3] as! String == activeSources[8] || $0[3] as! String == activeSources[9] || $0[3] as! String == activeSources[10] || $0[3] as! String == activeSources[11] || $0[3] as! String == activeSources[12] || $0[3] as! String == activeSources[13] || $0[3] as! String == activeSources[14] || $0[3] as! String == activeSources[15] || $0[3] as! String == activeSources[16]}
+        let foundSources = newsCore.filter { activeSources.contains($0[3] as! String) }
         
         //mash all the filtered sources
         newsCore = foundSources
         
         //filter news sources based on active topics
-        let foundTopics = newsCore.filter { $0[4] as! String == activeTopics[0] || $0[4] as! String == activeTopics[1] || $0[4] as! String == activeTopics[2] || $0[4] as! String == activeTopics[3] || $0[4] as! String == activeTopics[4] || $0[4] as! String == activeTopics[5] || $0[4] as! String == activeTopics[6]}
+        //let foundTopics = newsCore.filter { $0[4] as! String == activeTopics[0] || $0[4] as! String == activeTopics[1] || $0[4] as! String == activeTopics[2] || $0[4] as! String == activeTopics[3] || $0[4] as! String == activeTopics[4] || $0[4] as! String == activeTopics[5] || $0[4] as! String == activeTopics[6]}
+        let foundTopics = newsCore.filter { activeTopics.contains($0[4] as! String) }
         
         newsCore = foundTopics
-//        retrieveHistory()
-//        newsRead = newsCore.filter { readHistory.contains($0[0] as! String)}
-//        newsRead = self.newsRead.sorted { $0.epoch > $1.epoch }
-        
-//        print(newsRead)
-        
-//        print(newsCore[1][7])
         
     }
-    
-//    func retrieveHistory() {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Read")
-//
-//        do {
-//            let result = try managedContext.fetch(fetchRequest)
-//
-//            for data in result as! [NSManagedObject] {
-//                let viewRead = data.value(forKey: "isRead") as! String
-//                readHistory.append(viewRead)
-////                readHistory = Array(Set(readHistory))
-//            }
-//            //print(readHistory)
-//
-//        } catch {
-//            print("Failed")
-//        }
-//    }
 }
 
