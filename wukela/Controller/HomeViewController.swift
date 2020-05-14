@@ -109,7 +109,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //check for  1st launch refresh
         _ = isAppAlreadyLaunchedOnce()
-
     }
     
     
@@ -145,24 +144,82 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: - Sync News
     
     @IBAction func syncNews(_ sender: UIBarButtonItem) {
-        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        activityIndicator.startAnimating()
-        self.navigationController!.navigationBar.layer.zPosition = -1
-        let barButton = UIBarButtonItem(customView: activityIndicator)
-        self.navigationItem.setLeftBarButton(barButton, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            let newsLoader = NewsLoader()
-            newsLoader.getJson()
-            newsLoader.deleteNews()
-            newsLoader.storeNews()
-            self.newsRefresh()
-            activityIndicator.stopAnimating()
-            self.navigationItem.setLeftBarButton(self.syncNews, animated: true)
+        
+        if let window = view.window {
+//            let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+//            activityIndicator.startAnimating()
+//            self.navigationController!.navigationBar.layer.zPosition = -1
+//            let barButton = UIBarButtonItem(customView: activityIndicator)
+//            self.navigationItem.setLeftBarButton(barButton, animated: true)
+            
+            //insert background
+            let subView = UIView(frame: window.frame)
+            subView.backgroundColor = UIColor.black
+            subView.alpha = 0
+            window.addSubview(subView)
+            UIView.animate(withDuration: 0.2, animations: { subView.alpha = 0.8 })
+
+            //insert activity indicator
+            let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+            actInd.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
+            actInd.center = window.center
+            actInd.hidesWhenStopped = true
+            actInd.style =
+                UIActivityIndicatorView.Style.large
+            actInd.color = .white
+            actInd.alpha = 0
+            window.addSubview(actInd)
+            actInd.startAnimating()
+            UIView.animate(withDuration: 0.5, animations: { actInd.alpha = 1.0 })
+            
+            //insert label
+            let mainSyncLabel = UILabel(frame: window.frame)
+            mainSyncLabel.center = CGPoint(x: actInd.center.x, y: actInd.center.y + 60)
+            mainSyncLabel.textColor = UIColor.white
+            mainSyncLabel.alpha = 0
+            mainSyncLabel.text = "A sincronizar notícias"
+            mainSyncLabel.textAlignment = .center
+            mainSyncLabel.font = UIFont(name: "ProximaNova-Light", size: 25)
+            window.addSubview(mainSyncLabel)
+            UIView.animate(withDuration: 0.5, animations: { mainSyncLabel.alpha = 1.0 })
+            
+            //insert sublabel
+            let subSyncLabel = UILabel(frame: window.frame)
+            subSyncLabel.center = CGPoint(x: mainSyncLabel.center.x, y: mainSyncLabel.center.y + 30)
+            subSyncLabel.textColor = UIColor.white
+            subSyncLabel.alpha = 0
+            subSyncLabel.text = "Por favor aguarde..."
+            subSyncLabel.textAlignment = .center
+            subSyncLabel.font = UIFont(name: "ProximaNova-Bold", size: 12)
+            subSyncLabel.textColor = UIColor(named: "subtitleColor")
+            window.addSubview(subSyncLabel)
+            UIView.animate(withDuration: 2.5, animations: { subSyncLabel.alpha = 1.0 })
+
+            //sync news
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                let newsLoader = NewsLoader()
+                newsLoader.getJson()
+                newsLoader.deleteNews()
+                newsLoader.storeNews()
+                self.newsRefresh()
+
+                actInd.stopAnimating()
+                
+//                activityIndicator.stopAnimating()
+//                self.navigationItem.setLeftBarButton(self.syncNews, animated: true)
+                
+                UIView.animate(withDuration: 0.2, animations: { subView.alpha = 0.0 }) { (done: Bool) in
+                    subView.removeFromSuperview()
+                }
+                UIView.animate(withDuration: 0.2, animations: { mainSyncLabel.alpha = 0.0 }) { (done: Bool) in
+                    mainSyncLabel.removeFromSuperview()
+                }
+                UIView.animate(withDuration: 0.2, animations: { subSyncLabel.alpha = 0.0 }) { (done: Bool) in
+                    subSyncLabel.removeFromSuperview()
+                }
+                
+            }
         }
-        
-
-
-        
     }
     
     
