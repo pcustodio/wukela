@@ -200,25 +200,29 @@ class NewsLoader {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NewsSync")
+        let sort = NSSortDescriptor(key: "countSync", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
         do {
             let result = try managedContext.fetch(fetchRequest)
             
             //Loop over CoreData entities
             for data in result as! [NSManagedObject] {
                 
-                let headline = data.value(forKey: "headlineSync") as! String
+                let headline = data.value(forKey: "headlineSync") as? String ?? "Error 33"
                 let url_src = data.value(forKey: "url_srcSync") as! String
                 let img_src = data.value(forKey: "img_srcSync") as! String
                 let news_src = data.value(forKey: "news_srcSync") as! String
                 let cat = data.value(forKey: "catSync") as! String
                 let epoch = data.value(forKey: "epochSync") as! Double
                 let count = data.value(forKey: "countSync") as! Int
+                
+                print(count)
 
                 //create 2d array
                 newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count])
                 
                 //sort count by coredata countSync appended to newsCore array
-                newsCore = newsCore.sorted(by: {($0[6] as! Int) < ($1[6] as! Int) })
+                //newsCore = newsCore.sorted(by: {($0[6] as! Int) < ($1[6] as! Int) })
             }
         } catch {
             print("Failed")
