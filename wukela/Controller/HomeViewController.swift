@@ -146,19 +146,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func syncNews(_ sender: UIBarButtonItem) {
         let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        activityIndicator.startAnimating()
+        self.navigationController!.navigationBar.layer.zPosition = -1
         let barButton = UIBarButtonItem(customView: activityIndicator)
         self.navigationItem.setLeftBarButton(barButton, animated: true)
-        activityIndicator.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let newsLoader = NewsLoader()
+            newsLoader.getJson()
+            newsLoader.deleteNews()
+            newsLoader.storeNews()
+            self.newsRefresh()
             activityIndicator.stopAnimating()
             self.navigationItem.setLeftBarButton(self.syncNews, animated: true)
         }
         
-        let newsLoader = NewsLoader()
-        newsLoader.getJson()
-        newsLoader.deleteNews()
-        newsLoader.storeNews()
-        newsRefresh()
+
 
         
     }

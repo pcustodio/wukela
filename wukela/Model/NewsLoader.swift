@@ -222,6 +222,7 @@ class NewsLoader {
                 newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count])
                 
                 //sort count by coredata countSync appended to newsCore array
+                //disabled since it causes much delay
                 //newsCore = newsCore.sorted(by: {($0[6] as! Int) < ($1[6] as! Int) })
             }
         } catch {
