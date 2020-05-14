@@ -161,8 +161,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             //insert activity indicator
             let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
-            actInd.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
-            actInd.center = window.center
+            actInd.frame = CGRect(x: window.center.x - 20, y: window.center.y - 60, width: 40.0, height: 40.0);
+//            actInd.center = window.center
             actInd.hidesWhenStopped = true
             actInd.style =
                 UIActivityIndicatorView.Style.large
@@ -193,7 +193,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             subSyncLabel.font = UIFont(name: "ProximaNova-Bold", size: 12)
             subSyncLabel.textColor = UIColor(named: "subtitleColor")
             window.addSubview(subSyncLabel)
-            UIView.animate(withDuration: 2.5, animations: { subSyncLabel.alpha = 1.0 })
+            UIView.animate(withDuration: 1.0, animations: { subSyncLabel.alpha = 1.0 })
 
             //sync news
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -203,18 +203,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 newsLoader.storeNews()
                 self.newsRefresh()
 
-                actInd.stopAnimating()
-                
 //                activityIndicator.stopAnimating()
 //                self.navigationItem.setLeftBarButton(self.syncNews, animated: true)
                 
-                UIView.animate(withDuration: 0.2, animations: { subView.alpha = 0.0 }) { (done: Bool) in
+                UIView.animate(withDuration: 1.0, animations: { subView.alpha = 0.0 }) { (done: Bool) in
                     subView.removeFromSuperview()
                 }
-                UIView.animate(withDuration: 0.2, animations: { mainSyncLabel.alpha = 0.0 }) { (done: Bool) in
+                UIView.animate(withDuration: 0.5, animations: { actInd.alpha = 0.0 }) { (done: Bool) in
+                    actInd.stopAnimating()
+                }
+                UIView.animate(withDuration: 0.5, animations: { mainSyncLabel.alpha = 0.0 }) { (done: Bool) in
                     mainSyncLabel.removeFromSuperview()
                 }
-                UIView.animate(withDuration: 0.2, animations: { subSyncLabel.alpha = 0.0 }) { (done: Bool) in
+                UIView.animate(withDuration: 0.5, animations: { subSyncLabel.alpha = 0.0 }) { (done: Bool) in
                     subSyncLabel.removeFromSuperview()
                 }
                 
