@@ -40,7 +40,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         
         //webkit
         webView.navigationDelegate = self
-        let loadURL = URL (string: url)
+        let loadURL = URL (string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
         let request = URLRequest(url: loadURL!)
         webView.load(request)
         
