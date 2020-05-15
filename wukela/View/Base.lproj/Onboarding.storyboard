@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FeD-sx-cD6">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FeD-sx-cD6">
                                 <rect key="frame" x="40" y="789" width="334" height="33"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="18"/>
                                 <state key="normal" title="Avançar">
@@ -38,7 +38,7 @@
                                     <action selector="endSetup:" destination="zdF-DQ-rJM" eventType="touchUpInside" id="a8x-S1-cZ0"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bjR-G9-nCQ">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bjR-G9-nCQ">
                                 <rect key="frame" x="0.0" y="619" width="414" height="140"/>
                                 <color key="backgroundColor" name="bkColor"/>
                                 <constraints>
@@ -77,13 +77,13 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleciona pelo menos uma subscrição. Podes adicionar outras mais tarde." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjj-tw-ASY">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleciona pelo menos uma subscrição. Podes adicionar outras mais tarde." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjj-tw-ASY">
                                 <rect key="frame" x="40" y="554" width="334" height="35"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" name="subtitleColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recebe as últimas notícias de África em apenas um lugar." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-6h-p3q">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recebe as últimas notícias de África em apenas um lugar." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-6h-p3q">
                                 <rect key="frame" x="40" y="490" width="334" height="54"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="23"/>
                                 <color key="textColor" name="textColor"/>
@@ -110,7 +110,9 @@
                     <navigationItem key="navigationItem" id="R7E-Xa-jKR"/>
                     <connections>
                         <outlet property="collectionView" destination="bjR-G9-nCQ" id="cpi-DA-Job"/>
+                        <outlet property="mainLabel" destination="9Dl-6h-p3q" id="ceD-Sm-dbB"/>
                         <outlet property="nextBtn" destination="FeD-sx-cD6" id="QO7-4l-6K3"/>
+                        <outlet property="subLabel" destination="Gjj-tw-ASY" id="0am-M4-MUB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCV-Bs-tuz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

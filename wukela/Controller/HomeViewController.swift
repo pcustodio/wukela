@@ -148,15 +148,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //insert background
             let subView = UIView(frame: window.frame)
-            subView.backgroundColor = UIColor.black
+            subView.backgroundColor = UIColor(named: "textColor")
             subView.alpha = 0
             window.addSubview(subView)
-            UIView.animate(withDuration: 0.2, animations: { subView.alpha = 0.8 })
+            UIView.animate(withDuration: 0.2, animations: { subView.alpha = 0.9 })
 
             //insert activity indicator
             let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
             actInd.frame = CGRect(x: window.center.x - 20, y: window.center.y - 60, width: 40.0, height: 40.0);
-//            actInd.center = window.center
             actInd.hidesWhenStopped = true
             actInd.style =
                 UIActivityIndicatorView.Style.large

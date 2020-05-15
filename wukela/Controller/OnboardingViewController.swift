@@ -20,6 +20,8 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var newsLoader = NewsLoader()
     
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var subLabel: UILabel!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -50,8 +52,68 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
         //check for internet availability
         if Reachability.isConnectedToNetwork(){
             print("Internet Connection Available!")
-            newsLoader.getJson()
-            newsLoader.storeNews()
+            if let window = view.window {
+                
+                //insert background
+                let subView = UIView(frame: window.frame)
+                subView.backgroundColor = UIColor(named: "bkColor")
+                window.addSubview(subView)
+
+                //insert activity indicator
+                let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+                actInd.frame = CGRect(x: window.center.x - 20, y: window.center.y - 60, width: 40.0, height: 40.0);
+                actInd.hidesWhenStopped = true
+                actInd.style =
+                    UIActivityIndicatorView.Style.large
+                actInd.color = .black
+                actInd.alpha = 0
+                window.addSubview(actInd)
+                actInd.startAnimating()
+                UIView.animate(withDuration: 0.5, animations: { actInd.alpha = 1.0 })
+                
+                //insert label
+                let mainSyncLabel = UILabel(frame: window.frame)
+                mainSyncLabel.center = CGPoint(x: actInd.center.x, y: actInd.center.y + 60)
+                mainSyncLabel.textColor = UIColor(named: "textColor")
+                mainSyncLabel.alpha = 0
+                mainSyncLabel.text = "A sincronizar notícias"
+                mainSyncLabel.textAlignment = .center
+                mainSyncLabel.font = UIFont(name: "ProximaNova-Light", size: 25)
+                window.addSubview(mainSyncLabel)
+                UIView.animate(withDuration: 0.5, animations: { mainSyncLabel.alpha = 1.0 })
+                
+                //insert sublabel
+                let subSyncLabel = UILabel(frame: window.frame)
+                subSyncLabel.center = CGPoint(x: mainSyncLabel.center.x, y: mainSyncLabel.center.y + 30)
+                subSyncLabel.textColor = UIColor.white
+                subSyncLabel.alpha = 0
+                subSyncLabel.text = "Por favor aguarde..."
+                subSyncLabel.textAlignment = .center
+                subSyncLabel.font = UIFont(name: "ProximaNova-Bold", size: 12)
+                subSyncLabel.textColor = UIColor(named: "subtitleColor")
+                window.addSubview(subSyncLabel)
+                UIView.animate(withDuration: 1.0, animations: { subSyncLabel.alpha = 1.0 })
+
+                //sync news
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    let newsLoader = NewsLoader()
+                    newsLoader.getJson()
+                    newsLoader.storeNews()
+                    
+                    UIView.animate(withDuration: 1.5, animations: { subView.alpha = 0.0 }) { (done: Bool) in
+                        subView.removeFromSuperview()
+                    }
+                    UIView.animate(withDuration: 1.0, animations: { actInd.alpha = 0.0 }) { (done: Bool) in
+                        actInd.stopAnimating()
+                    }
+                    UIView.animate(withDuration: 1.0, animations: { mainSyncLabel.alpha = 0.0 }) { (done: Bool) in
+                        mainSyncLabel.removeFromSuperview()
+                    }
+                    UIView.animate(withDuration: 1.0, animations: { subSyncLabel.alpha = 0.0 }) { (done: Bool) in
+                        subSyncLabel.removeFromSuperview()
+                    }
+                }
+            }
         } else {
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Connection Error", message: "Please check if your internet connection is active.", preferredStyle: .alert)
@@ -65,6 +127,12 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
             }))
             self.present(alert, animated: true)
         }
+        
+        //config collection view
+        collectionView.alpha = 1.0
+        nextBtn.alpha = 1.0
+        mainLabel.alpha = 1.0
+        subLabel.alpha = 1.0
 
     }
     
