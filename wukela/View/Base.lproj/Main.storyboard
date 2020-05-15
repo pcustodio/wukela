@@ -91,7 +91,7 @@
                         <barButtonItem key="leftBarButtonItem" image="arrow.clockwise" catalog="system" id="YNz-vh-8Op">
                             <color key="tintColor" name="iconColor"/>
                             <connections>
-                                <action selector="syncNews:" destination="VAv-ZY-IgS" id="wyg-fD-lP1"/>
+                                <action selector="syncNewsBtn:" destination="VAv-ZY-IgS" id="wyg-fD-lP1"/>
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="zfL-AK-wdt">
@@ -121,7 +121,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="segmentControl" destination="QCA-v0-YOI" id="ukF-DO-QqI"/>
-                        <outlet property="syncNews" destination="YNz-vh-8Op" id="sqe-zH-5E8"/>
                         <outlet property="tableView" destination="1qD-yd-wqP" id="MfF-dv-NlP"/>
                     </connections>
                 </viewController>
@@ -462,7 +461,7 @@
                     <tabBarItem key="tabBarItem" title="" id="NOX-bB-3OX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="RfT-T2-AKt">
-                        <rect key="frame" x="0.0" y="44" width="414" height="103.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="14"/>
@@ -528,7 +527,7 @@
             <color red="0.96078431372549022" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="bkColor">
-            <color red="0.96100002527236938" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96078431372549022" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="highlightColor">
             <color red="0.0" green="0.82745098039215681" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

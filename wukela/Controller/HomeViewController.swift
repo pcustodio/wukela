@@ -15,7 +15,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     //    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
-    @IBOutlet var syncNews: UIBarButtonItem!
     
     var refreshControl = UIRefreshControl()
     
@@ -143,14 +142,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: - Sync News
     
-    @IBAction func syncNews(_ sender: UIBarButtonItem) {
+    @IBAction func syncNewsBtn(_ sender: UIBarButtonItem) {
         
         if let window = view.window {
-//            let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-//            activityIndicator.startAnimating()
-//            self.navigationController!.navigationBar.layer.zPosition = -1
-//            let barButton = UIBarButtonItem(customView: activityIndicator)
-//            self.navigationItem.setLeftBarButton(barButton, animated: true)
             
             //insert background
             let subView = UIView(frame: window.frame)
@@ -202,9 +196,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 newsLoader.deleteNews()
                 newsLoader.storeNews()
                 self.newsRefresh()
-
-//                activityIndicator.stopAnimating()
-//                self.navigationItem.setLeftBarButton(self.syncNews, animated: true)
                 
                 UIView.animate(withDuration: 1.0, animations: { subView.alpha = 0.0 }) { (done: Bool) in
                     subView.removeFromSuperview()
@@ -218,7 +209,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 UIView.animate(withDuration: 0.5, animations: { subSyncLabel.alpha = 0.0 }) { (done: Bool) in
                     subSyncLabel.removeFromSuperview()
                 }
-                
             }
         }
     }

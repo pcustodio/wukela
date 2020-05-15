@@ -215,8 +215,6 @@ class NewsLoader {
                 let cat = data.value(forKey: "catSync") as! String
                 let epoch = data.value(forKey: "epochSync") as! Double
                 let count = data.value(forKey: "countSync") as! Int
-                
-                print(count)
 
                 //create 2d array
                 newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count])
