@@ -10,12 +10,20 @@ import UIKit
 import Kingfisher
 import CoreData
 
+class HomeTableViewCell: UITableViewCell {
+    @IBOutlet weak var cellTitle: UILabel!
+    @IBOutlet weak var cellSubtitle: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
+    
+}
+
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RefreshTransitionListener {
     
     @IBOutlet weak var tableView: UITableView!
     //    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
+
     var refreshControl = UIRefreshControl()
     
     var headlineRead = ""
@@ -318,7 +326,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //create our cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HomeTableViewCell
         
         if segmentControl.selectedSegmentIndex == 0 {
             
@@ -333,22 +341,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             
             //set headline
-            cell.textLabel?.text = newsSync[indexPath.row][0] as? String
+            cell.cellTitle?.text = newsSync[indexPath.row][0] as? String
             
             //set source
-            cell.detailTextLabel?.text = newsSync[indexPath.row][3] as? String
+            cell.cellSubtitle?.text = newsSync[indexPath.row][3] as? String
             
             //set row img
             let image = UIImage(named: "placeholder.pdf")
-            cell.imageView?.kf.indicatorType = .activity
-            let scale = UIScreen.main.scale
-            let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
+            cell.cellImage?.kf.indicatorType = .activity
+            cell.cellImage.layer.cornerRadius = 5.0
             let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
-            cell.imageView?.kf.setImage(
+            cell.cellImage?.kf.setImage(
                 with: resource,
                 placeholder: image,
-                options: [.processor(processor),
-                          .scaleFactor(UIScreen.main.scale),
+                options: [.scaleFactor(UIScreen.main.scale),
                           .transition(.fade(0.5)),
                           .cacheOriginalImage
                 ]
