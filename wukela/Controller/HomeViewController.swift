@@ -369,7 +369,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let historySynced = historySync[indexPath.row]
             
             //get headline
-            cell.textLabel?.text = historySynced.value(forKeyPath: "headlineRead") as? String
+            cell.cellTitle?.text = historySynced.value(forKeyPath: "headlineRead") as? String
             
             //get time read
             //convert epoch with dateformatter
@@ -377,9 +377,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let date = Date(timeIntervalSince1970: unixTimestamp as! TimeInterval)
             let calendar = Calendar.current
             if calendar.isDateInToday(date) {
-                cell.detailTextLabel?.text = "Hoje"
+                cell.cellSubtitle?.text = "Hoje"
             } else if calendar.isDateInYesterday(date) {
-                cell.detailTextLabel?.text = "Ontem"
+                cell.cellSubtitle?.text = "Ontem"
             } else {
                 let dateFormatter = DateFormatter()
                 dateFormatter.timeZone = TimeZone.current
@@ -391,11 +391,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //set row img
             let image = UIImage(named: "placeholder.pdf")
-            cell.imageView?.kf.indicatorType = .activity
+            cell.cellImage?.kf.indicatorType = .activity
             let scale = UIScreen.main.scale
             let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
             let resource = ImageResource(downloadURL: URL(string: historySynced.value(forKeyPath: "imgRead") as! String )!, cacheKey: historySynced.value(forKeyPath: "imgRead") as? String)
-            cell.imageView?.kf.setImage(
+            cell.cellImage?.kf.setImage(
                 with: resource,
                 placeholder: image,
                 options: [.processor(processor),
