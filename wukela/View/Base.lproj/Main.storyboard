@@ -169,34 +169,61 @@
                                 <color key="tintColor" name="primaryColor"/>
                                 <color key="separatorColor" name="lineColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="inA-1u-ivK" detailTextLabel="aw3-Gt-z1N" style="IBUITableViewCellStyleSubtitle" id="cS9-Px-PsY">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="80" id="cS9-Px-PsY" customClass="BookmarkTableViewCell" customModule="wukela" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cS9-Px-PsY" id="Br9-NM-tUw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="inA-1u-ivK">
-                                                    <rect key="frame" x="20" y="10" width="28" height="14"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="14"/>
-                                                    <color key="textColor" name="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aw3-Gt-z1N">
-                                                    <rect key="frame" x="20" y="24" width="36.5" height="11"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="11"/>
-                                                    <color key="textColor" name="subtitleColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="So0-Wh-hap">
+                                                    <rect key="frame" x="20" y="10" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="VN4-UW-rS1"/>
+                                                        <constraint firstAttribute="width" constant="60" id="pIK-qs-f5n"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="CCx-w5-oHE">
+                                                    <rect key="frame" x="90" y="25.5" width="304" height="29.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mg-Eg-F9c">
+                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="15.5"/>
+                                                            <attributedString key="attributedText">
+                                                                <fragment content="Label">
+                                                                    <attributes>
+                                                                        <color key="NSColor" name="textColor"/>
+                                                                        <font key="NSFont" size="14" name="ProximaNova-Bold"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.1000000000000001" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qol-lg-LQQ">
+                                                            <rect key="frame" x="0.0" y="18.5" width="304" height="11"/>
+                                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="11"/>
+                                                            <color key="textColor" name="subtitleColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <color key="tintColor" name="lineColor"/>
+                                            <constraints>
+                                                <constraint firstItem="CCx-w5-oHE" firstAttribute="centerY" secondItem="Br9-NM-tUw" secondAttribute="centerY" id="EvV-tO-b6o"/>
+                                                <constraint firstItem="So0-Wh-hap" firstAttribute="leading" secondItem="Br9-NM-tUw" secondAttribute="leading" constant="20" id="bm5-1H-yas"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CCx-w5-oHE" secondAttribute="trailing" id="eDD-EJ-nCV"/>
+                                                <constraint firstItem="CCx-w5-oHE" firstAttribute="leading" secondItem="So0-Wh-hap" secondAttribute="trailing" constant="10" id="kof-Ff-wsA"/>
+                                                <constraint firstItem="So0-Wh-hap" firstAttribute="centerY" secondItem="Br9-NM-tUw" secondAttribute="centerY" id="w3d-dy-OVD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="primaryColor"/>
                                         <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="cellImage" destination="So0-Wh-hap" id="uHf-7S-o02"/>
+                                            <outlet property="cellSubtitle" destination="Qol-lg-LQQ" id="zUV-rc-j8A"/>
+                                            <outlet property="cellTitle" destination="0mg-Eg-F9c" id="A53-CA-YsA"/>
                                             <segue destination="BYZ-38-t0r" kind="presentation" identifier="getNews" id="gbC-WT-ESX"/>
                                         </connections>
                                     </tableViewCell>
@@ -540,7 +567,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fuj-dd-FrU"/>
+        <segue reference="gbC-WT-ESX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
@@ -574,6 +601,9 @@
         </namedColor>
         <namedColor name="subtitleColor">
             <color red="0.45882352941176469" green="0.45882352941176469" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

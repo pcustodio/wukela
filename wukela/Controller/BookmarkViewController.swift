@@ -10,6 +10,12 @@ import UIKit
 import CoreData
 import Kingfisher
 
+class BookmarkTableViewCell: UITableViewCell {
+    @IBOutlet weak var cellTitle: UILabel!
+    @IBOutlet weak var cellSubtitle: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
+}
+
 class BookmarkViewController: UIViewController, RefreshTransitionListener {
 
     @IBOutlet weak var tableView: UITableView!
@@ -143,10 +149,10 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
     
     //create our cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BookmarkTableViewCell
         
         let bookmark = bookmarks[indexPath.row]
-        cell.textLabel?.text = bookmark.value(forKeyPath: "headlineMarked") as? String
+        cell.cellTitle?.text = bookmark.value(forKeyPath: "headlineMarked") as? String
         
         //convert epoch with dateformatter
         let unixTimestamp = bookmark.value(forKeyPath: "epochMarked")
@@ -157,16 +163,17 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
         dateFormatter.setLocalizedDateFormatFromTemplate("ddMMMM")
         let strDate = dateFormatter.string(from: date)
         
-        cell.detailTextLabel?.text = strDate
+        cell.cellSubtitle?.text = strDate
 
         //set row img
         let image = UIImage(named: "placeholder.pdf")
-        cell.imageView?.kf.indicatorType = .activity
+        cell.cellImage?.kf.indicatorType = .activity
+        cell.cellImage.layer.cornerRadius = 5.0
         let scale = UIScreen.main.scale
         let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
         let resource = ImageResource(downloadURL: URL(string: (bookmark.value(forKeyPath: "imgMarked") as? String)! )!, cacheKey: bookmark.value(forKeyPath: "imgMarked") as? String)
         
-        cell.imageView?.kf.setImage(
+        cell.cellImage?.kf.setImage(
             with: resource,
             placeholder: image,
             options: [.processor(processor),
