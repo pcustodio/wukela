@@ -45,6 +45,7 @@ class NewsLoader {
                    "A Nação",
                    "A Semana",
                    "Expresso das Ilhas",
+                   "Voice of Congo",
                    "Akhbar El Yom",
                    "Al-Ahram",
                    "Al Wafd",
@@ -287,8 +288,11 @@ class NewsLoader {
                         activeTopics.insert(retrievedTopic, at: 0)
                     } else if retrievedTopic == "Sociedade" {
                         activeTopics.insert("Sociedade e Política", at: 0)
+                        activeTopics.insert("Sociedade e Cultura", at: 0)
                     } else if retrievedTopic == "Política" {
                         activeTopics.insert("Sociedade e Política", at: 0)
+                    } else if retrievedTopic == "Cultura e Entretenimento" {
+                        activeTopics.insert("Sociedade e Cultura", at: 0)
                     }
                 }
             }

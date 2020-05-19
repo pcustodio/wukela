@@ -22,6 +22,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         ["Itara Burundi", "Iwacu", "Nawe"],
         ["Actu Cameroun", "Cameroon Online", "Cameroon Tribune", "Journal du Cameroun"],
         ["A Nação", "A Semana", "Expresso das Ilhas"],
+        ["Voice of Congo"],
         ["Akhbar El Yom", "Al-Ahram", "Al Wafd", "Egypt Today", "El Balad", "Youm7"],
         ["Jornal Notícias", "O País", "Verdade", "Carta de Moçambique", "Jornal Txopela", "Club of Mozambique"],
         ["The Guardian", "Punch", "The Nation", "Vanguard"],
@@ -125,12 +126,14 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         } else if section == 7 {
             label.text = "Cape Verde"
         } else if section == 8 {
-            label.text = "Egypt"
+            label.text = "Congo"
         } else if section == 9 {
-            label.text = "Mozambique"
+            label.text = "Egypt"
         } else if section == 10 {
-            label.text = "Nigeria"
+            label.text = "Mozambique"
         } else if section == 11 {
+            label.text = "Nigeria"
+        } else if section == 12 {
            label.text = "South Africa"
         } else {
             label.text = "Tanzania"
