@@ -349,7 +349,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let image = UIImage(named: "placeholder.pdf")
             cell.cellImage?.kf.indicatorType = .activity
             cell.cellImage.layer.cornerRadius = 5.0
-            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
+            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
             cell.cellImage?.kf.setImage(
                 with: resource,
                 placeholder: image,
@@ -393,7 +393,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.cellImage?.kf.indicatorType = .activity
             let scale = UIScreen.main.scale
             let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-            let resource = ImageResource(downloadURL: URL(string: historySynced.value(forKeyPath: "imgRead") as! String )!, cacheKey: historySynced.value(forKeyPath: "imgRead") as? String)
+            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
             cell.cellImage?.kf.setImage(
                 with: resource,
                 placeholder: image,
