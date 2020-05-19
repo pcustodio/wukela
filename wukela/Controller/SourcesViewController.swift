@@ -25,7 +25,8 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         ["Akhbar El Yom", "Al-Ahram", "Al Wafd", "Egypt Today", "El Balad", "Youm7"],
         ["Jornal Notícias", "O País", "Verdade", "Carta de Moçambique", "Jornal Txopela", "Club of Mozambique"],
         ["The Guardian", "Punch", "The Nation", "Vanguard"],
-        ["Citizen", "Herald", "Isolezwe", "Mail & Guardian", "Sowetan", "Times"]
+        ["Citizen", "Herald", "Isolezwe", "Mail & Guardian", "Sowetan", "Times"],
+        ["Daily News"]
     ]
     var path = 0
     var pathSection = 0
@@ -129,9 +130,11 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
             label.text = "Mozambique"
         } else if section == 10 {
             label.text = "Nigeria"
-        } else {
+        } else if section == 11 {
            label.text = "South Africa"
-       }
+        } else {
+            label.text = "Tanzania"
+        }
         headerView.addSubview(label)
     
 

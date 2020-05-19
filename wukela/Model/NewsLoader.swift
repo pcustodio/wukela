@@ -66,7 +66,8 @@ class NewsLoader {
                    "Isolezwe",
                    "Mail & Guardian",
                    "Sowetan",
-                   "Times"]
+                   "Times",
+                   "Daily News"]
     
     let categories = ["Sociedade",
                       "Desporto",
@@ -284,6 +285,10 @@ class NewsLoader {
                     if retrievedTopic == category {
                         //add topics in coredata to array
                         activeTopics.insert(retrievedTopic, at: 0)
+                    } else if retrievedTopic == "Sociedade" {
+                        activeTopics.insert("Sociedade e Política", at: 0)
+                    } else if retrievedTopic == "Política" {
+                        activeTopics.insert("Sociedade e Política", at: 0)
                     }
                 }
             }

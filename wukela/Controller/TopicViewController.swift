@@ -26,6 +26,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //sort categories
         categories = categories.sorted {$0 < $1}
         
         //trigger UITableViewDataSource
@@ -110,11 +111,11 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         //if row has a check mark turn on Coredata, else turn it off
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            turnOff()
+            turnOffTopic()
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
             print("turningff")
         } else {
-            turnOn()
+            turnOnTopic()
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             print("turningon")
         }
@@ -123,7 +124,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 //MARK: - Turn on Topic in CoreData
     
-    func turnOn() {
+    func turnOnTopic() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let userEntity = NSEntityDescription.entity(forEntityName: "ActiveTopics", in: managedContext)!
@@ -143,7 +144,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 //MARK: - Turn off Topic in CoreData
     
-    func turnOff() {
+    func turnOffTopic() {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
