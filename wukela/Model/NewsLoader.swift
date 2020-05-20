@@ -210,7 +210,7 @@ class NewsLoader {
             //Loop over CoreData entities
             for data in result as! [NSManagedObject] {
                 
-                let headline = data.value(forKey: "headlineSync") as? String ?? "Error 33"
+                let headline = data.value(forKey: "headlineSync") as? String ?? "Untitled"
                 let url_src = data.value(forKey: "url_srcSync") as! String
                 let img_src = data.value(forKey: "img_srcSync") as! String
                 let news_src = data.value(forKey: "news_srcSync") as! String
