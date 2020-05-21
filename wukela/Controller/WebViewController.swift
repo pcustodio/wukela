@@ -57,7 +57,26 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         //implement the refresh dismisser
         RefreshTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
     }
+    
+    
+//MARK: - Share Btn
+    
 
+    @IBAction func shareTapped(_ sender: UIBarButtonItem) {
+        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+        // Anything you want to exclude
+        activityController.excludedActivityTypes = [
+            UIActivity.ActivityType.postToWeibo,
+            UIActivity.ActivityType.print,
+            UIActivity.ActivityType.assignToContact,
+            UIActivity.ActivityType.saveToCameraRoll,
+            UIActivity.ActivityType.postToFlickr,
+            UIActivity.ActivityType.postToVimeo,
+            UIActivity.ActivityType.postToTencentWeibo
+        ]
+    }
+  
     
 //MARK: - Buttons
     

@@ -262,6 +262,9 @@
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="hra-58-KlJ">
                                                 <color key="tintColor" name="iconColor"/>
+                                                <connections>
+                                                    <action selector="shareTapped:" destination="BYZ-38-t0r" id="4HT-2q-HsJ"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -587,9 +590,6 @@
         </namedColor>
         <namedColor name="subtitleColor">
             <color red="0.45882352941176469" green="0.45882352941176469" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="textColor">
-            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
