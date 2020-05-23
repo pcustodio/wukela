@@ -47,6 +47,12 @@
 		910E2DE624264E3600313B2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		910E2DEC2426544000313B2A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9110AB4A243B76CB00669A6B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		912316B42479491D00C2815D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Main.strings"; sourceTree = "<group>"; };
+		912316B52479491D00C2815D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Onboarding.strings"; sourceTree = "<group>"; };
+		912316B62479491D00C2815D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		912316B72479532D00C2815D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		912316B82479532D00C2815D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Onboarding.strings; sourceTree = "<group>"; };
+		912316B92479532D00C2815D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		912C472F245AF013000019BF /* AnimatedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTabBarController.swift; sourceTree = "<group>"; };
 		9162116C242CE9CA009C3CE6 /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
 		9162116E242CEA38009C3CE6 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
@@ -212,6 +218,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-PT",
+				fr,
 			);
 			mainGroup = 910E2DC924264E3400313B2A;
 			packageReferences = (
@@ -275,6 +283,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				910E2DDC24264E3400313B2A /* Base */,
+				912316B42479491D00C2815D /* pt-PT */,
+				912316B72479532D00C2815D /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -283,6 +293,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				910E2DE424264E3600313B2A /* Base */,
+				912316B62479491D00C2815D /* pt-PT */,
+				912316B92479532D00C2815D /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -291,6 +303,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				91F299D1244B32A200139CC2 /* Base */,
+				912316B52479491D00C2815D /* pt-PT */,
+				912316B82479532D00C2815D /* fr */,
 			);
 			name = Onboarding.storyboard;
 			sourceTree = "<group>";
@@ -356,6 +370,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -410,6 +425,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

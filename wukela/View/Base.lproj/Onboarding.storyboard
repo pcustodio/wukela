@@ -29,9 +29,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FeD-sx-cD6">
-                                <rect key="frame" x="40" y="789" width="334" height="33"/>
+                                <rect key="frame" x="40" y="792" width="334" height="30"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="18"/>
-                                <state key="normal" title="Avançar">
+                                <state key="normal" title="Continue">
                                     <color key="titleColor" name="lineColor"/>
                                 </state>
                                 <connections>
@@ -39,7 +39,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bjR-G9-nCQ">
-                                <rect key="frame" x="0.0" y="619" width="414" height="140"/>
+                                <rect key="frame" x="0.0" y="622" width="414" height="140"/>
                                 <color key="backgroundColor" name="bkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="7aa-3g-ub3"/>
@@ -77,14 +77,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleciona pelo menos uma subscrição. Podes adicionar outras mais tarde." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjj-tw-ASY">
-                                <rect key="frame" x="40" y="554" width="334" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick at least one subscription. You can add more later." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjj-tw-ASY">
+                                <rect key="frame" x="40" y="562" width="334" height="30"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" name="subtitleColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recebe as últimas notícias de África em apenas um lugar." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-6h-p3q">
-                                <rect key="frame" x="40" y="490" width="334" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get all african news in one single place." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-6h-p3q">
+                                <rect key="frame" x="40" y="506" width="334" height="46"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="23"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>

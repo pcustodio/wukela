@@ -50,13 +50,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="T0H-iF-42d">
                                                     <rect key="frame" x="90" y="24" width="304" height="32.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeD-Cg-Rmn">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeD-Cg-Rmn">
                                                             <rect key="frame" x="0.0" y="0.0" width="304" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="14"/>
                                                             <color key="textColor" name="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0H-HG-mse">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0H-HG-mse">
                                                             <rect key="frame" x="0.0" y="19.5" width="304" height="13"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="11"/>
                                                             <color key="textColor" name="subtitleColor"/>
@@ -88,8 +88,8 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QCA-v0-YOI">
                                 <rect key="frame" x="20" y="20" width="374" height="32"/>
                                 <segments>
-                                    <segment title="Meu Feed"/>
-                                    <segment title="Histórico"/>
+                                    <segment title="News"/>
+                                    <segment title="History"/>
                                 </segments>
                             </segmentedControl>
                         </subviews>
@@ -148,7 +148,7 @@
             </objects>
             <point key="canvasLocation" x="-84.057971014492765" y="138.61607142857142"/>
         </scene>
-        <!--Favoritos-->
+        <!--Bookmarks-->
         <scene sceneID="eP9-C6-C4i">
             <objects>
                 <viewController modalTransitionStyle="crossDissolve" id="EKZ-5h-im7" customClass="BookmarkViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
@@ -225,7 +225,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6NE-gv-azs"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favoritos" id="Mpx-8b-Yzw"/>
+                    <navigationItem key="navigationItem" title="Bookmarks" id="Mpx-8b-Yzw"/>
                     <connections>
                         <outlet property="tableView" destination="X4S-cp-umn" id="yvn-QL-QuX"/>
                     </connections>
@@ -303,7 +303,7 @@
             </objects>
             <point key="canvasLocation" x="680" y="867"/>
         </scene>
-        <!--Subscrições-->
+        <!--Sources-->
         <scene sceneID="rbh-hR-Yd9">
             <objects>
                 <viewController modalTransitionStyle="crossDissolve" id="SS7-HP-P8R" customClass="SourcesViewController" customModule="wukela" customModuleProvider="target" sceneMemberID="viewController">
@@ -351,7 +351,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z06-Vi-qU1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Subscrições" id="H9A-Ml-Efm"/>
+                    <navigationItem key="navigationItem" title="Sources" id="H9A-Ml-Efm"/>
                     <connections>
                         <outlet property="tableView" destination="7Bb-MV-eLa" id="IJN-0P-uZb"/>
                     </connections>
@@ -377,14 +377,14 @@
                                     <color key="textColor" name="textColor"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Escolha Tópicos" id="q2a-H4-ECF">
+                                    <navigationItem title="Pick Topics" id="q2a-H4-ECF">
                                         <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="Y0d-Sx-8oH">
                                             <color key="tintColor" name="iconColor"/>
                                             <connections>
                                                 <action selector="dismissView:" destination="G1N-3m-D0O" id="E3a-L7-djY"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Ok" id="v3s-o2-xk4">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="v3s-o2-xk4">
                                             <color key="tintColor" name="iconColor"/>
                                             <connections>
                                                 <action selector="okView:" destination="G1N-3m-D0O" id="EMV-A9-Dmp"/>
@@ -556,7 +556,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fuj-dd-FrU"/>
+        <segue reference="gbC-WT-ESX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>

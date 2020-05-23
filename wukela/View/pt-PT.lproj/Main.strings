@@ -1,0 +1,48 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0mg-Eg-F9c"; */
+"0mg-Eg-F9c.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "EKF-vU-ilP"; */
+"EKF-vU-ilP.title" = "Item";
+
+/* Class = "UINavigationItem"; title = "Sources"; ObjectID = "H9A-Ml-Efm"; */
+"H9A-Ml-Efm.title" = "Subscrições";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "IZn-Nw-7lz"; */
+"IZn-Nw-7lz.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "Read Later"; ObjectID = "Mpx-8b-Yzw"; */
+"Mpx-8b-Yzw.title" = "Favoritos";
+
+/* Class = "UISegmentedControl"; QCA-v0-YOI.segmentTitles[0] = "News"; ObjectID = "QCA-v0-YOI"; */
+"QCA-v0-YOI.segmentTitles[0]" = "Notícias";
+
+/* Class = "UISegmentedControl"; QCA-v0-YOI.segmentTitles[1] = "History"; ObjectID = "QCA-v0-YOI"; */
+"QCA-v0-YOI.segmentTitles[1]" = "Histórico";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Qol-lg-LQQ"; */
+"Qol-lg-LQQ.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "Y0d-Sx-8oH"; */
+"Y0d-Sx-8oH.title" = "Item";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "hra-58-KlJ"; */
+"hra-58-KlJ.title" = "Item";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "j0H-HG-mse"; */
+"j0H-HG-mse.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "n2U-Vq-HoP"; */
+"n2U-Vq-HoP.title" = "Item";
+
+/* Class = "UINavigationItem"; title = "Select Topics"; ObjectID = "q2a-H4-ECF"; */
+"q2a-H4-ECF.title" = "Escolha Tópicos";
+
+/* Class = "UITabBarController"; title = "mainVC"; ObjectID = "uQb-ja-dC6"; */
+"uQb-ja-dC6.title" = "mainVC";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "vw8-1e-ol2"; */
+"vw8-1e-ol2.text" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zeD-Cg-Rmn"; */
+"zeD-Cg-Rmn.text" = "Label";
