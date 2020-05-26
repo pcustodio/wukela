@@ -155,7 +155,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //insert background
             let subView = UIView(frame: window.frame)
-            subView.backgroundColor = UIColor(named: "textColor")
+            subView.backgroundColor = UIColor(named: "syncDark")
             subView.alpha = 0
             window.addSubview(subView)
             UIView.animate(withDuration: 0.2, animations: { subView.alpha = 0.9 })
@@ -166,7 +166,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             actInd.hidesWhenStopped = true
             actInd.style =
                 UIActivityIndicatorView.Style.large
-            actInd.color = .white
+            actInd.color = UIColor(named: "loader")
             actInd.alpha = 0
             window.addSubview(actInd)
             actInd.startAnimating()
