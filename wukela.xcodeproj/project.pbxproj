@@ -18,6 +18,7 @@
 		910E2DED2426544000313B2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E2DEC2426544000313B2A /* HomeViewController.swift */; };
 		9110AB4B243B76CB00669A6B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110AB4A243B76CB00669A6B /* Reachability.swift */; };
 		912C4730245AF013000019BF /* AnimatedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C472F245AF013000019BF /* AnimatedTabBarController.swift */; };
+		913ACCF3247D5F1700CECE5E /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 913ACCF2247D5F1700CECE5E /* Gzip */; };
 		9162116D242CE9CA009C3CE6 /* NewsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162116C242CE9CA009C3CE6 /* NewsLoader.swift */; };
 		9162116F242CEA38009C3CE6 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162116E242CEA38009C3CE6 /* NewsData.swift */; };
 		916A97C52447238B0093F394 /* NotificationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916A97C42447238B0093F394 /* NotificationPublisher.swift */; };
@@ -78,6 +79,7 @@
 			files = (
 				910573FF243DECF900233292 /* WebKit.framework in Frameworks */,
 				91972703242E33A800E49154 /* Kingfisher in Frameworks */,
+				913ACCF3247D5F1700CECE5E /* Gzip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +193,7 @@
 			name = wukela;
 			packageProductDependencies = (
 				91972702242E33A800E49154 /* Kingfisher */,
+				913ACCF2247D5F1700CECE5E /* Gzip */,
 			);
 			productName = webtest;
 			productReference = 910E2DD224264E3400313B2A /* wukela.app */;
@@ -224,6 +227,7 @@
 			mainGroup = 910E2DC924264E3400313B2A;
 			packageReferences = (
 				91972701242E33A800E49154 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				913ACCF1247D5F1700CECE5E /* XCRemoteSwiftPackageReference "GzipSwift" */,
 			);
 			productRefGroup = 910E2DD324264E3400313B2A /* Products */;
 			projectDirPath = "";
@@ -494,6 +498,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		913ACCF1247D5F1700CECE5E /* XCRemoteSwiftPackageReference "GzipSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/1024jp/GzipSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 		91972701242E33A800E49154 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -505,6 +517,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		913ACCF2247D5F1700CECE5E /* Gzip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 913ACCF1247D5F1700CECE5E /* XCRemoteSwiftPackageReference "GzipSwift" */;
+			productName = Gzip;
+		};
 		91972702242E33A800E49154 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 91972701242E33A800E49154 /* XCRemoteSwiftPackageReference "Kingfisher" */;

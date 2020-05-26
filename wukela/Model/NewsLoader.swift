@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Gzip
 
 //load data from json and turn it into my data structure on Dictionary.swift
 class NewsLoader {
@@ -111,11 +112,11 @@ class NewsLoader {
         
         //access file location of local json file
         //if file is accessed code inside is run
-        if let fileLocation = URL(string : "http://paulocustodio.com/scraper/news_done.json") {
+        if let fileLocation = URL(string : "http://paulocustodio.com/scraper/news_done.json.gz") {
             //run do catch in case of an error
             do {
                 //try to get data from json file
-                let data = try Data(contentsOf: fileLocation)
+                let data = try Data(contentsOf: fileLocation).gunzipped()
                 //decode our json
                 let jsonDecoder = JSONDecoder()
                 //get data from json file using decoder
