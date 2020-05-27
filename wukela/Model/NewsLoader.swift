@@ -27,18 +27,12 @@ class NewsLoader {
                    "Jornal de Angola",
                    "Novo Jornal",
                    "O País (Angola)",
-                   "La Nation",
-                   "L'Evénement Précis",
-                   "Quotidien le Matinal",
                    "Mmegi",
                    "The Midweek Sun",
                    "The Voice",
                    "Burkina 24",
                    "Le Faso",
                    "Sidwaya",
-                   "Itara Burundi",
-                   "Iwacu",
-                   "Nawe",
                    "Actu Cameroun",
                    "Cameroon Online",
                    "Cameroon Tribune",
@@ -46,6 +40,8 @@ class NewsLoader {
                    "A Nação",
                    "A Semana",
                    "Expresso das Ilhas",
+                   "7sur7",
+                   "Actualite",
                    "Voice of Congo",
                    "Akhbar El Yom",
                    "Al-Ahram",
@@ -53,12 +49,38 @@ class NewsLoader {
                    "Egypt Today",
                    "El Balad",
                    "Youm7",
+                   "Nazret",
+                   "The Reporter",
+                   "Zehabesha",
+                   "Daily Graphic",
+                   "Daily Guide",
+                   "Ghana News Agency",
+                   "Ghanian Times",
+                   "Modern Ghana",
+                   "The Daily Statesman",
+                   "Agence Ivoirienne de Presse",
+                   "Fratmat",
+                   "Linfodrome",
+                   "Business Today",
+                   "Daily Nation",
+                   "Kenya News Agency",
+                   "Nairobi Wire",
+                   "Standard",
+                   "Tuko",
+                   "akhbarlibya24",
+                   "Al Marsad",
+                   "Al Mukhtar Al Arabi‎",
+                   "Al-Wasat",
+                   "Lybia Observer",
+                   "Akhbarona",
+                   "Alyaoum 24",
+                   "Barlamane",
+                   "Hespress",
+                   "Hiba Press",
+                   "Le 360",
                    "Jornal Notícias",
                    "O País",
                    "Verdade",
-                   "Carta de Moçambique",
-                   "Jornal Txopela",
-                   "Club of Mozambique",
                    "The Guardian",
                    "Punch",
                    "The Nation",
@@ -69,7 +91,17 @@ class NewsLoader {
                    "Mail & Guardian",
                    "Sowetan",
                    "Times",
-                   "Daily News"]
+                   "Daily News",
+                   "Mtanzania",
+                   "The Citizen",
+                   "Assarih",
+                   "Essada",
+                   "Nawaat",
+                   "Tuniscope",
+                   "Tunisien",
+                   "Daily Monitor",
+                   "New Vision",
+                   "The Observer"]
     
     let categories = ["Sociedade",
                       "Desporto",
@@ -81,7 +113,7 @@ class NewsLoader {
     
     //array with sources coredata
     var retrievedSource = ""
-    var activeSources = ["","","","","","","","","","","","","","","","",""]
+    var activeSources = [""]
     
     //array with topics coredata
     var retrievedTopic = ""
@@ -182,6 +214,7 @@ class NewsLoader {
             }
             user.setValue(newsJson[count].news_src, forKeyPath: "news_srcSync")
             user.setValue(newsJson[count].cat, forKeyPath: "catSync")
+            user.setValue(newsJson[count].lang, forKeyPath: "langSync")
             user.setValue(newsJson[count].epoch, forKeyPath: "epochSync")
             //number each stored coredata element to allow sorting
             user.setValue(count, forKeyPath: "countSync")
@@ -216,11 +249,12 @@ class NewsLoader {
                 let img_src = data.value(forKey: "img_srcSync") as! String
                 let news_src = data.value(forKey: "news_srcSync") as! String
                 let cat = data.value(forKey: "catSync") as! String
+                let lang = data.value(forKey: "langSync") as! String
                 let epoch = data.value(forKey: "epochSync") as! Double
                 let count = data.value(forKey: "countSync") as! Int
 
                 //create 2d array
-                newsCore.append([headline, url_src, img_src, news_src, cat, epoch, count])
+                newsCore.append([headline, url_src, img_src, news_src, cat, lang, epoch, count])
                 
                 //sort count by coredata countSync appended to newsCore array
                 //disabled since it causes much delay

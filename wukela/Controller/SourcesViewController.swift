@@ -9,25 +9,38 @@
 import UIKit
 import CoreData
 
+class SourcesTableViewCell: UITableViewCell {
+    @IBOutlet weak var cellTitle: UILabel!
+    @IBOutlet weak var cellSubtitle: UILabel!
+}
+
 class SourcesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+
+    var newsSync = [[Any]]()
     
     let sources = [
         ["Algérie 360", "Echorouk", "El Khabar", "Observ'Algérie"],
         ["Folha 8", "Jornal de Angola", "Novo Jornal", "O País (Angola)"],
-        ["La Nation", "L'Evénement Précis", "Quotidien le Matinal"],
         ["Mmegi", "The Midweek Sun", "The Voice"],
         ["Burkina 24", "Le Faso", "Sidwaya"],
-        ["Itara Burundi", "Iwacu", "Nawe"],
         ["Actu Cameroun", "Cameroon Online", "Cameroon Tribune", "Journal du Cameroun"],
         ["A Nação", "A Semana", "Expresso das Ilhas"],
-        ["Voice of Congo"],
+        ["7sur7", "Actualite", "Voice of Congo"],
         ["Akhbar El Yom", "Al-Ahram", "Al Wafd", "Egypt Today", "El Balad", "Youm7"],
-        ["Jornal Notícias", "O País", "Verdade", "Carta de Moçambique", "Jornal Txopela", "Club of Mozambique"],
+        ["Nazret", "The Reporter", "Zehabesha"],
+        ["Daily Graphic", "Daily Guide", "Ghana News Agency", "Ghanian Times", "Modern Ghana", "The Daily Statesman"],
+        ["Agence Ivoirienne de Presse", "Fratmat", "Linfodrome"],
+        ["Business Today", "Daily Nation", "Kenya News Agency", "Nairobi Wire", "Standard", "Tuko"],
+        ["akhbarlibya24", "Al Marsad", "Al Mukhtar Al Arabi‎", "Al-Wasat", "Lybia Observer"],
+        ["Akhbarona", "Alyaoum 24", "Barlamane", "Hespress", "Hiba Press", "Le 360"],
+        ["Jornal Notícias", "O País", "Verdade"],
         ["The Guardian", "Punch", "The Nation", "Vanguard"],
         ["Citizen", "Herald", "Isolezwe", "Mail & Guardian", "Sowetan", "Times"],
-        ["Daily News"]
+        ["Daily News", "Mtanzania", "The Citizen"],
+        ["Assarih", "Essada", "Nawaat", "Tuniscope", "Tunisien"],
+        ["Daily Monitor", "New Vision", "The Observer"]
     ]
     var path = 0
     var pathSection = 0
@@ -51,9 +64,6 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         //hide separator line
         //self.tableView.separatorColor = .clear;
-        
-        //set cell height
-        self.tableView.rowHeight = 60;
         
         //customise navigation bar
         let navBarAppearance = UINavigationBarAppearance()
@@ -114,29 +124,41 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         } else if section == 1 {
             label.text = "Angola"
         } else if section == 2 {
-            label.text = "Benin"
-        } else if section == 3 {
             label.text = "Botswana"
-        } else if section == 4 {
+        } else if section == 3 {
             label.text = "Burkina Faso"
-        } else if section == 5 {
-            label.text = "Burundi"
-        } else if section == 6 {
+        } else if section == 4 {
             label.text = "Cameroon"
-        } else if section == 7 {
+        } else if section == 5 {
             label.text = "Cape Verde"
-        } else if section == 8 {
+        } else if section == 6 {
             label.text = "Congo"
-        } else if section == 9 {
+        } else if section == 7 {
             label.text = "Egypt"
+        } else if section == 8 {
+            label.text = "Ethiopia"
+        } else if section == 9 {
+            label.text = "Ghana"
         } else if section == 10 {
-            label.text = "Mozambique"
+            label.text = "Ivory Coast"
         } else if section == 11 {
-            label.text = "Nigeria"
+            label.text = "Kenya"
         } else if section == 12 {
-           label.text = "South Africa"
-        } else {
+           label.text = "Lybia"
+        } else if section == 13 {
+            label.text = "Morocco"
+        } else if section == 14 {
+            label.text = "Mozambique"
+        } else if section == 15 {
+            label.text = "Nigeria"
+        } else if section == 16 {
+            label.text = "South Africa"
+        } else if section == 17 {
             label.text = "Tanzania"
+        } else if section == 18 {
+            label.text = "Tunisia"
+        } else {
+            label.text = "Uganda"
         }
         headerView.addSubview(label)
     
@@ -162,10 +184,11 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
     //create our cell
     //indexpath indicates which cell to display on each TableView row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SourcesTableViewCell
 
         let newsSource = sources[indexPath.section][indexPath.row]
-        cell.textLabel?.text = newsSource
+        cell.cellTitle?.text = newsSource
+        cell.cellSubtitle?.text = "test"
         //cell.textLabel?.text = sources[indexPath.row]
         
         //switch

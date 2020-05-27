@@ -37,9 +37,6 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
         //hide separator line
         self.tableView.separatorColor = .clear;
         
-        //set cell height
-        self.tableView.rowHeight = 80;
-        
         //remove extraneous empty cells
         tableView.tableFooterView = UIView()
 
@@ -169,19 +166,30 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
         let image = UIImage(named: "placeholder.pdf")
         cell.cellImage?.kf.indicatorType = .activity
         cell.cellImage.layer.cornerRadius = 5.0
-        let scale = UIScreen.main.scale
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-        let resource = ImageResource(downloadURL: URL(string: (bookmark.value(forKeyPath: "imgMarked") as? String)! )!, cacheKey: bookmark.value(forKeyPath: "imgMarked") as? String)
-        
-        cell.cellImage?.kf.setImage(
-            with: resource,
-            placeholder: image,
-            options: [.processor(processor),
-                      .scaleFactor(UIScreen.main.scale),
-                      .transition(.fade(0.5)),
-                      .cacheOriginalImage
-            ]
-        )
+
+        let lang = bookmark.value(forKeyPath: "langMarked") as? String
+        if lang == "Arabic" {
+            let imgURL = (bookmark.value(forKeyPath: "imgMarked") as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
+            let resource = ImageResource(downloadURL: (URL(string: imgURL! ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: imgURL)
+            cell.cellImage?.kf.setImage(
+                with: resource,
+                placeholder: image,
+                options: [.scaleFactor(UIScreen.main.scale),
+                          .transition(.fade(0.5)),
+                          .cacheOriginalImage
+                ]
+            )
+        } else {
+            let resource = ImageResource(downloadURL: URL(string: (bookmark.value(forKeyPath: "imgMarked") as? String)! )!, cacheKey: bookmark.value(forKeyPath: "imgMarked") as? String)
+            cell.cellImage?.kf.setImage(
+                with: resource,
+                placeholder: image,
+                options: [.scaleFactor(UIScreen.main.scale),
+                          .transition(.fade(0.5)),
+                          .cacheOriginalImage
+                ]
+            )
+        }
 
         return cell
         

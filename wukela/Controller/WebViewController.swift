@@ -18,6 +18,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     var url = ""
     var headline = ""
     var source = ""
+    var lang = ""
     var epoch = 0.0
     var img = ""
     
@@ -34,15 +35,25 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         activityIndicator = UIActivityIndicatorView()
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor(named: "syncDark")
         activityIndicator.style = UIActivityIndicatorView.Style.large
         activityIndicator.isHidden = true
         view.addSubview(activityIndicator)
         
         //webkit
         webView.navigationDelegate = self
-        let loadURL = URL (string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-        let request = URLRequest(url: loadURL!)
-        webView.load(request)
+        if lang == "Arabic" {
+            let loadURL = URL (string: url)
+            let request = URLRequest(url: loadURL!)
+            webView.load(request)
+        } else {
+            let loadURL = URL (string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+            let request = URLRequest(url: loadURL!)
+            webView.load(request)
+        }
+//        let loadURL = URL (string: url)
+//        let request = URLRequest(url: loadURL!)
+//        webView.load(request)
         
         //check if headline exists in coredata
         verifyData()
@@ -122,6 +133,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         user.setValue(headline, forKeyPath: "headlineMarked")
         user.setValue(source, forKeyPath: "sourceMarked")
+        user.setValue(lang, forKeyPath: "langMarked")
         user.setValue(epoch, forKeyPath: "epochMarked")
         user.setValue(url, forKeyPath: "urlMarked")
         user.setValue(img, forKeyPath: "imgMarked")

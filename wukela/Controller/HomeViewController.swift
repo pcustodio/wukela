@@ -35,8 +35,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var readHistory = [String]()
     
-//    private let notificationPublisher = NotificationPublisher()
-    
     var newsSync = [[Any]]()
     var historySync : [NSManagedObject] = []
     
@@ -49,7 +47,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("viewdidload")
         
         // set observer to refresh news
-//        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //implement the refresh listener
@@ -82,9 +79,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //trigger UITableViewDelegate
         tableView.delegate = self
-        
-        //set cell height
-        self.tableView.rowHeight = 80;
         
         //refresh control
         addRefreshControl()
@@ -133,17 +127,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             newsRefresh()
             return false
         }
-    }
-//MARK: - Local Notifications
-    
-//    @IBAction func notifyBtn(_ sender: UIBarButtonItem) {
-//        notificationPublisher.sendNotification(title: "This is a title", subtitle: "My subtitle", body: "This is a body", badge: 1, delayInterval: 10)
-//    }
-    
-    //reset badge number when app is back in the foreground
-    @objc func updateBadge(notification: NSNotification) {
-//        print("active")
-        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     
@@ -349,15 +332,33 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let image = UIImage(named: "placeholder.pdf")
             cell.cellImage?.kf.indicatorType = .activity
             cell.cellImage.layer.cornerRadius = 5.0
-            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
-            cell.cellImage?.kf.setImage(
-                with: resource,
-                placeholder: image,
-                options: [.scaleFactor(UIScreen.main.scale),
-                          .transition(.fade(0.5)),
-                          .cacheOriginalImage
-                ]
-            )
+            
+//            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
+
+            let lang = newsSync[indexPath.row][5] as! String
+            if lang == "Arabic" {
+                let imgURL = (newsSync[indexPath.row][2] as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
+                let resource = ImageResource(downloadURL: (URL(string: imgURL! ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: imgURL)
+                cell.cellImage?.kf.setImage(
+                    with: resource,
+                    placeholder: image,
+                    options: [.scaleFactor(UIScreen.main.scale),
+                              .transition(.fade(0.5)),
+                              .cacheOriginalImage
+                    ]
+                )
+            } else {
+                let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
+                cell.cellImage?.kf.setImage(
+                    with: resource,
+                    placeholder: image,
+                    options: [.scaleFactor(UIScreen.main.scale),
+                              .transition(.fade(0.5)),
+                              .cacheOriginalImage
+                    ]
+                )
+            }
+
         } else {
             //set tableview based on history saved in coredata
             
@@ -391,14 +392,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //set row img
             let image = UIImage(named: "placeholder.pdf")
             cell.cellImage?.kf.indicatorType = .activity
-            let scale = UIScreen.main.scale
-            let processor = DownsamplingImageProcessor(size: CGSize(width: 60 * scale, height: 60 * scale)) |> CroppingImageProcessor(size: CGSize(width: 60, height: 60), anchor: CGPoint(x: 0, y: 0)) |> RoundCornerImageProcessor(cornerRadius: 5)
-            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
+            let resource = ImageResource(downloadURL: URL(string: historySynced.value(forKeyPath: "imgRead") as! String )!, cacheKey: historySynced.value(forKeyPath: "imgRead") as? String)
             cell.cellImage?.kf.setImage(
                 with: resource,
                 placeholder: image,
-                options: [.processor(processor),
-                          .scaleFactor(UIScreen.main.scale),
+                options: [.scaleFactor(UIScreen.main.scale),
                           .transition(.fade(0.5)),
                           .cacheOriginalImage
                 ]
@@ -418,12 +416,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             headlineRead = newsSync[indexPath.row][0] as! String
             urlRead = newsSync[indexPath.row][1] as! String
-            imgRead = newsSync[indexPath.row][2] as! String
+//            imgRead = newsSync[indexPath.row][2] as! String
+            let imgURL = (newsSync[indexPath.row][2] as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
+            imgRead = imgURL!
             srcRead = newsSync[indexPath.row][3] as! String
             catRead = newsSync[indexPath.row][4] as! String
-            epochRead = newsSync[indexPath.row][5] as! Double
-            timeRead = newsSync[indexPath.row][5] as! Double
-
+            epochRead = newsSync[indexPath.row][6] as! Double
+            timeRead = newsSync[indexPath.row][6] as! Double
+            
             self.tableView.deselectRow(at: indexPath, animated: true)
             
             markRead()
@@ -443,7 +443,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.headline = newsSync[indexPath.row][0] as! String
                     destination?.url = newsSync[indexPath.row][1] as! String
                     destination?.source = newsSync[indexPath.row][3] as! String
-                    destination?.epoch = newsSync[indexPath.row][5] as! Double
+                    destination?.lang = newsSync[indexPath.row][5] as! String
+                    destination?.epoch = newsSync[indexPath.row][6] as! Double
                     destination?.img = newsSync[indexPath.row][2] as! String
                 }
             }
