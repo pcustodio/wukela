@@ -65,7 +65,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
                 actInd.hidesWhenStopped = true
                 actInd.style =
                     UIActivityIndicatorView.Style.large
-                actInd.color = UIColor(named: "loader")
+                actInd.color = UIColor(named: "loaderFirst")
                 actInd.alpha = 0
                 window.addSubview(actInd)
                 actInd.startAnimating()
