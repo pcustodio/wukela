@@ -17,8 +17,6 @@ class SourcesTableViewCell: UITableViewCell {
 class SourcesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-
-    var newsSync = [[Any]]()
     
     let sources = [
         ["Algérie 360", "Echorouk", "El Khabar", "Observ'Algérie"],
@@ -41,6 +39,28 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         ["Daily News", "Mtanzania", "The Citizen"],
         ["Assarih", "Essada", "Nawaat", "Tuniscope", "Tunisien"],
         ["Daily Monitor", "New Vision", "The Observer"]
+    ]
+    let languages = [
+        ["French", "Arabic", "Arabic", "French"],
+        ["Portuguese", "Portuguese", "Portuguese", "Portuguese"],
+        ["English", "English", "English"],
+        ["French", "French", "French"],
+        ["French", "English", "French", "French"],
+        ["Portuguese", "Portuguese", "Portuguese"],
+        ["French", "French", "French"],
+        ["Arabic", "Arabic", "Arabic", "Arabic", "Arabic", "Arabic"],
+        ["English", "English", "English"],
+        ["English", "English", "English", "English", "English", "English"],
+        ["French", "French", "French"],
+        ["English", "English", "English", "English", "English", "English"],
+        ["Arabic", "Arabic", "Arabic", "Arabic", "English"],
+        ["Arabic", "Arabic", "Arabic", "Arabic", "Arabic", "Arabic"],
+        ["Portuguese", "Portuguese", "Portuguese"],
+        ["English", "English", "English", "English"],
+        ["English", "English", "Zulu", "English", "English", "English"],
+        ["English", "Swahili", "English"],
+        ["Arabic", "Arabic", "Arabic", "French", "Arabic"],
+        ["English", "English", "English"]
     ]
     var path = 0
     var pathSection = 0
@@ -187,9 +207,9 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SourcesTableViewCell
 
         let newsSource = sources[indexPath.section][indexPath.row]
+        let langSource = languages[indexPath.section][indexPath.row]
         cell.cellTitle?.text = newsSource
-        cell.cellSubtitle?.text = "test"
-        //cell.textLabel?.text = sources[indexPath.row]
+        cell.cellSubtitle?.text = langSource
         
         //switch
         let swicthView = UISwitch(frame: .zero)
