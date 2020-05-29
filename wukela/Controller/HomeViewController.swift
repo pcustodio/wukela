@@ -47,6 +47,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("viewdidload")
         
         // set observer to refresh news
+        NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //implement the refresh listener
@@ -82,6 +83,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //refresh control
         addRefreshControl()
+        
+        //set cell height
+        self.tableView.rowHeight = 80;
         
         //segments
         segmentControl.selectedSegmentIndex = 0
