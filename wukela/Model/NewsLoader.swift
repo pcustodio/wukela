@@ -16,6 +16,8 @@ class NewsLoader {
     //array containing json
     var newsJson = [NewsData]()
     
+    var currentLang = NSLocalizedString("CurrentLang", comment: "")
+    
     //array containing coredata
     var newsCore = [[Any]]()
     
@@ -103,13 +105,13 @@ class NewsLoader {
                    "New Vision",
                    "The Observer"]
     
-    let categories = ["Sociedade",
-                      "Desporto",
-                      "Economia e Negócios",
-                      "Política",
-                      "Cultura e Entretenimento",
-                      "Ciência e Tecnologia",
-                      "Opinião"]
+    let categories = [NSLocalizedString("Sociedade", comment: ""),
+                      NSLocalizedString("Desporto", comment: ""),
+                      NSLocalizedString("EconomiaNegócios", comment: ""),
+                      NSLocalizedString("Política", comment: ""),
+                      NSLocalizedString("CulturaEntretenimento", comment: ""),
+                      NSLocalizedString("CiênciaTecnologia", comment: ""),
+                      NSLocalizedString("Opinião", comment: "")]
     
     //array with sources coredata
     var retrievedSource = ""
@@ -213,7 +215,9 @@ class NewsLoader {
                 user.setValue(newsJson[count].img_src, forKeyPath: "img_srcSync")
             }
             user.setValue(newsJson[count].news_src, forKeyPath: "news_srcSync")
-            user.setValue(newsJson[count].cat, forKeyPath: "catSync")
+            user.setValue(newsJson[count].catPT, forKeyPath: "catPTSync")
+            user.setValue(newsJson[count].catFR, forKeyPath: "catFRSync")
+            user.setValue(newsJson[count].catEN, forKeyPath: "catENSync")
             user.setValue(newsJson[count].lang, forKeyPath: "langSync")
             user.setValue(newsJson[count].epoch, forKeyPath: "epochSync")
             //number each stored coredata element to allow sorting
@@ -248,13 +252,15 @@ class NewsLoader {
                 let url_src = data.value(forKey: "url_srcSync") as! String
                 let img_src = data.value(forKey: "img_srcSync") as! String
                 let news_src = data.value(forKey: "news_srcSync") as! String
-                let cat = data.value(forKey: "catSync") as! String
+                let catPT = data.value(forKey: "catPTSync") as! String
+                let catFR = data.value(forKey: "catFRSync") as! String
+                let catEN = data.value(forKey: "catENSync") as! String
                 let lang = data.value(forKey: "langSync") as! String
                 let epoch = data.value(forKey: "epochSync") as! Double
                 let count = data.value(forKey: "countSync") as! Int
 
                 //create 2d array
-                newsCore.append([headline, url_src, img_src, news_src, cat, lang, epoch, count])
+                newsCore.append([headline, url_src, img_src, news_src, catPT, catFR, catEN, lang, epoch, count])
                 
                 //sort count by coredata countSync appended to newsCore array
                 //disabled since it causes much delay
@@ -321,6 +327,8 @@ class NewsLoader {
                     if retrievedTopic == category {
                         //add topics in coredata to array
                         activeTopics.insert(retrievedTopic, at: 0)
+                        
+                    //Pt adjustment
                     } else if retrievedTopic == "Sociedade" {
                         activeTopics.insert("Sociedade e Política", at: 0)
                         activeTopics.insert("Sociedade e Cultura", at: 0)
@@ -328,7 +336,27 @@ class NewsLoader {
                         activeTopics.insert("Sociedade e Política", at: 0)
                     } else if retrievedTopic == "Cultura e Entretenimento" {
                         activeTopics.insert("Sociedade e Cultura", at: 0)
+                    
+                    //Fr adjustment
+                    } else if retrievedTopic == "Société" {
+                       activeTopics.insert("Société et Politique", at: 0)
+                       activeTopics.insert("Société et Culture", at: 0)
+                   } else if retrievedTopic == "Politique" {
+                       activeTopics.insert("Société et Politique", at: 0)
+                   } else if retrievedTopic == "Culture et Divertissement" {
+                       activeTopics.insert("Société et Culture", at: 0)
+                    
+                    //EN adjustment
+                    } else if retrievedTopic == "Society" {
+                        activeTopics.insert("Society and Politics", at: 0)
+                        activeTopics.insert("Society and Culture", at: 0)
+                    } else if retrievedTopic == "Politics" {
+                        activeTopics.insert("Society and Politics", at: 0)
+                    } else if retrievedTopic == "Culture and Entertainment" {
+                        activeTopics.insert("Society and Culture", at: 0)
                     }
+                    
+                    
                 }
             }
         } catch {
@@ -345,17 +373,23 @@ class NewsLoader {
         //appendNews generates newsCore array with coredata
         //filter news_src in newsCore array with active news sources
         //when user toggles news source off he triggers coredata, which is then used to filter newsCore
-        //let foundSources = newsCore.filter { $0[3] as! String == activeSources[0] || $0[3] as! String == activeSources[1] || $0[3] as! String == activeSources[2] || $0[3] as! String == activeSources[3] || $0[3] as! String == activeSources[4] || $0[3] as! String == activeSources[5] || $0[3] as! String == activeSources[6] || $0[3] as! String == activeSources[7] || $0[3] as! String == activeSources[8] || $0[3] as! String == activeSources[9] || $0[3] as! String == activeSources[10] || $0[3] as! String == activeSources[11] || $0[3] as! String == activeSources[12] || $0[3] as! String == activeSources[13] || $0[3] as! String == activeSources[14] || $0[3] as! String == activeSources[15] || $0[3] as! String == activeSources[16]}
         let foundSources = newsCore.filter { activeSources.contains($0[3] as! String) }
         
         //mash all the filtered sources
         newsCore = foundSources
         
         //filter news sources based on active topics
-        //let foundTopics = newsCore.filter { $0[4] as! String == activeTopics[0] || $0[4] as! String == activeTopics[1] || $0[4] as! String == activeTopics[2] || $0[4] as! String == activeTopics[3] || $0[4] as! String == activeTopics[4] || $0[4] as! String == activeTopics[5] || $0[4] as! String == activeTopics[6]}
-        let foundTopics = newsCore.filter { activeTopics.contains($0[4] as! String) }
-        
-        newsCore = foundTopics
+        //depending on language filter like this
+        if currentLang == "PT" {
+            let foundTopics = newsCore.filter { activeTopics.contains($0[4] as! String) }
+            newsCore = foundTopics
+        } else if currentLang == "FR" {
+            let foundTopics = newsCore.filter { activeTopics.contains($0[5] as! String) }
+            newsCore = foundTopics
+        } else if currentLang == "EN" {
+            let foundTopics = newsCore.filter { activeTopics.contains($0[6] as! String) }
+            newsCore = foundTopics
+        }
         
     }
 }

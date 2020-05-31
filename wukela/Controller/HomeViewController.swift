@@ -331,16 +331,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //set source
             cell.cellSubtitle?.text = newsSync[indexPath.row][3] as? String
-            
+
             //set row img
             let image = UIImage(named: "placeholder.pdf")
             cell.cellImage?.kf.indicatorType = .activity
             cell.cellImage.layer.cornerRadius = 5.0
             
+            
 //            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
 
-            let lang = newsSync[indexPath.row][5] as! String
+            let lang = newsSync[indexPath.row][7] as! String
+            print(lang)
             if lang == "Arabic" {
+                cell.cellTitle?.textAlignment = NSTextAlignment.right
+                cell.cellSubtitle?.textAlignment = NSTextAlignment.right
                 let imgURL = (newsSync[indexPath.row][2] as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
                 let resource = ImageResource(downloadURL: (URL(string: imgURL! ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: imgURL)
                 cell.cellImage?.kf.setImage(
@@ -352,6 +356,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     ]
                 )
             } else {
+                cell.cellTitle?.textAlignment = NSTextAlignment.left
+                cell.cellSubtitle?.textAlignment = NSTextAlignment.left
                 let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
                 cell.cellImage?.kf.setImage(
                     with: resource,
@@ -425,8 +431,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             imgRead = imgURL!
             srcRead = newsSync[indexPath.row][3] as! String
             catRead = newsSync[indexPath.row][4] as! String
-            epochRead = newsSync[indexPath.row][6] as! Double
-            timeRead = newsSync[indexPath.row][6] as! Double
+            epochRead = newsSync[indexPath.row][8] as! Double
+            timeRead = newsSync[indexPath.row][8] as! Double
             
             self.tableView.deselectRow(at: indexPath, animated: true)
             
@@ -447,8 +453,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.headline = newsSync[indexPath.row][0] as! String
                     destination?.url = newsSync[indexPath.row][1] as! String
                     destination?.source = newsSync[indexPath.row][3] as! String
-                    destination?.lang = newsSync[indexPath.row][5] as! String
-                    destination?.epoch = newsSync[indexPath.row][6] as! Double
+                    destination?.lang = newsSync[indexPath.row][7] as! String
+                    destination?.epoch = newsSync[indexPath.row][8] as! Double
                     destination?.img = newsSync[indexPath.row][2] as! String
                 }
             }

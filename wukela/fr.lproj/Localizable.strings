@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  wukela
+
+  Created by Paulo Custódio on 31/05/2020.
+  Copyright © 2020 Paulo Custódio. All rights reserved.
+*/
+
+"CurrentLang" = "FR";
+"FRSubtitle" = "Français";
+"ENSubtitle" = "Anglais";
+"PTSubtitle" = "Portugais";
+"ARSubtitle" = "Arabe";
+"SWSubtitle" = "Swahili";
+"ZLSubtitle" = "Zoulou";
+"Sociedade" = "Société";
+"Desporto" = "Sport";
+"EconomiaNegócios" = "Économie";
+"Política" = "Politique";
+"CulturaEntretenimento" = "Culture et Divertissement";
+"CiênciaTecnologia" = "Science et Technologie";
+"Opinião" = "Opinion";
+"SociedadePolítica" = "Société et Politique";
+"SociedadeCultura" = "Société et Culture";

@@ -28,6 +28,7 @@
 		918FCFCB24586BBE008D6759 /* SourceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FCFCA24586BBE008D6759 /* SourceCollectionViewCell.swift */; };
 		91972703242E33A800E49154 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 91972702242E33A800E49154 /* Kingfisher */; };
 		91990A12243F3CAE001DAAA6 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91990A11243F3CAE001DAAA6 /* TopicViewController.swift */; };
+		91A1205D24839EDF00FB8784 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91A1205F24839EDF00FB8784 /* Localizable.strings */; };
 		91CE263D2428F48C001A7B39 /* SourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE263C2428F48C001A7B39 /* SourcesViewController.swift */; };
 		91E1F8BB243609F60053693B /* ProximaNova Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91E1F8B7243609F60053693B /* ProximaNova Semibold.otf */; };
 		91E1F8BC243609F60053693B /* ProximaNova Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91E1F8B8243609F60053693B /* ProximaNova Light.otf */; };
@@ -64,6 +65,9 @@
 		918FCFC62458468B008D6759 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		918FCFCA24586BBE008D6759 /* SourceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCollectionViewCell.swift; sourceTree = "<group>"; };
 		91990A11243F3CAE001DAAA6 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		91A1205E24839EDF00FB8784 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		91A1206024839EF000FB8784 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		91A1206124839FCA00FB8784 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		91CE263C2428F48C001A7B39 /* SourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewController.swift; sourceTree = "<group>"; };
 		91E1F8B7243609F60053693B /* ProximaNova Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova Semibold.otf"; sourceTree = "<group>"; };
 		91E1F8B8243609F60053693B /* ProximaNova Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova Light.otf"; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				910E2DDB24264E3400313B2A /* Main.storyboard */,
+				91A1205F24839EDF00FB8784 /* Localizable.strings */,
 				91F299D0244B32A200139CC2 /* Onboarding.storyboard */,
 			);
 			path = View;
@@ -247,6 +252,7 @@
 				910E2DE524264E3600313B2A /* LaunchScreen.storyboard in Resources */,
 				910E2DE224264E3600313B2A /* Assets.xcassets in Resources */,
 				91E1F8BB243609F60053693B /* ProximaNova Semibold.otf in Resources */,
+				91A1205D24839EDF00FB8784 /* Localizable.strings in Resources */,
 				91E1F8BD243609F60053693B /* ProximaNova Bold.otf in Resources */,
 				91E1F8BE243609F60053693B /* ProximaNova Regular.otf in Resources */,
 				910E2DDD24264E3400313B2A /* Main.storyboard in Resources */,
@@ -302,6 +308,17 @@
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
+		};
+		91A1205F24839EDF00FB8784 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91A1205E24839EDF00FB8784 /* fr */,
+				91A1206024839EF000FB8784 /* pt-PT */,
+				91A1206124839FCA00FB8784 /* en */,
+			);
+			name = Localizable.strings;
+			path = wukela;
+			sourceTree = SOURCE_ROOT;
 		};
 		91F299D0244B32A200139CC2 /* Onboarding.storyboard */ = {
 			isa = PBXVariantGroup;

@@ -41,26 +41,26 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         ["Daily Monitor", "New Vision", "The Observer"]
     ]
     let languages = [
-        ["French", "Arabic", "Arabic", "French"],
-        ["Portuguese", "Portuguese", "Portuguese", "Portuguese"],
-        ["English", "English", "English"],
-        ["French", "French", "French"],
-        ["French", "English", "French", "French"],
-        ["Portuguese", "Portuguese", "Portuguese"],
-        ["French", "French", "French"],
-        ["Arabic", "Arabic", "Arabic", "Arabic", "Arabic", "Arabic"],
-        ["English", "English", "English"],
-        ["English", "English", "English", "English", "English", "English"],
-        ["French", "French", "French"],
-        ["English", "English", "English", "English", "English", "English"],
-        ["Arabic", "Arabic", "Arabic", "Arabic", "English"],
-        ["Arabic", "Arabic", "Arabic", "Arabic", "Arabic", "Arabic"],
-        ["Portuguese", "Portuguese", "Portuguese"],
-        ["English", "English", "English", "English"],
-        ["English", "English", "Zulu", "English", "English", "English"],
-        ["English", "Swahili", "English"],
-        ["Arabic", "Arabic", "Arabic", "French", "Arabic"],
-        ["English", "English", "English"]
+        [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
+        [NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: "")],
+        [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
+        [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
+        [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
+        [NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: "")],
+        [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
+        [NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: "")],
+        [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
+        [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
+        [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
+        [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
+        [NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
+        [NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: "")],
+        [NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: "")],
+        [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
+        [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ZLSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
+        [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("SWSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
+        [NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: "")],
+        [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")]
     ]
     var path = 0
     var pathSection = 0

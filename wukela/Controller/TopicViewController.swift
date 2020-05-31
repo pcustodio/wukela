@@ -13,13 +13,13 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
-    var categories = ["Sociedade",
-                  "Desporto",
-                  "Economia e Negócios",
-                  "Política",
-                  "Cultura e Entretenimento",
-                  "Ciência e Tecnologia",
-                  "Opinião"]
+    var categories = [NSLocalizedString("Sociedade", comment: ""),
+                      NSLocalizedString("Desporto", comment: ""),
+                      NSLocalizedString("EconomiaNegócios", comment: ""),
+                      NSLocalizedString("Política", comment: ""),
+                      NSLocalizedString("CulturaEntretenimento", comment: ""),
+                      NSLocalizedString("CiênciaTecnologia", comment: ""),
+                      NSLocalizedString("Opinião", comment: "")]
     
     var path = 0
     

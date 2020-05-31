@@ -14,7 +14,9 @@ struct NewsData : Codable {
     var img_src: String?
     var url_src: String?
     var news_src: String?
-    var cat: String?
+    var catPT: String?
+    var catFR: String?
+    var catEN: String?
     var lang: String?
     var epoch: Double
 }
