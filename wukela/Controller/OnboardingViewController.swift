@@ -237,13 +237,13 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "ActiveTopics", in: context)
 
-        let categories = ["Sociedade",
-                  "Desporto",
-                  "Economia e Negócios",
-                  "Política",
-                  "Cultura e Entretenimento",
-                  "Ciência e Tecnologia",
-                  "Opinião"]
+        let categories = [NSLocalizedString("Sociedade", comment: ""),
+                          NSLocalizedString("Desporto", comment: ""),
+                          NSLocalizedString("EconomiaNegócios", comment: ""),
+                          NSLocalizedString("Política", comment: ""),
+                          NSLocalizedString("CulturaEntretenimento", comment: ""),
+                          NSLocalizedString("CiênciaTecnologia", comment: ""),
+                          NSLocalizedString("Opinião", comment: "")]
 
         for category in categories {
           let newUser = NSManagedObject(entity: entity!, insertInto: context)

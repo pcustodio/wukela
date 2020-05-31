@@ -341,7 +341,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
 
             let lang = newsSync[indexPath.row][7] as! String
-            print(lang)
+            
             if lang == "Arabic" {
                 cell.cellTitle?.textAlignment = NSTextAlignment.right
                 cell.cellSubtitle?.textAlignment = NSTextAlignment.right
