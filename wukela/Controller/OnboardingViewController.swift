@@ -100,16 +100,16 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
                     newsLoader.getJson()
                     newsLoader.storeNews()
                     
-                    UIView.animate(withDuration: 1.5, animations: { subView.alpha = 0.0 }) { (done: Bool) in
+                    UIView.animate(withDuration: 1.0, animations: { subView.alpha = 0.0 }) { (done: Bool) in
                         subView.removeFromSuperview()
                     }
-                    UIView.animate(withDuration: 1.0, animations: { actInd.alpha = 0.0 }) { (done: Bool) in
+                    UIView.animate(withDuration: 0.5, animations: { actInd.alpha = 0.0 }) { (done: Bool) in
                         actInd.stopAnimating()
                     }
-                    UIView.animate(withDuration: 1.0, animations: { mainSyncLabel.alpha = 0.0 }) { (done: Bool) in
+                    UIView.animate(withDuration: 0.5, animations: { mainSyncLabel.alpha = 0.0 }) { (done: Bool) in
                         mainSyncLabel.removeFromSuperview()
                     }
-                    UIView.animate(withDuration: 1.0, animations: { subSyncLabel.alpha = 0.0 }) { (done: Bool) in
+                    UIView.animate(withDuration: 0.5, animations: { subSyncLabel.alpha = 0.0 }) { (done: Bool) in
                         subSyncLabel.removeFromSuperview()
                     }
                 }
