@@ -19,6 +19,7 @@ class BookmarkTableViewCell: UITableViewCell {
 class BookmarkViewController: UIViewController, RefreshTransitionListener {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editBtn: UIBarButtonItem!
     
     var bookmarks: [NSManagedObject] = []
 
@@ -100,6 +101,18 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
             }))
             self.present(alert, animated: true)
         }
+    }
+    
+    
+//MARK: - Edit Bookmarks
+    
+    @IBAction func editBookmarks(_ sender: UIBarButtonItem) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+//        if tableView.isEditing {
+//            self.editBtn.title = "Concluir"
+//        } else {
+//            self.editBtn.title = "Editar"
+//        }
     }
     
 //MARK: - Delegate: Refresh News after Topic & Sources

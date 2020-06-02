@@ -236,8 +236,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6NE-gv-azs"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Bookmarks" id="Mpx-8b-Yzw"/>
+                    <navigationItem key="navigationItem" title="Bookmarks" id="Mpx-8b-Yzw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="sTl-DF-4w6">
+                            <connections>
+                                <action selector="editBookmarks:" destination="EKZ-5h-im7" id="fsa-2E-YDG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="editBtn" destination="sTl-DF-4w6" id="4F1-XC-uE2"/>
                         <outlet property="tableView" destination="X4S-cp-umn" id="yvn-QL-QuX"/>
                     </connections>
                 </viewController>
