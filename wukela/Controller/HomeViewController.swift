@@ -164,7 +164,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             mainSyncLabel.center = CGPoint(x: actInd.center.x, y: actInd.center.y + 60)
             mainSyncLabel.textColor = UIColor.white
             mainSyncLabel.alpha = 0
-            mainSyncLabel.text = "A sincronizar notícias"
+            mainSyncLabel.text = NSLocalizedString("Sync", comment: "")
             mainSyncLabel.textAlignment = .center
             mainSyncLabel.font = UIFont(name: "ProximaNova-Light", size: 25)
             window.addSubview(mainSyncLabel)
@@ -175,7 +175,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             subSyncLabel.center = CGPoint(x: mainSyncLabel.center.x, y: mainSyncLabel.center.y + 30)
             subSyncLabel.textColor = UIColor.white
             subSyncLabel.alpha = 0
-            subSyncLabel.text = "Por favor aguarde..."
+            subSyncLabel.text = NSLocalizedString("Wait", comment: "")
             subSyncLabel.textAlignment = .center
             subSyncLabel.font = UIFont(name: "ProximaNova-Bold", size: 12)
             subSyncLabel.textColor = UIColor(named: "subtitleColor")

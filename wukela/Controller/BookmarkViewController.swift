@@ -182,6 +182,8 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
 
         let lang = bookmark.value(forKeyPath: "langMarked") as? String
         if lang == "Arabic" {
+            cell.cellTitle?.textAlignment = NSTextAlignment.right
+            cell.cellSubtitle?.textAlignment = NSTextAlignment.right
             let imgURL = (bookmark.value(forKeyPath: "imgMarked") as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
             let resource = ImageResource(downloadURL: (URL(string: imgURL! ) ??  URL(string:"http://paulocustodio.com/wukela/empty@3x.pdf"))!, cacheKey: imgURL)
             cell.cellImage?.kf.setImage(
@@ -193,6 +195,8 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
                 ]
             )
         } else {
+            cell.cellTitle?.textAlignment = NSTextAlignment.left
+            cell.cellSubtitle?.textAlignment = NSTextAlignment.left
             let resource = ImageResource(downloadURL: URL(string: (bookmark.value(forKeyPath: "imgMarked") as? String)! )!, cacheKey: bookmark.value(forKeyPath: "imgMarked") as? String)
             cell.cellImage?.kf.setImage(
                 with: resource,

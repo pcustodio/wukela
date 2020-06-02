@@ -76,7 +76,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
                 mainSyncLabel.center = CGPoint(x: actInd.center.x, y: actInd.center.y + 60)
                 mainSyncLabel.textColor = UIColor(named: "textColor")
                 mainSyncLabel.alpha = 0
-                mainSyncLabel.text = "A sincronizar notícias"
+                mainSyncLabel.text = NSLocalizedString("Sync", comment: "")
                 mainSyncLabel.textAlignment = .center
                 mainSyncLabel.font = UIFont(name: "ProximaNova-Light", size: 25)
                 window.addSubview(mainSyncLabel)
@@ -87,7 +87,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
                 subSyncLabel.center = CGPoint(x: mainSyncLabel.center.x, y: mainSyncLabel.center.y + 30)
                 subSyncLabel.textColor = UIColor.white
                 subSyncLabel.alpha = 0
-                subSyncLabel.text = "Por favor aguarde..."
+                subSyncLabel.text = NSLocalizedString("Wait", comment: "")
                 subSyncLabel.textAlignment = .center
                 subSyncLabel.font = UIFont(name: "ProximaNova-Bold", size: 12)
                 subSyncLabel.textColor = UIColor(named: "subtitleColor")
