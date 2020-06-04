@@ -76,7 +76,6 @@ class NewsLoader {
                    "Lybia Observer",
                    "Akhbarona",
                    "Alyaoum 24",
-                   "Barlamane",
                    "Hespress",
                    "Hiba Press",
                    "Le 360",
@@ -146,7 +145,7 @@ class NewsLoader {
         
         //access file location of local json file
         //if file is accessed code inside is run
-        if let fileLocation = URL(string : "http://paulocustodio.com/scraper/news_done.json.gz") {
+        if let fileLocation = URL(string : "https://wukela.app/assets/scrapyard/news_done.json.gz") {
             //run do catch in case of an error
             do {
                 //try to get data from json file
@@ -206,11 +205,11 @@ class NewsLoader {
             //look out for empty img and set default
             let scale = UIScreen.main.scale
             if newsJson[count].img_src == nil && scale == 1.0 {
-                user.setValue("http://paulocustodio.com/wukela/empty.pdf", forKeyPath: "img_srcSync")
+                user.setValue("https://wukela.app/assets/empty.pdf", forKeyPath: "img_srcSync")
             } else if newsJson[count].img_src == nil && scale == 2.0 {
-                user.setValue("http://paulocustodio.com/wukela/empty@2x.pdf", forKeyPath: "img_srcSync")
+                user.setValue("https://wukela.app/assets/empty@2x.pdf", forKeyPath: "img_srcSync")
             } else if newsJson[count].img_src == nil && scale == 3.0 {
-                user.setValue("http://paulocustodio.com/wukela/empty@3x.pdf", forKeyPath: "img_srcSync")
+                user.setValue("https://wukela.app/assets/empty@3x.pdf", forKeyPath: "img_srcSync")
             } else {
                 user.setValue(newsJson[count].img_src, forKeyPath: "img_srcSync")
             }

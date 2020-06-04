@@ -32,7 +32,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         ["Agence Ivoirienne de Presse", "Fratmat", "Linfodrome"],
         ["Business Today", "Daily Nation", "Kenya News Agency", "Nairobi Wire", "Standard", "Tuko"],
         ["akhbarlibya24", "Al Marsad", "Al Mukhtar Al Arabi‎", "Al-Wasat", "Lybia Observer"],
-        ["Akhbarona", "Alyaoum 24", "Barlamane", "Hespress", "Hiba Press", "Le 360"],
+        ["Akhbarona", "Alyaoum 24", "Hespress", "Hiba Press", "Le 360"],
         ["Jornal Notícias", "O País", "Verdade"],
         ["The Guardian", "Punch", "The Nation", "Vanguard"],
         ["Citizen", "Herald", "Isolezwe", "Mail & Guardian", "Sowetan", "Times"],
