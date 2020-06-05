@@ -32,6 +32,15 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
         //trigger UITableViewDataSource
         tableView.dataSource = self
         
+        //change font for bar btn item
+        editBtn.title = NSLocalizedString("Edit", comment: "")
+        editBtn.setTitleTextAttributes([
+            NSAttributedString.Key.font : UIFont(name: "ProximaNova-Bold", size: 14)!
+        ], for: .normal)
+        editBtn.setTitleTextAttributes([
+            NSAttributedString.Key.font : UIFont(name: "ProximaNova-Bold", size: 14)!
+        ], for: .selected)
+        
         //trigger UITableViewDelegate
         tableView.delegate = self
         
@@ -108,11 +117,11 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
     
     @IBAction func editBookmarks(_ sender: UIBarButtonItem) {
         tableView.setEditing(!tableView.isEditing, animated: true)
-//        if tableView.isEditing {
-//            self.editBtn.title = "Concluir"
-//        } else {
-//            self.editBtn.title = "Editar"
-//        }
+        if tableView.isEditing {
+            self.editBtn.title = NSLocalizedString("Done", comment: "")
+        } else {
+            self.editBtn.title = NSLocalizedString("Edit", comment: "")
+        }
     }
     
 //MARK: - Delegate: Refresh News after Topic & Sources

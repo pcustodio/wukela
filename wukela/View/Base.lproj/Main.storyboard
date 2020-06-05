@@ -237,7 +237,8 @@
                         <viewLayoutGuide key="safeArea" id="6NE-gv-azs"/>
                     </view>
                     <navigationItem key="navigationItem" title="Bookmarks" id="Mpx-8b-Yzw">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="sTl-DF-4w6">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="sTl-DF-4w6">
+                            <color key="tintColor" name="primaryColor"/>
                             <connections>
                                 <action selector="editBookmarks:" destination="EKZ-5h-im7" id="fsa-2E-YDG"/>
                             </connections>
@@ -599,7 +600,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fuj-dd-FrU"/>
+        <segue reference="gbC-WT-ESX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
