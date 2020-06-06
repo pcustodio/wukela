@@ -341,7 +341,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
 
             let lang = newsSync[indexPath.row][7] as! String
+            let source = newsSync[indexPath.row][3] as! String
             
+            //if news item is in arabic
             if lang == "Arabic" {
                 cell.cellTitle?.textAlignment = NSTextAlignment.right
                 cell.cellSubtitle?.textAlignment = NSTextAlignment.right
@@ -355,7 +357,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                               .cacheOriginalImage
                     ]
                 )
+                
+            //else news item is another language
             } else {
+                cell.cellTitle?.textAlignment = NSTextAlignment.left
+                cell.cellSubtitle?.textAlignment = NSTextAlignment.left
+                let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
+                cell.cellImage?.kf.setImage(
+                    with: resource,
+                    placeholder: image,
+                    options: [.scaleFactor(UIScreen.main.scale),
+                              .transition(.fade(0.5)),
+                              .cacheOriginalImage
+                    ]
+                )
+            }
+            
+            //if news item source is El Khabar
+            if source == "El Khabar" {
                 cell.cellTitle?.textAlignment = NSTextAlignment.left
                 cell.cellSubtitle?.textAlignment = NSTextAlignment.left
                 let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
