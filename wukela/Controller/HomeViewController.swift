@@ -375,8 +375,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //if news item source is El Khabar
             if source == "El Khabar" {
-                cell.cellTitle?.textAlignment = NSTextAlignment.left
-                cell.cellSubtitle?.textAlignment = NSTextAlignment.left
+                cell.cellTitle?.textAlignment = NSTextAlignment.right
+                cell.cellSubtitle?.textAlignment = NSTextAlignment.right
                 let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
                 cell.cellImage?.kf.setImage(
                     with: resource,

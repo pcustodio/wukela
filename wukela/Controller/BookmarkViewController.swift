@@ -91,7 +91,7 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
         
         super.viewDidAppear(animated)
         
-//        //implement the refresh listener
+        //implement the refresh listener
         RefreshTransitionMediator.instance.setListener(listener: self)
         
         //check for internet availability
@@ -110,6 +110,20 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
             }))
             self.present(alert, animated: true)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        
+        //when view dissapears reset editing mode
+        if tableView.isEditing {
+            print("is editing")
+            tableView.setEditing(false, animated: true)
+            self.editBtn.title = NSLocalizedString("Edit", comment: "")
+        }
+        
+        tableView.reloadData()
     }
     
     
@@ -160,6 +174,10 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
         if bookmarks.count == 0 {
             //display empty bookmarks msg
             self.tableView.setEmptyMessage("Sem artigos")
+            
+            //reset edit mode
+            tableView.setEditing(false, animated: true)
+            self.editBtn.title = NSLocalizedString("Edit", comment: "")
         } else {
             self.tableView.restore()
         }
@@ -190,6 +208,9 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
         cell.cellImage.layer.cornerRadius = 5.0
 
         let lang = bookmark.value(forKeyPath: "langMarked") as? String
+        let source = bookmark.value(forKeyPath: "sourceMarked") as? String
+        
+        //if news item is in arabic
         if lang == "Arabic" {
             cell.cellTitle?.textAlignment = NSTextAlignment.right
             cell.cellSubtitle?.textAlignment = NSTextAlignment.right
@@ -203,9 +224,26 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
                           .cacheOriginalImage
                 ]
             )
+            
+        //else news item is another language
         } else {
             cell.cellTitle?.textAlignment = NSTextAlignment.left
             cell.cellSubtitle?.textAlignment = NSTextAlignment.left
+            let resource = ImageResource(downloadURL: URL(string: (bookmark.value(forKeyPath: "imgMarked") as? String)! )!, cacheKey: bookmark.value(forKeyPath: "imgMarked") as? String)
+            cell.cellImage?.kf.setImage(
+                with: resource,
+                placeholder: image,
+                options: [.scaleFactor(UIScreen.main.scale),
+                          .transition(.fade(0.5)),
+                          .cacheOriginalImage
+                ]
+            )
+        }
+        
+        //if news item source is El Khabar
+        if source == "El Khabar" {
+            cell.cellTitle?.textAlignment = NSTextAlignment.right
+            cell.cellSubtitle?.textAlignment = NSTextAlignment.right
             let resource = ImageResource(downloadURL: URL(string: (bookmark.value(forKeyPath: "imgMarked") as? String)! )!, cacheKey: bookmark.value(forKeyPath: "imgMarked") as? String)
             cell.cellImage?.kf.setImage(
                 with: resource,
