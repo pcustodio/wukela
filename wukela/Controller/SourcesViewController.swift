@@ -139,50 +139,50 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         label.font = UIFont(name: "ProximaNova-Light", size: 20) // my custom font
         label.textColor = UIColor(named: "subtitleColor") // my custom colour
         
-        if section == 0 {
+        switch section {
+        case 0:
             label.text = "Algeria"
-        } else if section == 1 {
+        case 1:
             label.text = "Angola"
-        } else if section == 2 {
+        case 2:
             label.text = "Botswana"
-        } else if section == 3 {
+        case 3:
             label.text = "Burkina Faso"
-        } else if section == 4 {
+        case 4:
             label.text = "Cameroon"
-        } else if section == 5 {
+        case 5:
             label.text = "Cape Verde"
-        } else if section == 6 {
+        case 6:
             label.text = "Congo"
-        } else if section == 7 {
+        case 7:
             label.text = "Egypt"
-        } else if section == 8 {
+        case 8:
             label.text = "Ethiopia"
-        } else if section == 9 {
+        case 9:
             label.text = "Ghana"
-        } else if section == 10 {
+        case 10:
             label.text = "Ivory Coast"
-        } else if section == 11 {
+        case 11:
             label.text = "Kenya"
-        } else if section == 12 {
+        case 12:
            label.text = "Lybia"
-        } else if section == 13 {
+        case 13:
             label.text = "Morocco"
-        } else if section == 14 {
+        case 14:
             label.text = "Mozambique"
-        } else if section == 15 {
+        case 15:
             label.text = "Nigeria"
-        } else if section == 16 {
+        case 16:
             label.text = "South Africa"
-        } else if section == 17 {
+        case 17:
             label.text = "Tanzania"
-        } else if section == 18 {
+        case 18:
             label.text = "Tunisia"
-        } else {
+        default:
             label.text = "Uganda"
         }
+        
         headerView.addSubview(label)
-    
-
         return headerView
 
     }
