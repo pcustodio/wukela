@@ -433,6 +433,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                           .cacheOriginalImage
                 ]
             )
+            
+            //set text alignment
+            langRead = historySynced.value(forKeyPath: "langRead") as! String
+            if langRead == "Arabic" {
+                cell.cellTitle?.textAlignment = NSTextAlignment.right
+                cell.cellSubtitle?.textAlignment = NSTextAlignment.right
+            } else {
+                cell.cellTitle?.textAlignment = NSTextAlignment.left
+                cell.cellSubtitle?.textAlignment = NSTextAlignment.left
+            }
+            
         }
         
         return cell
@@ -449,30 +460,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //set vars for history
             headlineRead = newsSync[indexPath.row][0] as! String
-            urlRead = newsSync[indexPath.row][1] as! String
             srcRead = newsSync[indexPath.row][3] as! String
             catRead = newsSync[indexPath.row][4] as! String
             epochRead = newsSync[indexPath.row][8] as! Double
             timeRead = newsSync[indexPath.row][8] as! Double
             langRead = newsSync[indexPath.row][7] as! String
+            urlRead = newsSync[indexPath.row][1] as! String
             
-            //perform language checks for imgRead var so it can pass along correct url
-            
-            let lang = newsSync[indexPath.row][7] as! String
-            let source = newsSync[indexPath.row][3] as! String
-            
+            //perform language checks for imgRead var so it can pass along correct img url
             //if news item is in arabic
-            if lang == "Arabic" {
-                let imgURL = (newsSync[indexPath.row][2] as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
-                imgRead = imgURL!
-                
+            if langRead == "Arabic" {
+                imgRead = (newsSync[indexPath.row][2] as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)!
             //else news item is another language
             } else {
                 imgRead = newsSync[indexPath.row][2] as! String
             }
-            
             //if news item source is El Khabar
-            if source == "El Khabar" {
+            if srcRead == "El Khabar" {
                 imgRead = newsSync[indexPath.row][2] as! String
             }
 
@@ -480,6 +484,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             //set vars as Coredata
             markRead()
+            
         } else {
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -510,6 +515,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.url = (historySynced.value(forKeyPath: "urlRead") as? String)!
                     destination?.source = (historySynced.value(forKeyPath: "srcRead") as? String)!
                     destination?.epoch = (historySynced.value(forKeyPath: "epochRead") as? Double)!
+                    destination?.lang = (historySynced.value(forKeyPath: "langRead") as? String)!
                     destination?.img = (historySynced.value(forKeyPath: "imgRead") as? String)!
                 }
             }
