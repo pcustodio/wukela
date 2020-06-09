@@ -25,10 +25,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     var refreshControl = UIRefreshControl()
     
+    //vars for history
     var headlineRead = ""
     var urlRead = ""
     var imgRead = ""
     var srcRead = ""
+    var langRead = ""
     var catRead = ""
     var epochRead = 0.0
     var timeRead = 0.0
@@ -287,6 +289,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     //MARK: - Tableview
+
     
     //define row qty
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -438,23 +441,44 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //cell was tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segmentControl.selectedSegmentIndex == 0 {
-
+            
+            //delay check presentation to avoid ui jump
             _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { timer in
                 self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             })
             
+            //set vars for history
             headlineRead = newsSync[indexPath.row][0] as! String
             urlRead = newsSync[indexPath.row][1] as! String
-//            imgRead = newsSync[indexPath.row][2] as! String
-            let imgURL = (newsSync[indexPath.row][2] as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
-            imgRead = imgURL!
             srcRead = newsSync[indexPath.row][3] as! String
             catRead = newsSync[indexPath.row][4] as! String
             epochRead = newsSync[indexPath.row][8] as! Double
             timeRead = newsSync[indexPath.row][8] as! Double
+            langRead = newsSync[indexPath.row][7] as! String
             
+            //perform language checks for imgRead var so it can pass along correct url
+            
+            let lang = newsSync[indexPath.row][7] as! String
+            let source = newsSync[indexPath.row][3] as! String
+            
+            //if news item is in arabic
+            if lang == "Arabic" {
+                let imgURL = (newsSync[indexPath.row][2] as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
+                imgRead = imgURL!
+                
+            //else news item is another language
+            } else {
+                imgRead = newsSync[indexPath.row][2] as! String
+            }
+            
+            //if news item source is El Khabar
+            if source == "El Khabar" {
+                imgRead = newsSync[indexPath.row][2] as! String
+            }
+
             self.tableView.deselectRow(at: indexPath, animated: true)
             
+            //set vars as Coredata
             markRead()
         } else {
             self.tableView.deselectRow(at: indexPath, animated: true)
@@ -472,7 +496,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.headline = newsSync[indexPath.row][0] as! String
                     destination?.url = newsSync[indexPath.row][1] as! String
                     destination?.source = newsSync[indexPath.row][3] as! String
-                    destination?.lang = newsSync[indexPath.row][7] as! String
                     destination?.epoch = newsSync[indexPath.row][8] as! Double
                     destination?.img = newsSync[indexPath.row][2] as! String
                 }
@@ -504,6 +527,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         user.setValue(urlRead, forKeyPath: "urlRead")
         user.setValue(imgRead, forKeyPath: "imgRead")
         user.setValue(srcRead, forKeyPath: "srcRead")
+        user.setValue(langRead, forKeyPath: "langRead")
         user.setValue(catRead, forKeyPath: "catRead")
         user.setValue(epochRead, forKeyPath: "epochRead")
         user.setValue(NSDate().timeIntervalSince1970, forKeyPath: "timeRead")

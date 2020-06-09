@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ActiveSources" representedClassName="ActiveSources" syncable="YES" codeGenerationType="class">
         <attribute name="isActiveSource" optional="YES" attributeType="String"/>
     </entity>
@@ -31,6 +31,7 @@
         <attribute name="epochRead" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="headlineRead" optional="YES" attributeType="String"/>
         <attribute name="imgRead" optional="YES" attributeType="String"/>
+        <attribute name="langRead" optional="YES" attributeType="String"/>
         <attribute name="srcRead" optional="YES" attributeType="String"/>
         <attribute name="timeRead" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="urlRead" optional="YES" attributeType="String"/>
@@ -40,6 +41,6 @@
         <element name="ActiveTopics" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Bookmarks" positionX="-63" positionY="-18" width="128" height="133"/>
         <element name="NewsSync" positionX="-63" positionY="9" width="128" height="193"/>
-        <element name="Read" positionX="-63" positionY="9" width="128" height="148"/>
+        <element name="Read" positionX="-63" positionY="9" width="128" height="163"/>
     </elements>
 </model>
