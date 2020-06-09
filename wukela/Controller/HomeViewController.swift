@@ -99,7 +99,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navBarAppearance.backgroundColor = UIColor(named: "bkColor")
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         
-//        bottomView.setGradientBackground(colorOne: UIColor(white: 1, alpha: 0), colorTwo: UIColor(named: "eightBkColor")!, colorThree: UIColor(named: "nineBkColor")!, colorFour: UIColor(named: "bkColor")!)
             }
     
     
@@ -572,19 +571,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 }
-
-//extension UIView {
-//    func setGradientBackground(colorOne: UIColor, colorTwo: UIColor, colorThree: UIColor, colorFour: UIColor) {
-//        let gradientLayer = CAGradientLayer()
-//        gradientLayer.frame = bounds
-//        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor, colorThree.cgColor, colorFour.cgColor]
-//        gradientLayer.locations = [0.0, 0.6 , 0.7 , 0.8]
-//        gradientLayer.startPoint = CGPoint(x: 0.0 , y: 0.0)
-//        gradientLayer.endPoint = CGPoint (x: 0.0 , y: 1.0)
-//
-//        layer.insertSublayer(gradientLayer, at: 0)
-//    }
-//}
 
 
 //MARK: - Empty message
