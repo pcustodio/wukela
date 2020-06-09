@@ -497,6 +497,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     destination?.url = newsSync[indexPath.row][1] as! String
                     destination?.source = newsSync[indexPath.row][3] as! String
                     destination?.epoch = newsSync[indexPath.row][8] as! Double
+                    destination?.lang = newsSync[indexPath.row][7] as! String
                     destination?.img = newsSync[indexPath.row][2] as! String
                 }
             }
