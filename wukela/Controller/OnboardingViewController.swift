@@ -11,12 +11,14 @@ import CoreData
 
 class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    let sourceImages: [UIImage] = [UIImage(named: "sourceImages01")!, UIImage(named: "sourceImages02")!, UIImage(named: "sourceImages03")!, UIImage(named: "sourceImages04")! ]
+    let sourceImages: [UIImage] = [UIImage(named: "sourceImages01")!, UIImage(named: "sourceImages02")!, UIImage(named: "sourceImages03")!, UIImage(named: "sourceImages04")!, UIImage(named: "sourceImages05")!, UIImage(named: "sourceImages06")! ]
     
-    let sources = ["Jornal Notícias",
+    let sources = ["Daily Nation",
+                   "Punch",
+                   "The Times",
                    "O País",
-                   "Verdade",
-                   "Savana"]
+                   "Al Ahram",
+                   "Daily Monitor"]
     
     var newsLoader = NewsLoader()
     
