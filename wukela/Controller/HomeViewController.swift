@@ -418,7 +418,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 dateFormatter.locale = Locale.init(identifier: Locale.preferredLanguages[1])
                 dateFormatter.setLocalizedDateFormatFromTemplate("ddMMMM")
                 let strDate = dateFormatter.string(from: date)
-                cell.detailTextLabel?.text = strDate
+                cell.cellSubtitle?.text = strDate
             }
             
             //set row img
