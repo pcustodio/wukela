@@ -1,5 +1,5 @@
 //
-//  RefreshTransitionListener.swift
+//  TabTransitionListener.swift
 //  wukela
 //
 //  Created by Paulo Custódio on 10/04/2020.
@@ -14,28 +14,28 @@ import Foundation
  https://stackoverflow.com/questions/28706877/how-can-you-reload-a-viewcontroller-after-dismissing-a-modally-presented-view-co
  */
 
-protocol RefreshTransitionListener {
-    func popoverDismissed()
+protocol TabTransitionListener {
+    func tabDismissed()
 }
 
-class RefreshTransitionMediator {
+class TabTransitionMediator {
     /* Singleton */
-    class var instance: RefreshTransitionMediator {
+    class var instance: TabTransitionMediator {
         struct Static {
-            static let instance: RefreshTransitionMediator = RefreshTransitionMediator()
+            static let instance: TabTransitionMediator = TabTransitionMediator()
         }
         return Static.instance
     }
     
-    private var listener: RefreshTransitionListener?
+    private var listener: TabTransitionListener?
     
     private init() {}
     
-    func setListener(listener: RefreshTransitionListener) {
+    func setListener(listener: TabTransitionListener) {
         self.listener = listener
     }
     
-    func sendPopoverDismissed(modelChanged: Bool) {
-        listener?.popoverDismissed()
+    func sendTabDismissed(modelChanged: Bool) {
+        listener?.tabDismissed()
     }
 }

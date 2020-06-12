@@ -123,7 +123,7 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidDisappear(animated)
         
         //implement the refresh dismisser
-        RefreshTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
+        TabTransitionMediator.instance.sendTabDismissed(modelChanged: true)
     }
 
 //MARK: - TableView

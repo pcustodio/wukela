@@ -55,7 +55,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidDisappear(animated)
         
         //implement the refresh dismisser
-        RefreshTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
+        TabTransitionMediator.instance.sendTabDismissed(modelChanged: true)
     }
     
     @IBAction func dismissView(_ sender: UIBarButtonItem) {

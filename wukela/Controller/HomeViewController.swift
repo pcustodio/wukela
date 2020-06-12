@@ -16,7 +16,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var cellImage: UIImageView!
 }
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RefreshTransitionListener {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TabTransitionListener {
     
     @IBOutlet weak var tableView: UITableView!
     //    @IBOutlet weak var bottomView: UIView!
@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(newsRefresh), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         //implement the refresh listener
-        RefreshTransitionMediator.instance.setListener(listener: self)
+        TabTransitionMediator.instance.setListener(listener: self)
         
         //tabBar items
         if let tabItems = tabBarController?.tabBar.items {
@@ -243,10 +243,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //MARK: - Delegate: Refresh News after Topic & Sources
     
     //required delegate func
-    func popoverDismissed() {
+    func tabDismissed() {
         newsRefresh()
         tableView.reloadData()
-        print("transistion listened to")
+        print("tab transistion listener activated")
     }
     
     

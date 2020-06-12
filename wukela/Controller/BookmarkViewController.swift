@@ -16,7 +16,7 @@ class BookmarkTableViewCell: UITableViewCell {
     @IBOutlet weak var cellImage: UIImageView!
 }
 
-class BookmarkViewController: UIViewController, RefreshTransitionListener {
+class BookmarkViewController: UIViewController, ModalTransitionListener {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editBtn: UIBarButtonItem!
@@ -92,7 +92,7 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
         super.viewDidAppear(animated)
         
         //implement the refresh listener
-        RefreshTransitionMediator.instance.setListener(listener: self)
+        ModalTransitionMediator.instance.setListener(listener: self)
         
         //check for internet availability
         if Reachability.isConnectedToNetwork(){
@@ -126,6 +126,13 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
         tableView.reloadData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        //implement the refresh dismisser
+        ModalTransitionMediator.instance.sendModalDismissed(modelChanged: true)
+    }
+    
     
 //MARK: - Edit Bookmarks
     
@@ -141,10 +148,10 @@ class BookmarkViewController: UIViewController, RefreshTransitionListener {
 //MARK: - Delegate: Refresh News after Topic & Sources
     
     //required delegate func
-    func popoverDismissed() {
+    func modalDismissed() {
 //        self.navigationController?.dismiss(animated: true, completion: nil)
         self.viewWillAppear(true)
-        print("dismissed")
+        print("modal transition listener activated")
     }
     
     
