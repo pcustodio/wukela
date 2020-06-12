@@ -341,7 +341,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.cellImage.layer.cornerRadius = 5.0
             
             
-//            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
+//            let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.png"))!, cacheKey: newsSync[indexPath.row][2] as? String)
 
             let lang = newsSync[indexPath.row][7] as! String
             let source = newsSync[indexPath.row][3] as! String
@@ -351,7 +351,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.cellTitle?.textAlignment = NSTextAlignment.right
                 cell.cellSubtitle?.textAlignment = NSTextAlignment.right
                 let imgURL = (newsSync[indexPath.row][2] as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
-                let resource = ImageResource(downloadURL: (URL(string: imgURL! ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: imgURL)
+                let resource = ImageResource(downloadURL: (URL(string: imgURL! ) ??  URL(string:"https://wukela.app/assets/empty@3x.png"))!, cacheKey: imgURL)
                 cell.cellImage?.kf.setImage(
                     with: resource,
                     placeholder: image,
@@ -365,7 +365,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             } else {
                 cell.cellTitle?.textAlignment = NSTextAlignment.left
                 cell.cellSubtitle?.textAlignment = NSTextAlignment.left
-                let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
+                let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.png"))!, cacheKey: newsSync[indexPath.row][2] as? String)
                 cell.cellImage?.kf.setImage(
                     with: resource,
                     placeholder: image,
@@ -380,7 +380,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if source == "El Khabar" {
                 cell.cellTitle?.textAlignment = NSTextAlignment.right
                 cell.cellSubtitle?.textAlignment = NSTextAlignment.right
-                let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: newsSync[indexPath.row][2] as? String)
+                let resource = ImageResource(downloadURL: (URL(string: newsSync[indexPath.row][2] as! String ) ??  URL(string:"https://wukela.app/assets/empty@3x.png"))!, cacheKey: newsSync[indexPath.row][2] as? String)
                 cell.cellImage?.kf.setImage(
                     with: resource,
                     placeholder: image,

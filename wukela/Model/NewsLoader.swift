@@ -203,13 +203,8 @@ class NewsLoader {
             user.setValue(newsJson[count].headline, forKeyPath: "headlineSync")
             user.setValue(newsJson[count].url_src, forKeyPath: "url_srcSync")
             //look out for empty img and set default
-            let scale = UIScreen.main.scale
-            if newsJson[count].img_src == nil && scale == 1.0 {
-                user.setValue("https://wukela.app/assets/empty.pdf", forKeyPath: "img_srcSync")
-            } else if newsJson[count].img_src == nil && scale == 2.0 {
-                user.setValue("https://wukela.app/assets/empty@2x.pdf", forKeyPath: "img_srcSync")
-            } else if newsJson[count].img_src == nil && scale == 3.0 {
-                user.setValue("https://wukela.app/assets/empty@3x.pdf", forKeyPath: "img_srcSync")
+            if newsJson[count].img_src == nil {
+                user.setValue("https://wukela.app/assets/empty@3x.png", forKeyPath: "img_srcSync")
             } else {
                 user.setValue(newsJson[count].img_src, forKeyPath: "img_srcSync")
             }

@@ -215,7 +215,7 @@ extension BookmarkViewController: UITableViewDataSource, UITableViewDelegate {
             cell.cellTitle?.textAlignment = NSTextAlignment.right
             cell.cellSubtitle?.textAlignment = NSTextAlignment.right
             let imgURL = (bookmark.value(forKeyPath: "imgMarked") as! String).addingPercentEncoding(withAllowedCharacters:CharacterSet.urlQueryAllowed)
-            let resource = ImageResource(downloadURL: (URL(string: imgURL! ) ??  URL(string:"https://wukela.app/assets/empty@3x.pdf"))!, cacheKey: imgURL)
+            let resource = ImageResource(downloadURL: (URL(string: imgURL! ) ??  URL(string:"https://wukela.app/assets/empty@3x.png"))!, cacheKey: imgURL)
             cell.cellImage?.kf.setImage(
                 with: resource,
                 placeholder: image,
