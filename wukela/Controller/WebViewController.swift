@@ -43,11 +43,11 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         //webkit
         webView.navigationDelegate = self
         if lang == "Arabic" {
-            let loadURL = URL (string: url)
+            let loadURL = URL (string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
             let request = URLRequest(url: loadURL!)
             webView.load(request)
         } else {
-            let loadURL = URL (string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+            let loadURL = URL (string: url)
             let request = URLRequest(url: loadURL!)
             webView.load(request)
         }
