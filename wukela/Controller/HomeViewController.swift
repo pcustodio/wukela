@@ -83,9 +83,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //trigger UITableViewDelegate
         tableView.delegate = self
         
-        //refresh control
-        addRefreshControl()
-        
         //set cell height
         self.tableView.rowHeight = 80;
         
@@ -134,11 +131,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    //MARK: - Scroll to top
+    
+    func scrollToFirstRow() {
+      let indexPath = IndexPath(row: 0, section: 0)
+      self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
     
     //MARK: - Sync News
     
-    @IBAction func syncNewsBtn(_ sender: UIBarButtonItem) {
-        
+    func syncNews() {
         if let window = view.window {
             
             //insert background
@@ -203,8 +205,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 UIView.animate(withDuration: 0.5, animations: { subSyncLabel.alpha = 0.0 }) { (done: Bool) in
                     subSyncLabel.removeFromSuperview()
                 }
+                self.scrollToFirstRow()
             }
         }
+    }
+    
+    
+    //MARK: - Sync News Button
+    
+    @IBAction func syncNewsBtn(_ sender: UIBarButtonItem) {
+        syncNews()
     }
     
     
@@ -262,29 +272,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             newsRefresh()
             tableView.reloadData()
         }
-    }
-    
-    
-//MARK: - Refresh Control
-    
-    func addRefreshControl() {
-        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
-    }
-    
-    @objc func refreshContent() {
-        perform(#selector(finishRefreshing), with: nil, afterDelay: 2.0)
-        newsRefresh()
-        print("refreshing")
-    }
-    
-    @objc func finishRefreshing() {
-        refreshControl.endRefreshing()
-        print("refreshed")
     }
     
     
