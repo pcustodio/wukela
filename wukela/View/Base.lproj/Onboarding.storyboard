@@ -12,9 +12,6 @@
         <array key="ProximaNova Bold.otf">
             <string>ProximaNova-Bold</string>
         </array>
-        <array key="ProximaNova Light.otf">
-            <string>ProximaNova-Light</string>
-        </array>
         <array key="ProximaNova Regular.otf">
             <string>ProximaNova-Regular</string>
         </array>
@@ -83,10 +80,17 @@
                                 <color key="textColor" name="subtitleColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get all african news in one single place." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-6h-p3q">
-                                <rect key="frame" x="40" y="490" width="334" height="54"/>
-                                <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="23"/>
-                                <color key="textColor" name="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-6h-p3q">
+                                <rect key="frame" x="40" y="479.5" width="334" height="64.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Get all african news in a single place.">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="23" name="ProximaNova-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.2" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -110,9 +114,11 @@
                     <navigationItem key="navigationItem" id="R7E-Xa-jKR"/>
                     <connections>
                         <outlet property="collectionView" destination="bjR-G9-nCQ" id="cpi-DA-Job"/>
+                        <outlet property="headliner" destination="9Dl-6h-p3q" id="41d-0A-VKU"/>
                         <outlet property="mainLabel" destination="9Dl-6h-p3q" id="ceD-Sm-dbB"/>
                         <outlet property="nextBtn" destination="FeD-sx-cD6" id="QO7-4l-6K3"/>
                         <outlet property="subLabel" destination="Gjj-tw-ASY" id="0am-M4-MUB"/>
+                        <outlet property="subliner" destination="Gjj-tw-ASY" id="rYm-D0-X1u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCV-Bs-tuz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

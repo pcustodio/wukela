@@ -141,45 +141,45 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch section {
         case 0:
-            label.text = "Algeria"
+            label.text = NSLocalizedString("Algeria", comment: "")
         case 1:
-            label.text = "Angola"
+            label.text = NSLocalizedString("Angola", comment: "")
         case 2:
-            label.text = "Botswana"
+            label.text = NSLocalizedString("Botswana", comment: "")
         case 3:
-            label.text = "Burkina Faso"
+            label.text = NSLocalizedString("Burkina Faso", comment: "")
         case 4:
-            label.text = "Cameroon"
+            label.text = NSLocalizedString("Cameroon", comment: "")
         case 5:
-            label.text = "Cape Verde"
+            label.text = NSLocalizedString("Cape Verde", comment: "")
         case 6:
-            label.text = "Congo"
+            label.text = NSLocalizedString("Congo", comment: "")
         case 7:
-            label.text = "Egypt"
+            label.text = NSLocalizedString("Egypt", comment: "")
         case 8:
-            label.text = "Ethiopia"
+            label.text = NSLocalizedString("Ethiopia", comment: "")
         case 9:
-            label.text = "Ghana"
+            label.text = NSLocalizedString("Ghana", comment: "")
         case 10:
-            label.text = "Ivory Coast"
+            label.text = NSLocalizedString("Ivory Coast", comment: "")
         case 11:
-            label.text = "Kenya"
+            label.text = NSLocalizedString("Kenya", comment: "")
         case 12:
-           label.text = "Lybia"
+            label.text = NSLocalizedString("Lybia", comment: "")
         case 13:
-            label.text = "Morocco"
+            label.text = NSLocalizedString("Morocco", comment: "")
         case 14:
-            label.text = "Mozambique"
+            label.text = NSLocalizedString("Mozambique", comment: "")
         case 15:
-            label.text = "Nigeria"
+            label.text = NSLocalizedString("Nigeria", comment: "")
         case 16:
-            label.text = "South Africa"
+            label.text = NSLocalizedString("South Africa", comment: "")
         case 17:
-            label.text = "Tanzania"
+            label.text = NSLocalizedString("Tanzania", comment: "")
         case 18:
-            label.text = "Tunisia"
+            label.text = NSLocalizedString("Tunisia", comment: "")
         default:
-            label.text = "Uganda"
+            label.text = NSLocalizedString("Uganda", comment: "")
         }
         
         headerView.addSubview(label)

@@ -11,6 +11,10 @@ import CoreData
 
 class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var headliner: UILabel!
+    @IBOutlet weak var subliner: UILabel!
+    
+    
     let sourceImages: [UIImage] = [UIImage(named: "sourceImages01")!, UIImage(named: "sourceImages02")!, UIImage(named: "sourceImages03")!, UIImage(named: "sourceImages04")!, UIImage(named: "sourceImages05")!, UIImage(named: "sourceImages06")! ]
     
     let sources = ["Daily Nation",
@@ -31,6 +35,10 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set text
+        headliner.text = NSLocalizedString("Headliner", comment: "")
+        subliner.text = NSLocalizedString("Subliner", comment: "")
         
         //config collection view
         collectionView.delegate = self
