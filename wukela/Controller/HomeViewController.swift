@@ -86,6 +86,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //set cell height
         self.tableView.rowHeight = 80;
         
+        //refresh control
+        addRefreshControl()
+        
         //segments
         segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
@@ -249,6 +252,37 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.present(alert, animated: true)
         }
     }
+    
+    
+    //MARK: - Refresh on Scroll Down
+    
+    func addRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+    }
+
+    @objc func refreshContent() {
+        perform(#selector(finishRefreshing), with: nil, afterDelay: 2.0)
+        //sync news
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let newsLoader = NewsLoader()
+            newsLoader.getJson()
+            newsLoader.deleteNews()
+            newsLoader.storeNews()
+            self.newsRefresh()
+        }
+        print("refreshing")
+    }
+
+    @objc func finishRefreshing() {
+        refreshControl.endRefreshing()
+        print("refreshed")
+    }
+
     
 //MARK: - Delegate: Refresh News after Topic & Sources
     
