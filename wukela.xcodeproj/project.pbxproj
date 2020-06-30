@@ -25,7 +25,6 @@
 		916F014F24268CE300F88905 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916F014E24268CE300F88905 /* BookmarkViewController.swift */; };
 		9174FFA22440AC9B000132DE /* TabTransitionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9174FFA12440AC9B000132DE /* TabTransitionListener.swift */; };
 		918FCFC72458468B008D6759 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FCFC62458468B008D6759 /* OnboardingViewController.swift */; };
-		918FCFCB24586BBE008D6759 /* SourceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FCFCA24586BBE008D6759 /* SourceCollectionViewCell.swift */; };
 		91972703242E33A800E49154 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 91972702242E33A800E49154 /* Kingfisher */; };
 		91990A12243F3CAE001DAAA6 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91990A11243F3CAE001DAAA6 /* TopicViewController.swift */; };
 		919FD4522493C0A600224791 /* ModalTransitionLIstener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919FD4512493C0A600224791 /* ModalTransitionLIstener.swift */; };
@@ -64,7 +63,6 @@
 		9174FFA12440AC9B000132DE /* TabTransitionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTransitionListener.swift; sourceTree = "<group>"; };
 		917A432F242B8AF90032F4D2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		918FCFC62458468B008D6759 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		918FCFCA24586BBE008D6759 /* SourceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCollectionViewCell.swift; sourceTree = "<group>"; };
 		91990A11243F3CAE001DAAA6 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		919FD4512493C0A600224791 /* ModalTransitionLIstener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionLIstener.swift; sourceTree = "<group>"; };
 		91A1205E24839EDF00FB8784 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				9174FFA12440AC9B000132DE /* TabTransitionListener.swift */,
 				919FD4512493C0A600224791 /* ModalTransitionLIstener.swift */,
 				9110AB4A243B76CB00669A6B /* Reachability.swift */,
-				918FCFCA24586BBE008D6759 /* SourceCollectionViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,7 +268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				910E2DED2426544000313B2A /* HomeViewController.swift in Sources */,
-				918FCFCB24586BBE008D6759 /* SourceCollectionViewCell.swift in Sources */,
 				918FCFC72458468B008D6759 /* OnboardingViewController.swift in Sources */,
 				910E2DDA24264E3400313B2A /* WebViewController.swift in Sources */,
 				910E2DD624264E3400313B2A /* AppDelegate.swift in Sources */,
