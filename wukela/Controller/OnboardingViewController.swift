@@ -9,17 +9,38 @@
 import UIKit
 import CoreData
 
-class OnboardingViewController: UIViewController {
+class OnboardingTableViewCell: UITableViewCell {
+    @IBOutlet weak var cellTitle: UILabel!
+    @IBOutlet weak var cellImg: UIImageView!
+}
 
+class OnboardingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet var tableView: UITableView!
     @IBOutlet weak var headliner: UILabel!
     @IBOutlet weak var subliner: UILabel!
+
     
-    let sources = ["Daily Nation",
-                   "Punch",
-                   "The Times",
-                   "O País",
-                   "Al Ahram",
-                   "Daily Monitor"]
+    let countries = [NSLocalizedString("Algeria", comment: ""),
+                     NSLocalizedString("Angola", comment: ""),
+                     NSLocalizedString("Botswana", comment: ""),
+                     NSLocalizedString("Burkina Faso", comment: ""),
+                     NSLocalizedString("Cameroon", comment: ""),
+                     NSLocalizedString("Cape Verde", comment: ""),
+                     NSLocalizedString("Congo", comment: ""),
+                     NSLocalizedString("Egypt", comment: ""),
+                     NSLocalizedString("Ethiopia", comment: ""),
+                     NSLocalizedString("Ghana", comment: ""),
+                     NSLocalizedString("Ivory Coast", comment: ""),
+                     NSLocalizedString("Kenya", comment: ""),
+                     NSLocalizedString("Lybia", comment: ""),
+                     NSLocalizedString("Morocco", comment: ""),
+                     NSLocalizedString("Mozambique", comment: ""),
+                     NSLocalizedString("Nigeria", comment: ""),
+                     NSLocalizedString("South Africa", comment: ""),
+                     NSLocalizedString("Tanzania", comment: ""),
+                     NSLocalizedString("Tunisia", comment: ""),
+                     NSLocalizedString("Uganda", comment: "")]
     
     var newsLoader = NewsLoader()
     
@@ -32,9 +53,18 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //set text
-        headliner.text = NSLocalizedString("Headliner", comment: "")
-        subliner.text = NSLocalizedString("Subliner", comment: "")
+        //setup tableview
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        //hide separator line
+        tableView.separatorColor = .clear
+        
+        //set cell height
+        tableView.rowHeight = 80
+        
+        //remove extraneous empty cells
+        tableView.tableFooterView = UIView()
         
         //set button
         nextBtn.isEnabled = false
@@ -130,9 +160,9 @@ class OnboardingViewController: UIViewController {
         }
         
 
-        nextBtn.alpha = 1.0
-        mainLabel.alpha = 1.0
-        subLabel.alpha = 1.0
+//        nextBtn.alpha = 1.0
+//        mainLabel.alpha = 1.0
+//        subLabel.alpha = 1.0
 
     }
     
@@ -175,6 +205,24 @@ class OnboardingViewController: UIViewController {
         } catch {
           print("Failed saving")
         }
+    }
+    
+    
+    //MARK: - Tableview
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return countries.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! OnboardingTableViewCell
+        
+        cell.cellTitle?.text = countries[indexPath.row]
+        cell.cellImg.layer.cornerRadius = 5.0;
+        
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }
 

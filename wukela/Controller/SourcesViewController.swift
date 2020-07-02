@@ -26,10 +26,10 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         ["Actu Cameroun", "Cameroon Online", "Cameroon Tribune", "Journal du Cameroun"],
         ["A Nação", "A Semana", "Expresso das Ilhas"],
         ["7sur7", "Actualite", "Voice of Congo"],
+        ["Agence Ivoirienne de Presse", "Fratmat", "Linfodrome"],
         ["Akhbar El Yom", "Al-Ahram", "Al Wafd", "Egypt Today", "El Balad", "Youm7"],
         ["Nazret", "The Reporter", "Zehabesha"],
         ["Daily Graphic", "Daily Guide", "Ghana News Agency", "Ghanian Times", "Modern Ghana", "The Daily Statesman"],
-        ["Agence Ivoirienne de Presse", "Fratmat", "Linfodrome"],
         ["Business Today", "Daily Nation", "Kenya News Agency", "Nairobi Wire", "Standard", "Tuko"],
         ["akhbarlibya24", "Al Marsad", "Al Mukhtar Al Arabi‎", "Al-Wasat", "Lybia Observer"],
         ["Akhbarona", "Alyaoum 24", "Hespress", "Hiba Press", "Le 360"],
@@ -48,10 +48,10 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
         [NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: ""), NSLocalizedString("PTSubtitle", comment: "")],
         [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
+        [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
         [NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: "")],
         [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
         [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
-        [NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: ""), NSLocalizedString("FRSubtitle", comment: "")],
         [NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
         [NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ENSubtitle", comment: "")],
         [NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: ""), NSLocalizedString("ARSubtitle", comment: "")],
@@ -155,13 +155,13 @@ class SourcesViewController: UIViewController, UITableViewDataSource, UITableVie
         case 6:
             label.text = NSLocalizedString("Congo", comment: "")
         case 7:
-            label.text = NSLocalizedString("Egypt", comment: "")
+            label.text = NSLocalizedString("Côte d'Ivoire", comment: "")
         case 8:
-            label.text = NSLocalizedString("Ethiopia", comment: "")
+            label.text = NSLocalizedString("Egypt", comment: "")
         case 9:
-            label.text = NSLocalizedString("Ghana", comment: "")
+            label.text = NSLocalizedString("Ethiopia", comment: "")
         case 10:
-            label.text = NSLocalizedString("Ivory Coast", comment: "")
+            label.text = NSLocalizedString("Ghana", comment: "")
         case 11:
             label.text = NSLocalizedString("Kenya", comment: "")
         case 12:

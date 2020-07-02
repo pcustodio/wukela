@@ -36,10 +36,10 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         
         //hide separator line
-        self.tableView.separatorColor = .clear;
+        self.tableView.separatorColor = .clear
         
         //set cell height
-        self.tableView.rowHeight = 60;
+        self.tableView.rowHeight = 60
         
         //remove extraneous empty cells
         tableView.tableFooterView = UIView()

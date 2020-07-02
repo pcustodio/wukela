@@ -368,6 +368,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="fHe-W7-zC6" firstAttribute="top" secondItem="FSR-FN-hIO" secondAttribute="bottom" constant="3" id="Cu8-p1-6Tl"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
