@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //background fetch
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-
         
         //turn on all topics in coredata if is 1st load
         //        _ = isAppAlreadyLaunchedOnce()

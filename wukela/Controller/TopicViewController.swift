@@ -107,6 +107,8 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         //deselect row
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        //set current path
         path = indexPath.row
         
         //if row has a check mark turn on Coredata, else turn it off
