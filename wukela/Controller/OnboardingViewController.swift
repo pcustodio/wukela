@@ -181,6 +181,7 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
         UIApplication.shared.windows.first?.rootViewController = mainVC
         UIApplication.shared.windows.first?.makeKeyAndVisible()
         self.show(mainVC, sender: .none)
+        UserDefaults.standard.set(true, forKey: "hasLaunched")
     }
     
     
@@ -285,6 +286,7 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
         cell.cellTitle?.text = countries[indexPath.row]
         cell.cellImg.layer.cornerRadius = 5.0
         
+        //store checkmarks avoiding reusable cell
         if checkmarks[indexPath.row] != nil {
             cell.accessoryType = checkmarks[indexPath.row]! ? .checkmark : .none
         } else {
@@ -367,6 +369,7 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
             sourceCount = 0
         }
         
+        //turn coredata on/off according to checkmark status
         if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
             if cell.accessoryType == .checkmark{
                 cell.accessoryType = .none

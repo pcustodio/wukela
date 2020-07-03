@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-//import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,14 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-//        //request authorization when app launches
-//        requestNotificationAuthorization(application: application)
-        
         //background fetch
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        
-        //turn on all topics in coredata if is 1st load
-        //        _ = isAppAlreadyLaunchedOnce()
         
         return true
     }
@@ -100,36 +93,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    
-    //MARK: - Turn on all Topics
-    
-    //    func turnOnAll() {
-    //
-    //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //        let context = appDelegate.persistentContainer.viewContext
-    //        let entity = NSEntityDescription.entity(forEntityName: "ActiveTopics", in: context)
-    //
-    //        let categories = ["Sociedade",
-    //                  "Desporto",
-    //                  "Economia",
-    //                  "Política",
-    //                  "Cultura e Entretenimento",
-    //                  "Ciência e Tecnologia",
-    //                  "Opinião"]
-    //
-    //        for category in categories {
-    //          let newUser = NSManagedObject(entity: entity!, insertInto: context)
-    //          newUser.setValue(category, forKey: "isActiveTopic")
-    //        }
-    //
-    //        do {
-    //          try context.save()
-    //        } catch {
-    //          print("Failed saving")
-    //        }
-    //
-    //    }
-    
 }
 
