@@ -57,8 +57,6 @@
 		9162116C242CE9CA009C3CE6 /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
 		9162116E242CEA38009C3CE6 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		916A97C42447238B0093F394 /* NotificationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPublisher.swift; sourceTree = "<group>"; };
-		916BC20424B0B4D70043D314 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "pt-PT"; path = "pt-PT.lproj/Onboarding.storyboard"; sourceTree = "<group>"; };
-		916BC20724B0B55F0043D314 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
 		916F014E24268CE300F88905 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		9174FFA12440AC9B000132DE /* TabTransitionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTransitionListener.swift; sourceTree = "<group>"; };
 		917A432F242B8AF90032F4D2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -68,6 +66,8 @@
 		91A1205E24839EDF00FB8784 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		91A1206024839EF000FB8784 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		91A1206124839FCA00FB8784 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		91AA743424B0E79D0014CB17 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
+		91AA743724B0E7EC0014CB17 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "pt-PT"; path = "pt-PT.lproj/Onboarding.storyboard"; sourceTree = "<group>"; };
 		91CE263C2428F48C001A7B39 /* SourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewController.swift; sourceTree = "<group>"; };
 		91E1F8B7243609F60053693B /* ProximaNova Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova Semibold.otf"; sourceTree = "<group>"; };
 		91E1F8B8243609F60053693B /* ProximaNova Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova Light.otf"; sourceTree = "<group>"; };
@@ -324,8 +324,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				91F299D1244B32A200139CC2 /* Base */,
-				916BC20424B0B4D70043D314 /* pt-PT */,
-				916BC20724B0B55F0043D314 /* fr */,
+				91AA743424B0E79D0014CB17 /* fr */,
+				91AA743724B0E7EC0014CB17 /* pt-PT */,
 			);
 			name = Onboarding.storyboard;
 			sourceTree = "<group>";
@@ -457,7 +457,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 95K55BPZP5;
 				INFOPLIST_FILE = "$(SRCROOT)/wukela/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -478,7 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 95K55BPZP5;
 				INFOPLIST_FILE = "$(SRCROOT)/wukela/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
