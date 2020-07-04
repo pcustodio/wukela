@@ -19,6 +19,7 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var headliner: UILabel!
     @IBOutlet weak var subliner: UILabel!
+    @IBOutlet weak var nextBtn: UIButton!
 
     let countries = [NSLocalizedString("Algeria", comment: ""),
                      NSLocalizedString("Angola", comment: ""),
@@ -63,10 +64,6 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
                         UIImage(named: "countryImages_uganda"),]
     
     var newsLoader = NewsLoader()
-    
-    @IBOutlet weak var mainLabel: UILabel!
-    @IBOutlet weak var subLabel: UILabel!
-    @IBOutlet weak var nextBtn: UIButton!
     
     var currentlySelected = 0
     var selectedSources = [String]()
@@ -184,10 +181,10 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
             self.present(alert, animated: true)
         }
         
-
-//        nextBtn.alpha = 1.0
-//        mainLabel.alpha = 1.0
-//        subLabel.alpha = 1.0
+        tableView.alpha = 1.0
+        nextBtn.alpha = 1.0
+        subliner.alpha = 1.0
+        headliner.alpha = 1.0
 
     }
     
@@ -396,6 +393,7 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
                 cell.accessoryType = .none
                 checkmarks[indexPath.row] = false
                 turnOffCountry()
+                selectedSources.removeAll()
                 selectedCountryCount -= 1
             } else {
                 cell.accessoryType = .checkmark
