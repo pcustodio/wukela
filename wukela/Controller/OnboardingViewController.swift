@@ -40,7 +40,27 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
                      NSLocalizedString("Tanzania", comment: ""),
                      NSLocalizedString("Tunisia", comment: ""),
                      NSLocalizedString("Uganda", comment: "")]
-
+    
+    let countryFlags = [UIImage(named: "countryImages_algeria"),
+                        UIImage(named: "countryImages_angola"),
+                        UIImage(named: "countryImages_botswana"),
+                        UIImage(named: "countryImages_burkina"),
+                        UIImage(named: "countryImages_cameroon"),
+                        UIImage(named: "countryImages_capeverde"),
+                        UIImage(named: "countryImages_cotedivoire"),
+                        UIImage(named: "countryImages_drcongo"),
+                        UIImage(named: "countryImages_egypt"),
+                        UIImage(named: "countryImages_ethiopia"),
+                        UIImage(named: "countryImages_ghana"),
+                        UIImage(named: "countryImages_kenya"),
+                        UIImage(named: "countryImages_lybia"),
+                        UIImage(named: "countryImages_morocco"),
+                        UIImage(named: "countryImages_mz"),
+                        UIImage(named: "countryImages_nigeria"),
+                        UIImage(named: "countryImages_sa"),
+                        UIImage(named: "countryImages_tanzania"),
+                        UIImage(named: "countryImages_tunisia"),
+                        UIImage(named: "countryImages_uganda"),]
     
     var newsLoader = NewsLoader()
     
@@ -285,6 +305,7 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
         
         cell.cellTitle?.text = countries[indexPath.row]
         cell.cellImg.layer.cornerRadius = 5.0
+        cell.cellImg.image = countryFlags[indexPath.row]
         
         //store checkmarks avoiding reusable cell
         if checkmarks[indexPath.row] != nil {
