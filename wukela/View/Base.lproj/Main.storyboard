@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uQb-ja-dC6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uQb-ja-dC6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -100,6 +102,7 @@
                                 </segments>
                             </segmentedControl>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="wR9-BV-9Z3"/>
                         <color key="backgroundColor" name="bkColor"/>
                         <color key="tintColor" red="0.2627450980392157" green="0.2627450980392157" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -111,7 +114,6 @@
                             <constraint firstAttribute="bottom" secondItem="1qD-yd-wqP" secondAttribute="bottom" constant="10" id="fVr-oO-e2P"/>
                             <constraint firstItem="QCA-v0-YOI" firstAttribute="leading" secondItem="wR9-BV-9Z3" secondAttribute="leading" constant="20" id="jPT-aR-dpk"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="wR9-BV-9Z3"/>
                     </view>
                     <navigationItem key="navigationItem" id="QgW-T6-Frh">
                         <nil key="title"/>
@@ -133,7 +135,7 @@
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="9jl-Q3-ir9" firstAttribute="centerX" secondItem="zfL-AK-wdt" secondAttribute="centerX" id="EwG-Uy-hth"/>
                                 <constraint firstItem="9jl-Q3-ir9" firstAttribute="centerY" secondItem="zfL-AK-wdt" secondAttribute="centerY" id="mLA-Yl-QQm"/>
@@ -230,14 +232,14 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6NE-gv-azs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="X4S-cp-umn" firstAttribute="top" secondItem="6NE-gv-azs" secondAttribute="top" constant="20" id="Rr3-OA-fpy"/>
                             <constraint firstItem="X4S-cp-umn" firstAttribute="leading" secondItem="6NE-gv-azs" secondAttribute="leading" id="TV2-jr-8dQ"/>
                             <constraint firstItem="6NE-gv-azs" firstAttribute="bottom" secondItem="X4S-cp-umn" secondAttribute="bottom" id="eAI-Q8-8k9"/>
                             <constraint firstItem="6NE-gv-azs" firstAttribute="trailing" secondItem="X4S-cp-umn" secondAttribute="trailing" id="ek3-d9-Ukn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6NE-gv-azs"/>
                     </view>
                     <navigationItem key="navigationItem" title="Bookmarks" id="Mpx-8b-Yzw">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="sTl-DF-4w6">
@@ -302,7 +304,8 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EUj-Eo-zdf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ASf-gk-XcJ"/>
                             <constraint firstItem="MOf-q6-URV" firstAttribute="top" secondItem="EUj-Eo-zdf" secondAttribute="bottom" constant="1" id="HN3-t8-B7b"/>
@@ -312,7 +315,6 @@
                             <constraint firstAttribute="bottom" secondItem="MOf-q6-URV" secondAttribute="bottom" id="Yot-Uh-wcI"/>
                             <constraint firstItem="EUj-Eo-zdf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lXR-NK-1yZ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -392,14 +394,14 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="z06-Vi-qU1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="z06-Vi-qU1" firstAttribute="bottom" secondItem="7Bb-MV-eLa" secondAttribute="bottom" id="02V-aj-Et2"/>
                             <constraint firstItem="7Bb-MV-eLa" firstAttribute="top" secondItem="z06-Vi-qU1" secondAttribute="top" constant="20" id="CRA-b8-oyc"/>
                             <constraint firstItem="7Bb-MV-eLa" firstAttribute="leading" secondItem="z06-Vi-qU1" secondAttribute="leading" id="a5z-m9-VG7"/>
                             <constraint firstItem="z06-Vi-qU1" firstAttribute="trailing" secondItem="7Bb-MV-eLa" secondAttribute="trailing" id="gPl-gu-DWD"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="z06-Vi-qU1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sources" id="H9A-Ml-Efm"/>
                     <connections>
@@ -470,6 +472,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZZR-FO-JtZ"/>
                         <color key="backgroundColor" name="subBkColor"/>
                         <constraints>
                             <constraint firstItem="KZm-Iw-ZuM" firstAttribute="leading" secondItem="ZZR-FO-JtZ" secondAttribute="leading" id="830-k4-wdf"/>
@@ -480,7 +483,6 @@
                             <constraint firstItem="KZm-Iw-ZuM" firstAttribute="trailing" secondItem="ZZR-FO-JtZ" secondAttribute="trailing" id="tgg-UY-O0X"/>
                             <constraint firstItem="KZm-Iw-ZuM" firstAttribute="top" secondItem="ZZR-FO-JtZ" secondAttribute="top" id="yt0-tC-ABn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZZR-FO-JtZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="KH1-d8-0Yz"/>
                     <connections>
@@ -647,5 +649,8 @@
         <namedColor name="textColor">
             <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
