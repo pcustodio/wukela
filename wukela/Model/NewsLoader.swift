@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Gzip
+import Kingfisher
 
 //load data from json and turn it into my data structure on Dictionary.swift
 class NewsLoader {
@@ -265,6 +266,15 @@ class NewsLoader {
         } catch {
             print("Failed")
         }
+    }
+    
+    
+    //MARK: - Clear Img Cache
+    
+    func clearCache() {
+        let cache = ImageCache.default
+        cache.clearMemoryCache()
+        cache.clearDiskCache { print("Img Cache Clearing Done") }
     }
     
     

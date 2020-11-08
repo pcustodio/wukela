@@ -192,6 +192,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 let newsLoader = NewsLoader()
                 newsLoader.getJson()
+                newsLoader.clearCache()
                 newsLoader.deleteNews()
                 newsLoader.storeNews()
                 self.newsRefresh()
@@ -449,6 +450,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                           .cacheOriginalImage
                 ]
             )
+        
             
             //set text alignment
             langRead = historySynced.value(forKeyPath: "langRead") as! String
