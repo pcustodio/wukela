@@ -193,6 +193,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let newsLoader = NewsLoader()
                 newsLoader.getJson()
                 newsLoader.clearCache()
+                newsLoader.askReview()
                 newsLoader.deleteNews()
                 newsLoader.storeNews()
                 self.newsRefresh()

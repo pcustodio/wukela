@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Gzip
 import Kingfisher
+import StoreKit
 
 //load data from json and turn it into my data structure on Dictionary.swift
 class NewsLoader {
@@ -275,6 +276,15 @@ class NewsLoader {
         let cache = ImageCache.default
         cache.clearMemoryCache()
         cache.clearDiskCache { print("Img Cache Clearing Done") }
+    }
+    
+    
+    //MARK: - Ask for review
+    
+    func askReview() {
+        if #available( iOS 10.3,*){
+            SKStoreReviewController.requestReview()
+        }
     }
     
     
