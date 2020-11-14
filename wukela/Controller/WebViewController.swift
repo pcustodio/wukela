@@ -51,7 +51,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             let request = URLRequest(url: loadURL!)
             webView.load(request)
         }
-        if source == "Echorouk" {
+        if source == "Echorouk" || source == "El Khabar" {
             let loadURL = URL (string: url)
             let request = URLRequest(url: loadURL!)
             webView.load(request)
