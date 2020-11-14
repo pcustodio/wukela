@@ -51,6 +51,11 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             let request = URLRequest(url: loadURL!)
             webView.load(request)
         }
+        if source == "Echorouk" {
+            let loadURL = URL (string: url)
+            let request = URLRequest(url: loadURL!)
+            webView.load(request)
+        }
 //        let loadURL = URL (string: url)
 //        let request = URLRequest(url: loadURL!)
 //        webView.load(request)
