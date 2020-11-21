@@ -354,7 +354,7 @@ class OnboardingViewController: UIViewController, UITableViewDataSource, UITable
             selectedSources = ["Nazret", "The Reporter", "Zehabesha"]
             sourceCount = selectedSources.count - 1
         case NSLocalizedString("Ghana", comment: ""):
-            selectedSources = ["Daily Graphic", "Daily Guide", "Ghana News Agency", "Ghanian Times", "Modern Ghana", "The Daily Statesman"]
+            selectedSources = ["Daily Graphic", "Daily Guide", "Ghana News Agency", "Ghanian Times", "Modern Ghana"]
             sourceCount = selectedSources.count - 1
         case NSLocalizedString("Kenya", comment: ""):
             selectedSources = ["Business Today", "Daily Nation", "Kenya News Agency", "Nairobi Wire", "Standard", "Tuko"]

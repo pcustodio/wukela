@@ -61,7 +61,6 @@ class NewsLoader {
                    "Ghana News Agency",
                    "Ghanian Times",
                    "Modern Ghana",
-                   "The Daily Statesman",
                    "Agence Ivoirienne de Presse",
                    "Fratmat",
                    "Linfodrome",
@@ -276,6 +275,9 @@ class NewsLoader {
         let cache = ImageCache.default
         cache.clearMemoryCache()
         cache.clearDiskCache { print("Img Cache Clearing Done") }
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        generator.notificationOccurred(.success)
     }
     
     

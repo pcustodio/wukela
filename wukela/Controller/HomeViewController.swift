@@ -99,7 +99,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navBarAppearance.backgroundColor = UIColor(named: "bkColor")
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         
-            }
+    }
     
     
 //MARK: - viewDidAppear
@@ -108,6 +108,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidAppear(true)
         
         print("viewDidAppear")
+        
+        newsRefresh()
 
         //get checkmarks
         retrieveHistory()
@@ -193,7 +195,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let newsLoader = NewsLoader()
                 newsLoader.getJson()
                 newsLoader.clearCache()
-                newsLoader.askReview()
+//                newsLoader.askReview()
                 newsLoader.deleteNews()
                 newsLoader.storeNews()
                 self.newsRefresh()
@@ -220,6 +222,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func syncNewsBtn(_ sender: UIBarButtonItem) {
         syncNews()
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
     }
     
     
@@ -270,9 +273,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     @objc func refreshContent() {
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         perform(#selector(finishRefreshing))
         //sync news
         syncNews()
+        
     }
 
     @objc func finishRefreshing() {
